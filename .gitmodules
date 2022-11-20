@@ -1,3 +1,145 @@
 [submodule "pack/colours/opt/gruvbox-material"]
-	path = pack/colours/opt/gruvbox-material
-	url = https://github.com/sainnhe/gruvbox-material.git
+        path = pack/colours/opt/gruvbox-material
+        url = https://github.com/sainnhe/gruvbox-material.git
+[submodule "pack/colours/opt/colorizer"]
+        path = pack/colours/opt/colorizer
+        url = https://github.com/lilydjwg/colorizer.git
+[submodule "pack/colours/opt/papercolor"]
+        path = pack/colours/opt/papercolor
+        url = https://github.com/NLKNguyen/papercolor-theme.git
+[submodule "pack/colours/opt/one"]
+        path = pack/colours/opt/one
+        url = https://github.com/rakr/vim-one.git
+[submodule "pack/file-system/start/nerdtree"]
+        path = pack/file-system/start/nerdtree
+        url = https://github.com/preservim/nerdtree.git
+[submodule "pack/file-system/start/startify"]
+        path = pack/file-system/start/startify
+        url = https://github.com/mhinz/vim-startify.git
+[submodule "pack/git/start/fugitive"]
+        path = pack/git/start/fugitive
+        url = https://github.com/tpope/vim-fugitive.git
+[submodule "pack/git/start/gv"]
+        path = pack/git/start/gv
+        url = https://github.com/junegunn/gv.vim.git
+[submodule "pack/git/start/rhubarb"]
+        path = pack/git/start/rhubarb
+        url = https://github.com/tpope/vim-rhubarb.git
+[submodule "pack/git/start/signify"]
+        path = pack/git/start/signify
+        url = https://github.com/mhinz/vim-signify.git
+[submodule "pack/file-system/start/undotree"]
+        path = pack/file-system/start/undotree
+        url = https://github.com/mbbill/undotree.git
+[submodule "pack/syntax/start/python"]
+        path = pack/syntax/start/python
+        url = https://github.com/purpleP/python-syntax.git
+[submodule "pack/syntax/start/flake8"]
+        path = pack/syntax/start/flake8
+        url = https://github.com/nvie/vim-flake8.git
+[submodule "pack/syntax/start/vim-cool"]
+        path = pack/syntax/start/vim-cool
+        url = https://github.com/romainl/vim-cool.git
+[submodule "pack/file-system/start/tabman.vim"]
+        path = pack/file-system/start/tabman.vim
+        url = https://github.com/kien/tabman.vim
+[submodule "pack/syntax/start/rainbow_parentheses"]
+        path = pack/syntax/start/rainbow_parentheses
+        url = https://github.com/kien/rainbow_parentheses.vim.git
+[submodule "pack/plugins/start/airline"]
+        path = pack/plugins/start/airline
+        url = https://github.com/vim-airline/vim-airline.git
+[submodule "pack/plugins/opt/magnum"]
+        path = pack/plugins/opt/magnum
+        url = https://github.com/glts/vim-magnum
+[submodule "pack/plugins/opt/radical"]
+        path = pack/plugins/opt/radical
+        url = https://github.com/glts/vim-radical
+[submodule "pack/plugins/start/repeat"]
+        path = pack/plugins/start/repeat
+        url = https://github.com/tpope/vim-repeat
+[submodule "pack/plugins/start/floaterm"]
+        path = pack/plugins/start/floaterm
+        url = https://github.com/voldikss/vim-floaterm.git
+[submodule "pack/plugins/start/helpme"]
+        path = pack/plugins/start/helpme
+        url = https://github.com/leftbones/helpme-vim.git
+        branch = main
+[submodule "pack/plugins/start/speeddating"]
+        path = pack/plugins/start/speeddating
+        url = https://github.com/tpope/vim-speeddating
+[submodule "pack/plugins/start/spelunker"]
+        path = pack/plugins/start/spelunker
+        url = https://github.com/kamykn/spelunker.vim.git
+[submodule "pack/plugins/start/goyo"]
+        path = pack/plugins/start/goyo
+        url = https://github.com/junegunn/goyo.vim.git
+[submodule "pack/writing/opt/bullets"]
+        path = pack/writing/opt/bullets
+        url = https://github.com/dkarter/bullets.vim.git
+[submodule "pack/writing/opt/limelight"]
+        path = pack/writing/opt/limelight
+        url = https://github.com/junegunn/limelight.vim.git
+[submodule "pack/writing/opt/vimwiki"]
+        path = pack/writing/opt/vimwiki
+        url = https://github.com/vimwiki/vimwiki.git
+[submodule "pack/writing/start/supertab"]
+        path = pack/writing/start/supertab
+        url = https://github.com/ervandew/supertab.git
+[submodule "pack/writing/start/wordmotion"]
+        path = pack/writing/start/wordmotion
+        url = https://github.com/chaoren/vim-wordmotion.git
+[submodule "pack/writing/start/smartpairs"]
+        path = pack/writing/start/smartpairs
+        url = https://github.com/gosukiwi/vim-smartpairs.git
+[submodule "pack/writing/start/unimpaired"]
+        path = pack/writing/start/unimpaired
+        url = https://github.com/tpope/vim-unimpaired.git
+[submodule "pack/writing/start/tabular"]
+        path = pack/writing/start/tabular
+        url = https://github.com/godlygeek/tabular.git
+[submodule "pack/writing/start/surround"]
+        path = pack/writing/start/surround
+        url = https://github.com/tpope/vim-surround.git
+[submodule "pack/writing/start/commentary"]
+        path = pack/writing/start/commentary
+        url = https://github.com/tpope/vim-commentary.git
+[submodule "pack/writing/start/cursorword"]
+        path = pack/writing/start/cursorword
+        url = https://github.com/itchyny/vim-cursorword.git
+[submodule "pack/writing/start/easymotion"]
+        path = pack/writing/start/easymotion
+        url = https://github.com/easymotion/vim-easymotion.git
+[submodule "doc/CEH-Study-Guide"]
+        path = doc/CEH-Study-Guide
+        url = https://github.com/imrk51/CEH-v11-Study-Guide.git
+[submodule "pack/file-system/start/fzf"]
+        path = pack/file-system/start/fzf
+        url = https://github.com/junegunn/fzf.git
+[submodule "pack/file-system/start/fzf.vim"]
+        path = pack/file-system/start/fzf.vim
+        url = https://github.com/junegunn/fzf.vim.git
+[submodule "pack/plugins/start/fake"]
+        path = pack/plugins/start/fake
+        url = https://github.com/tkhren/vim-fake.git
+[submodule "pack/syntax/start/autopep8"]
+	path = pack/syntax/start/autopep8
+	url = https://github.com/tell-k/vim-autopep8.git
+[submodule "pack/syntax/start/autoflake"]
+	path = pack/syntax/start/autoflake
+	url = https://github.com/tell-k/vim-autoflake.git
+[submodule "pack/syntax/start/pydocstring"]
+	path = pack/syntax/start/pydocstring
+	url = https://github.com/heavenshell/vim-pydocstring.git
+[submodule "pack/writing/start/markdown-toc"]
+	path = pack/writing/start/markdown-toc
+	url = https://github.com/mzlogin/vim-markdown-toc.git
+[submodule "pack/colours/opt/colors"]
+	path = pack/colours/opt/colors
+	url = https://github.com/romainl/vim-colors.git
+[submodule "pack/colours/opt/malotru"]
+	path = pack/colours/opt/malotru
+	url = https://github.com/romainl/vim-malotru.git
+[submodule "pack/plugins/start/maximizer"]
+	path = pack/plugins/start/maximizer
+	url = https://github.com/szw/vim-maximizer.git
