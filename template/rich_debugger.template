@@ -1,0 +1,3 @@
+# Enhance tracebacks
+from rich.traceback import install; install(show_locals=True)
+from rich import inspect; inspect(str(), methods=True)

@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+
+set -eu
+
+VIMSPELLDIR=..
+TMP="$(mktemp)"
+
+trap 'rm -f "${TMP}"; exit' INT TERM ERR EXIT
+
+mkdir -p "${VIMSPELLDIR}"
+if [ -f "${VIMSPELLDIR}/wordlist.vim" ]; then
+  cat "${VIMSPELLDIR}/wordlist.vim" > "${TMP}"
+  cat "${VIMSPELLDIR}/wordlist.vim" >> "${TMP}"
+  sort -u "${TMP}" > ${VIMSPELLDIR}/wordlist.vim
+fi
