@@ -22,18 +22,18 @@ silent! helptags ALL " Load help for all plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load word files
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-so ~/.files/dictionary/wordlist.vim
-so ~/.files/dictionary/abbreviation.vim
-set spf=~/.files/dictionary/en.utf-8.add
-set dictionary+=~/.files/dictionary/en_US.txt
-set dictionary+=~/.files/dictionary/british-english-insane.txt
-set dictionary+=~/.files/dictionary/english_words/words.txt
-set dictionary+=~/.files/dictionary/moby_data/acronyms.txt
-set dictionary+=~/.files/dictionary/moby_data/names.txt
-set dictionary+=~/.files/dictionary/moby_data/names-f.txt
-set dictionary+=~/.files/dictionary/moby_data/names-m.txt
-set dictionary+=~/.files/dictionary/moby_data/oftenmis.txt
-set dictionary+=~/.files/dictionary/moby_data/places.txt
+so ~/.vim/dictionary/wordlist.vim
+so ~/.vim/dictionary/abbreviation.vim
+set spf=~/.vim/dictionary/en.utf-8.add
+set dictionary+=~/.vim/dictionary/en_US.txt
+set dictionary+=~/.vim/dictionary/british-english-insane.txt
+set dictionary+=~/.vim/dictionary/english_words/words.txt
+set dictionary+=~/.vim/dictionary/moby_data/acronyms.txt
+set dictionary+=~/.vim/dictionary/moby_data/names.txt
+set dictionary+=~/.vim/dictionary/moby_data/names-f.txt
+set dictionary+=~/.vim/dictionary/moby_data/names-m.txt
+set dictionary+=~/.vim/dictionary/moby_data/oftenmis.txt
+set dictionary+=~/.vim/dictionary/moby_data/places.txt
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
