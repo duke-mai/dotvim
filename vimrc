@@ -303,9 +303,9 @@ set noswapfile
 
 if has("autocmd")
   aug templates
-    au BufNewFile *.sh 0r ~/.files/template/sh.template
-    au BufNewFile *.html 0r ~/.files/template/html.template
-    au BufNewFile *.py 0r ~/.files/template/python.template
+    au BufNewFile *.sh 0r ~/.vim/template/sh.template
+    au BufNewFile *.html 0r ~/.vim/template/html.template
+    au BufNewFile *.py 0r ~/.vim/template/python.template
   aug END
 en
 
@@ -317,8 +317,8 @@ if has("autocmd")
     au BufRead,BufNewFile,BufReadPost *.jade       se ft=pug
     au BufRead,BufNewFile,BufReadPost *.pug        se ft=pug
     au BufRead,BufNewFile,BufReadPost *.coffee     se ft=coffee
-    au BufEnter ~/.files/git/gitconfig               se ft=gitconfig
-    au BufEnter ~/.files/git/commit_msg              se ft=gitcommit
+    au BufEnter ~/.files/git/gitconfig             se ft=gitconfig
+    au BufEnter ~/.files/git/commit_msg            se ft=gitcommit
   aug END
 en
 
