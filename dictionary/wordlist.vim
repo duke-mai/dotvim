@@ -1,16 +1,3 @@
-iab Ameria America
-iab Asutralia Australia
-iab Asutralian Australian
-iab Iam I am
-iab Im I'm
-iab Oython Python
-iab TEh The
-iab THat That
-iab THe The
-iab Teh The
-iab Theyare They are
-iab UnitedStates United States
-iab Youre You're
 iab abbout about
 iab abotu about
 iab abouta about a
@@ -69,6 +56,7 @@ iab alwats always
 iab alway always
 iab alwyas always
 iab amde made
+iab Ameria America
 iab amke make
 iab amkes makes
 iab amned amend
@@ -107,6 +95,8 @@ iab asdvertising advertising
 iab aslo also
 iab assistent assistant
 iab asthe as the
+iab Asutralia Australia
+iab Asutralian Australian
 iab atention attention
 iab atmospher atmosphere
 iab attentioin attention
@@ -351,8 +341,8 @@ iab exhcanges exchanges
 iab exicting exciting
 iab experiance experience
 iab experienc experience
-iab exprience experience
 iab exprienced experienced
+iab exprience experience
 iab eyar year
 iab eyt yet
 iab faeture feature
@@ -371,10 +361,10 @@ iab finalyl finally
 iab firends friends
 iab firts first
 iab flase false
-iab fo of
 iab follwo follow
 iab follwoing following
 iab fomr form
+iab fo of
 iab fora for a
 iab foriegn foreign
 iab forthe for the
@@ -395,8 +385,8 @@ iab fwe few
 iab garantee guarantee
 iab gaurd guard
 iab gemeral general
-iab genrate generate
 iab genrated generated
+iab genrate generate
 iab genration generation
 iab gerat great
 iab geting getting
@@ -414,8 +404,8 @@ iab grwo grow
 iab guidlines guidelines
 iab hadbeen had been
 iab haev have
-iab hapen happen
 iab hapened happened
+iab hapen happen
 iab hapening happening
 iab hapens happens
 iab happend happened
@@ -439,11 +429,11 @@ iab hsa has
 iab hsi his
 iab htan than
 iab htat that
-iab hte the
 iab htem them
 iab hten then
 iab htere there
 iab htese these
+iab hte the
 iab htey they
 iab hting thing
 iab htink think
@@ -454,6 +444,7 @@ iab hvaing having
 iab hvea have
 iab hwich which
 iab hwo how
+iab Iam I am
 iab idae idea
 iab idaes ideas
 iab identofy identify
@@ -461,6 +452,7 @@ iab ifnormation information
 iab ihs his
 iab imediate immediate
 iab imediatly immediately
+iab Im I'm
 iab immediatly immediately
 iab importent important
 iab importnat important
@@ -495,9 +487,9 @@ iab isthe is the
 iab isze size
 iab itis it is
 iab ititial initial
-iab itnerest interest
 iab itnerested interested
 iab itneresting interesting
+iab itnerest interest
 iab itnerests interests
 iab itwas it was
 iab iused used
@@ -528,8 +520,8 @@ iab levle level
 iab libary library
 iab librarry library
 iab librery library
-iab liek like
 iab liekd liked
+iab liek like
 iab lieutenent lieutenant
 iab liev live
 iab likly likely
@@ -561,9 +553,9 @@ iab merchent merchant
 iab mesage message
 iab mesages messages
 iab mial mail
-iab mispell misspell
 iab mispelling misspelling
 iab mispellings misspellings
+iab mispell misspell
 iab misture mixture
 iab mkae make
 iab mkaes makes
@@ -585,6 +577,8 @@ iab neccessary necessary
 iab necesarily necessarily
 iab necesary necessary
 iab negotiaing negotiating
+iab netwokr network
+iab Netwokr Network
 iab niether neither
 iab nkow know
 iab nkwo know
@@ -625,14 +619,15 @@ iab optoin option
 iab optoins options
 iab orginization organization
 iab orginized organized
-iab ot to
 iab otehr other
+iab ot to
 iab otu out
 iab outof out of
 iab overthe over the
 iab owrk work
 iab owuld would
 iab oxident oxidant
+iab Oython Python
 iab packagage package
 iab packagages packages
 iab paide paid
@@ -692,13 +687,13 @@ iab realyl really
 iab reccomend recommend
 iab reccommend recommend
 iab receieve receive
-iab recieve receive
 iab recieved received
+iab recieve receive
 iab recieving receiving
-iab recomend recommend
 iab recomendation recommendation
 iab recomendations recommendations
 iab recomended recommended
+iab recomend recommend
 iab reconize recognize
 iab recrod record
 iab rela real
@@ -706,14 +701,14 @@ iab religous religious
 iab reluctent reluctant
 iab remeber remember
 iab reommend recommend
-iab reoutine routine
 iab reoutinely routinely
+iab reoutine routine
 iab representativs representatives
 iab representives representatives
 iab represetned represented
 iab represnt represent
-iab requrie require
 iab requried required
+iab requrie require
 iab reserach research
 iab resollution resolution
 iab resorces resources
@@ -727,8 +722,8 @@ iab responsiblity responsibility
 iab restaraunt restaurant
 iab restuarant restaurant
 iab reult result
-iab reveiw review
 iab reveiwing reviewing
+iab reveiw review
 iab rulle rule
 iab rumers rumors
 iab rwite write
@@ -738,8 +733,8 @@ iab saidit said it
 iab saidthat said that
 iab saidthe said the
 iab sasy says
-iab scedule schedule
 iab sceduled scheduled
+iab scedule schedule
 iab scrapper scraper
 iab scrapping scraping
 iab secratary secretary
@@ -782,11 +777,11 @@ iab soudn sound
 iab soudns sounds
 iab soze size
 iab speach speech
-iab specificaly specifically
 iab specificalyl specifically
+iab specificaly specifically
 iab speeed speed
-iab statment statement
 iab statments statements
+iab statment statement
 iab stnad stand
 iab stopry story
 iab stoyr story
@@ -798,21 +793,21 @@ iab struggel struggle
 iab strugle struggle
 iab studnet student
 iab successfull successful
-iab successfuly successfully
 iab successfulyl successfully
-iab sucess success
+iab successfuly successfully
 iab sucessfull successful
+iab sucess success
 iab sufficiant sufficient
 iab suposed supposed
 iab suppossed supposed
-iab suppres suppress
 iab suppresing suppressing
-iab supres suppress
+iab suppres suppress
 iab supresing suppressing
-iab supress suppress
 iab supressing suppressing
-iab suprise surprise
+iab supress suppress
+iab supres suppress
 iab suprised surprised
+iab suprise surprise
 iab swiming swimming
 iab syas says
 iab ta at
@@ -822,10 +817,12 @@ iab talekd talked
 iab talkign talking
 iab tath that
 iab tecnical technical
-iab teh the
 iab tehir their
 iab tehn then
 iab tehre there
+iab teh the
+iab Teh The
+iab TEh The
 iab tehy they
 iab termoil turmoil
 iab tghe the
@@ -834,18 +831,21 @@ iab thanit than it
 iab thansk thanks
 iab thast that
 iab thats that's
+iab THat That
 iab thatthe that the
 iab thecompany the company
 iab thefirst the first
 iab thegovernment the government
 iab theh then
-iab themself themselves
 iab themselfs themselves
+iab themself themselves
 iab thenew the new
 iab theri their
 iab thesame the same
+iab THe The
 iab thetwo the two
 iab theyare they are
+iab Theyare They are
 iab theyll they'll
 iab theyve they've
 iab thgat that
@@ -855,28 +855,28 @@ iab thign thing
 iab thigsn things
 iab thisyear this year
 iab thme them
-iab thn then
 iab thna than
 iab thne then
-iab thnig thing
 iab thnigs things
-iab thre there
+iab thnig thing
+iab thn then
 iab threatend threatened
+iab thre there
 iab thsi this
 iab thsoe those
 iab thta that
 iab thyat that
 iab thye they
-iab ti it
 iab tiem time
 iab tihs this
+iab ti it
 iab timne time
 iab tiogether together
 iab tiome time
 iab tje the
 iab tjhe the
-iab tkae take
 iab tkaes takes
+iab tkae take
 iab tkaing taking
 iab tlaking talking
 iab todya today
@@ -884,8 +884,8 @@ iab togehter together
 iab tomorow tomorrow
 iab tongiht tonight
 iab tonihgt tonight
-iab totaly totally
 iab totalyl totally
+iab totaly totally
 iab tothe to the
 iab towrad toward
 iab traditionalyl traditionally
@@ -903,10 +903,11 @@ iab tyhe they
 iab udnerstand understand
 iab uise use
 iab understnad understand
+iab UnitedStates United States
 iab unliek unlike
 iab unpleasently unpleasantly
-iab untill until
 iab untilll until
+iab untill until
 iab useing using
 iab usualyl usually
 iab veyr very
@@ -929,9 +930,9 @@ iab whn when
 iab whta what
 iab wief wife
 iab wierd weird
-iab wih with
 iab wihch which
 iab wiht with
+iab wih with
 iab willbe will be
 iab willk will
 iab windoes windows
@@ -939,15 +940,15 @@ iab witha with a
 iab withe with
 iab withh with
 iab withit with it
-iab witht with
 iab withthe with the
+iab witht with
 iab witn with
 iab wiull will
-iab wnat want
 iab wnated wanted
 iab wnats wants
-iab woh who
+iab wnat want
 iab wohle whole
+iab woh who
 iab wokr work
 iab wordload workload
 iab woudl would
@@ -957,21 +958,22 @@ iab wriet write
 iab writting writing
 iab wrod word
 iab wroet wrote
-iab wrok work
 iab wroking working
+iab wrok work
 iab wtih with
 iab wuould would
 iab wya way
 iab yaer year
-iab yera year
 iab yeras years
+iab yera year
 iab yersa years
 iab yoiu you
 iab yoru your
 iab youare you are
 iab youre you're
+iab Youre You're
 iab youve you've
 iab yrea year
 iab ytou you
-iab yuo you
 iab yuor your
+iab yuo you
