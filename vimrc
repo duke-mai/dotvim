@@ -980,12 +980,12 @@ com! -range GB echo join(systemlist("git -C " . shellescape(expand('%:p:h')) . "
 " :FixQuotes | Look through the whole file and change the “ and ” to "
 " ----------------------------------------------------------------------------
 fu! FixQuotes()
-  :%s/“/"/g
-  :%s/”/"/g
-  :%s/‘/'/g
-  :%s/’/'/g
-  ec "‘ and ’ has been substituted with '!"
-  ec '“ and ” has been substituted with "!'
+  :silent! %s/“/"/g
+  :silent! %s/”/"/g
+  :silent! %s/‘/'/g
+  :silent! %s/’/'/g
+  ec "‘ and ’ have been substituted with '!"
+  ec '“ and ” have been substituted with "!'
 endf
 com! FixQuotes cal FixQuotes()
 
