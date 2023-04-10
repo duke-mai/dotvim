@@ -830,7 +830,7 @@ vn . :normal .<CR>
 " ----------------------------------------------------------------------------
 " Display a list of current buffers and prompting for which buffer to access.
 " ----------------------------------------------------------------------------
-nn <Leader>lb :ls<CR>:b<Leader>
+nn <Leader>b :ls<CR>:b<Leader>
 
 
 " ----------------------------------------------------------------------------
@@ -851,38 +851,37 @@ nn <Leader>t :vert term bash<CR><C-\><C-N>:vert resize -20<CR>a
 " ============================================================================
 
 let g:HelpMeItems = [
-    \ 'Shortcuts:',
-    \ '\g                         toggle Goyo',
-    \ '\m                         toggle Maximizer of the current window',
-    \ '\t                         toggle Floaterm',
-    \ ' F                         open FZF for files under home directory',
-    \ ' f                         open FZF for files under current directory',
-    \ ' m                         toggle Tabman',
-    \ ' n                         toggle NERDTree',
-    \ ' u                         toggle Undotree',
-    \ ' lb                        list buffers',
-    \ '<F2>                       fold all unchanged lines',
-    \ '<F3>                       show changed lines with differences',
-    \ '<F4>                       show signify record of the current file',
-    \ '<F5>                       run Python script (doable only for .py)',
-    \ ' <F5>                      run Python script with pytest (doable only for .py)',
-    \ '<F6>                       toggle RainbowParentheses',
-    \ '',
-    \ 'Commands:',
-    \ ':AddLineNumber             add line numbers to each line',
-    \ ':CapitaliseEachWord        capitalise every word in the highlighted line',
-    \ ':ClearRegisters            clear all registers in Vim',
-    \ ':Root                      change directory to the root of the Git repository',
-    \ ':StripTrailingWhitespace   remove all unwanted whitespace',
-    \ '',
-    \ 'Press "q" to close',
+    \ "Shortcuts:",
+    \ "<BS>g                      toggle Goyo",
+    \ "<BS>m                      toggle Maximizer for the current window",
+    \ "<BS>t                      toggle Floaterm",
+    \ "<Space>F                   open FZF for files under home directory",
+    \ "<Space>f                   open FZF for files under working directory",
+    \ "<Space>m                   toggle Tabman",
+    \ "<Space>n                   toggle NERDTree",
+    \ "<Space>u                   toggle Undotree",
+    \ "<Space>b                   list current buffers",
+    \ "<F2>                       fold all unchanged lines",
+    \ "<F3>                       show changed lines with differences",
+    \ "<F4>                       toggle parentheses highlighting",
+    \ "<F5>                       (1) Execute script; (2) Generate ToC",
+    \ "",
+    \ "Commands:",
+    \ ":AddLineNumber             add line numbers to each line",
+    \ ":CapitaliseEachWord        capitalise every word in the current line",
+    \ ":ClearRegisters            clear all Vim's registers",
+    \ ":GB                        super cheap Git blame",
+    \ ":Root                      change directory to the Git repository's root",
+    \ ":StripTrailingWhitespace   remove all trailing whitespace",
+    \ "",
+    \ "Press 'q' to close",
     \ ]
 
-nn  <silent> <Bslash>ek  : HelpMe                            <CR>
 nn  <silent> <Bslash>es  : sp ~/.files/dictionary/en.utf-8.add <CR>
 nn  <silent> <Bslash>eg  : tabe ~/.files/git/gitconfig         <CR>
 nn  <silent> <Bslash>ev  : tabe $MYVIMRC                     <CR>
 nn  <silent> <Bslash>sv  : so $MYVIMRC                       <CR>
+nn  <silent> <Bslash>k   : HelpMe                            <CR>
 nn  <silent> <Bslash>t   : FloatermToggle                    <CR>
 tno <silent> <Bslash>t   <C-\><C-n>:FloatermToggle           <CR>
 nn  <silent> <Bslash>g   : Goyo                              <CR>
@@ -893,27 +892,12 @@ nn  <silent> <Leader>f   : FZF -m                            <CR>
 nn  <silent> <Leader>u   : UndotreeToggle                    <CR>
 nn  <silent> <F2>        : SignifyFold                       <CR>
 nn  <silent> <F3>        : SignifyDiff                       <CR>
-nn  <silent> <F4>        : SignifyList                       <CR>
-nn  <silent> <F6>        : RainbowParenthesesOn              <CR>
+nn  <silent> <F4>        : RainbowParenthesesOn              <CR>
 
 " }}}
 " ============================================================================
 " FUNCTIONS & COMMANDS {{{
 " ============================================================================
-
-" ----------------------------------------------------------------------------
-" :Root | Change directory to the root of the Git repository
-" ----------------------------------------------------------------------------
-fu! s:root()
-  let root = systemlist('git rev-parse --show-toplevel')[0]
-  if v:shell_error
-    ec 'Not in git repo'
-  else
-    exe 'lcd' root
-    ec 'Changed directory to: '.root
-  end
-endf
-com! Root cal s:root()
 
 " ----------------------------------------------------------------------------
 " :AddLineNumber | Add line numbers to each line
@@ -923,7 +907,7 @@ fu! AddLineNumber()
   %s/\s\+$//e
   ec 'Every Line Has Been Numbered!'
 endf
-com! LineNumber cal AddLineNumber()
+com! AddLineNumber cal AddLineNumber()
 
 " ----------------------------------------------------------------------------
 " :CapitaliseEachWord
@@ -934,20 +918,35 @@ fu! CapitaliseEachWord()
 endf
 com! CapitaliseEachWord cal CapitaliseEachWord()
 
+
 " ----------------------------------------------------------------------------
-" :StripTrailingWhitespace
+" :ClearRegisters
 " ----------------------------------------------------------------------------
-fu! StripTrailingWhitespace()
-  if !&binary && &filetype != 'diff'
-    if &readonly==0 && filereadable(bufname('%'))
-      let l:save = winsaveview()
-      keepp %s/\s\+$//e
-      cal winrestview(l:save)
-      ec 'Trailing Whitespace Has Been Stripped!'
-    end
-  end
+com! ClearRegisters for i in range(34,122) | silent! call setreg(nr2char(i), [])
+      \| endfor | ec 'All Registers Has Been Cleared!'
+
+
+" ----------------------------------------------------------------------------
+" :GB | Annotate each highlighted line with information from the revision
+"       which last modified the line.
+" ----------------------------------------------------------------------------
+" Source: https://gist.github.com/romainl/5b827f4aafa7ee29bdc70282ecc31640
+com! -range GB echo join(systemlist("git -C " . shellescape(expand('%:p:h')) . " blame -L <line1>,<line2> " . expand('%:t')), "\n")
+
+
+" ----------------------------------------------------------------------------
+" :FixQuotes | Look through the whole file and change the “ and ” to "
+" ----------------------------------------------------------------------------
+fu! FixQuotes()
+  :silent! %s/“/"/g
+  :silent! %s/”/"/g
+  :silent! %s/‘/'/g
+  :silent! %s/’/'/g
+  ec "‘ and ’ have been substituted with '!"
+  ec '“ and ” have been substituted with "!'
 endf
-com! StripTrailingWhitespace cal StripTrailingWhitespace()
+com! FixQuotes cal FixQuotes()
+
 
 " ----------------------------------------------------------------------------
 " RainbowParentheses
@@ -964,39 +963,34 @@ com! RainbowParenthesesOn cal RainbowParenthesesOn()
 
 
 " ----------------------------------------------------------------------------
-" :ClearRegisters
+" :Root | Change directory to the root of the Git repository
 " ----------------------------------------------------------------------------
-com! ClearRegisters for i in range(34,122) | silent! call setreg(nr2char(i), [])
-      \| endfor | ec 'All Registers Has Been Cleared!'
-
-
-" ----------------------------------------------------------------------------
-" :GB | Super Cheap Git Blame
-" ----------------------------------------------------------------------------
-" Source: https://gist.github.com/romainl/5b827f4aafa7ee29bdc70282ecc31640
-com! -range GB echo join(systemlist("git -C " . shellescape(expand('%:p:h')) . " blame -L <line1>,<line2> " . expand('%:t')), "\n")
-
-" ----------------------------------------------------------------------------
-" :FixQuotes | Look through the whole file and change the “ and ” to "
-" ----------------------------------------------------------------------------
-fu! FixQuotes()
-  :silent! %s/“/"/g
-  :silent! %s/”/"/g
-  :silent! %s/‘/'/g
-  :silent! %s/’/'/g
-  ec "‘ and ’ have been substituted with '!"
-  ec '“ and ” have been substituted with "!'
+fu! s:root()
+  let root = systemlist('git rev-parse --show-toplevel')[0]
+  if v:shell_error
+    ec 'Not in git repo'
+  else
+    exe 'lcd' root
+    ec 'Changed directory to: '.root
+  end
 endf
-com! FixQuotes cal FixQuotes()
+com! Root cal s:root()
+
 
 " ----------------------------------------------------------------------------
-" :FixToC | Change the default generated Table of Contents
+" :StripTrailingWhitespace
 " ----------------------------------------------------------------------------
-fu! FixToC()
-  <
-  :s/* /1. /g
+fu! StripTrailingWhitespace()
+  if !&binary && &filetype != 'diff'
+    if &readonly==0 && filereadable(bufname('%'))
+      let l:save = winsaveview()
+      keepp %s/\s\+$//e
+      cal winrestview(l:save)
+      ec 'Trailing Whitespace Has Been Stripped!'
+    end
+  end
 endf
-com! -range FixToC '<,'> cal FixToC()
+com! StripTrailingWhitespace cal StripTrailingWhitespace()
 
 " }}}
 " ============================================================================
