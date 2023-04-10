@@ -269,15 +269,15 @@ endf
 " ----------------------------------------------------------------------------
 " Run Python script.
 " ----------------------------------------------------------------------------
-nn <F5> :w<CR>:!clear && python3 %<CR>
-nn <Bslash><F5> :w<CR>:!clear && python3 -m pytest %<CR>
-nn <Leader><F5> :w<CR>:!clear && rm -f flake8.txt && flake8 %<CR>
+nn         <F5> :!clear && python3 %                   <CR>
+nn <Bslash><F5> :!clear && python3 -m pytest %         <CR>
+nn <Leader><F5> :!clear && rm -f flake8.txt && flake8 %<CR>
 
 " ----------------------------------------------------------------------------
 " Format paragraph (selected or not) to 80 character lines.
 " ----------------------------------------------------------------------------
-nn fp gqap     :ec 'Format Paragraph Successfully !' <CR>
-xn fp gqa<Esc> :ec 'Format Paragraph Successfully !' <CR>
+nn fp gqap     :ec 'Paragraph Formatted !' <CR>
+xn fp gqa<Esc> :ec 'Paragraph Formatted !' <CR>
 
 " }}}
 
