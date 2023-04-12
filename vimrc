@@ -512,6 +512,21 @@ au! User GoyoLeave nested call <SID>goyo_leave()
 " ----------------------------------------------------------------------------
 " RainbowParentheses
 " ----------------------------------------------------------------------------
+" Rainbow parentheses
+let g:rbpt_max = 10
+let g:rbpt_colorpairs = [
+    \ ['gray',      'HotPink1'],
+    \ ['darkred',   'cyan1'],
+    \ ['darkcyan',  'RoyalBlue1'],
+    \ ['darkgreen', 'yellow1'],
+    \ ['darkblue',  'MediumOrchid'],
+    \ ['gray',      'DeepSkyBlue1'],
+    \ ['darkred',   'DarkOrange1'],
+    \ ['darkcyan',  'LimeGreen'],
+    \ ['darkgreen', 'goldenrod1'],
+    \ ['darkblue',  'brown1'],
+    \ ]
+
 au VimEnter * RainbowParenthesesToggle
 au Syntax   * RainbowParenthesesLoadRound
 au Syntax   * RainbowParenthesesLoadSquare
