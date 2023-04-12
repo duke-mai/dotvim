@@ -272,7 +272,7 @@ if has("persistent_undo")
 
   " Create undo directory if possible and does not exist yet
   if !isdirectory(undo_dir) && getftype(undo_dir) == "" && exists("*mkdir")
-    cal mkdir(undo_dir, "p", 0700)
+    call mkdir(undo_dir, "p", 0700)
   en
 
   let &udir = undo_dir
@@ -288,7 +288,7 @@ en
 " Create backup directory if possible and does not exist yet
 let backup_dir = expand('/tmp/.backup/')
 if !isdirectory(backup_dir) && getftype(backup_dir) == "" && exists("*mkdir")
-  cal mkdir(backup_dir, "p", 0700)
+  call mkdir(backup_dir, "p", 0700)
 endif
 
 set bdir=/tmp/.backup/ " backups
@@ -581,7 +581,7 @@ let g:fzf_colours =
 
 " An action can be a reference to a function that processes selected lines
 fu! s:build_quickfix_list(lines)
-  cal setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
   cope
   cc
 endf
@@ -599,7 +599,7 @@ let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 au! FileType fzf set laststatus=0 noshowmode noruler
   \| au BufLeave <buffer> set laststatus=2 showmode ruler
 
-com! -bang VimDir cal fzf#vim#files('~/.files/', <bang>0)
+com! -bang VimDir call fzf#vim#files('~/.files/', <bang>0)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -633,41 +633,41 @@ let g:undotree_HelpLine = 0
 " let g:flake8_show_in_file=1
 
 " Run Flake8 check every time I write a Python file
-" au BufWritePost *.py cal flake8#Flake8()
+" au BufWritePost *.py call flake8#Flake8()
 
 
 " ----------------------------------------------------------------------------
 " Fake
 " ----------------------------------------------------------------------------
 "" Choose a random element from a list
-cal fake#define('sex', 'fake#choice(["male", "female"])')
+call fake#define('sex', 'fake#choice(["male", "female"])')
 
 "" Get a name of male or female
 "" fake#int(1) returns 0 or 1
-cal fake#define('name', 'fake#int(1) ? fake#gen("male_name")'
+call fake#define('name', 'fake#int(1) ? fake#gen("male_name")'
       \ . ' : fake#gen("female_name")')
 
 "" Get a full name
-cal fake#define('fullname', 'fake#gen("name") . " " . fake#gen("surname")')
+call fake#define('fullname', 'fake#gen("name") . " " . fake#gen("surname")')
 
 "" Get a nonsense text like Lorem ipsum
-cal fake#define('sentense', 'fake#capitalize('
+call fake#define('sentense', 'fake#capitalize('
       \ . 'join(map(range(fake#int(3,15)),"fake#gen(\"nonsense\")"))'
       \ . ' . fake#chars(1,"..............!?"))')
 
-cal fake#define('paragraph', 'join(map(range(fake#int(3,10)),"fake#gen(\"sentense\")"))')
+call fake#define('paragraph', 'join(map(range(fake#int(3,10)),"fake#gen(\"sentense\")"))')
 
 "" Alias
-cal fake#define('lipsum', 'fake#gen("paragraph")')
+call fake#define('lipsum', 'fake#gen("paragraph")')
 
 "" Get an age weighted by generation distribution
-cal fake#define('age', 'float2nr(floor(110 * fake#betapdf(1.0, 1.45)))')
+call fake#define('age', 'float2nr(floor(110 * fake#betapdf(1.0, 1.45)))')
 
 "" Get a domain (ordered by number of websites)
-cal fake#define('gtld', 'fake#get(fake#load("gtld"),'
+call fake#define('gtld', 'fake#get(fake#load("gtld"),'
       \ . 'fake#betapdf(0.2, 3.0))')
 
-cal fake#define('email', 'tolower(substitute(printf("%s@%s.%s",'
+call fake#define('email', 'tolower(substitute(printf("%s@%s.%s",'
       \ . 'fake#gen("name"),'
       \ . 'fake#gen("surname"),'
       \ . 'fake#gen("gtld")), "\\s", "-", "g"))')
@@ -914,7 +914,7 @@ fu! AddLineNumber()
   %s/\s\+$//e
   ec 'Every Line Has Been Numbered!'
 endf
-com! AddLineNumber cal AddLineNumber()
+com! AddLineNumber call AddLineNumber()
 
 " ----------------------------------------------------------------------------
 " :CapitaliseEachWord
@@ -923,7 +923,7 @@ fu! CapitaliseEachWord()
   s/\v<(.)(\w*)/\u\1\L\2/g
   ec 'Every Word Has Been Capitalised!'
 endf
-com! CapitaliseEachWord cal CapitaliseEachWord()
+com! CapitaliseEachWord call CapitaliseEachWord()
 
 
 " ----------------------------------------------------------------------------
@@ -952,7 +952,7 @@ fu! FixQuotes()
   ec "‘ and ’ have been substituted with '!"
   ec '“ and ” have been substituted with "!'
 endf
-com! FixQuotes cal FixQuotes()
+com! FixQuotes call FixQuotes()
 
 
 " ----------------------------------------------------------------------------
@@ -966,7 +966,7 @@ fu! RainbowParenthesesOn()
   :RainbowParenthesesLoadChevrons " <>
   ec 'RainbowParentheses Has Been Toggled!'
 endf
-com! RainbowParenthesesOn cal RainbowParenthesesOn()
+com! RainbowParenthesesOn call RainbowParenthesesOn()
 
 
 " ----------------------------------------------------------------------------
@@ -981,7 +981,7 @@ fu! s:root()
     ec 'Changed directory to: '.root
   end
 endf
-com! Root cal s:root()
+com! Root call s:root()
 
 
 " ----------------------------------------------------------------------------
@@ -992,12 +992,12 @@ fu! StripTrailingWhitespace()
     if &readonly==0 && filereadable(bufname('%'))
       let l:save = winsaveview()
       keepp %s/\s\+$//e
-      cal winrestview(l:save)
+      call winrestview(l:save)
       ec 'Trailing Whitespace Has Been Stripped!'
     end
   end
 endf
-com! StripTrailingWhitespace cal StripTrailingWhitespace()
+com! StripTrailingWhitespace call StripTrailingWhitespace()
 
 " }}}
 " ============================================================================
@@ -1036,7 +1036,7 @@ endf
 
 aug MyColors
     au!
-    au ColorScheme * cal MyHighlights()
+    au ColorScheme * call MyHighlights()
     au ColorScheme * highlight SpecialKey ctermfg=238
 aug END
 
@@ -1055,16 +1055,26 @@ mat ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 
 " ----------------------------------------------------------------------------
-" Ignore CamelCase words when spell checking
+" Ignore URLs and file paths when spellchecking
 "  ----------------------------------------------------------------------------
-fun! IgnoreSpell()
-  sy match CamelCase /\<[A-Z][a-z]\+[A-Z].\{-}\>/ contains=@NoSpell transparent
-  sy cluster Spell add=CamelCase
-  sy match InlineURL /https\?:\/\/\(\w\+\(:\w\+\)\?@\)\?\([A-Za-z][-_0-9A-Za-z]*\.\)\{1,}\(\w\{2,}\.\?\)\{1,}\(:[0-9]\{1,5}\)\?\S*/ contains=@NoSpell transparent
-  sy cluster Spell add=InlineURL
-endf
+fun! SpellCheckIgnoreRules()
+  if (&filetype=='markdown')
+    syn case match
+    syn match spellcheckURL /\<http[^ ]\+/
+    syn match spellcheckFilepath / \/.*\>/
+    syn match spellcheckCamelCase /\<[A-Z][a-z]\+[A-Z].\{-}\>/
+    syn case ignore
+  else
+    syn match spellcheckURL /\<http[^ ]\+/ contains=@NoSpell transparent
+    syn match spellcheckFilepath / \/.*\>/ contains=@NoSpell transparent
+    syn match spellcheckCamelCase /\<[A-Z][a-z]\+[A-Z].\{-}\>/ contains=@NoSpell transparent
+    syn cluster Spell add=spellcheckURL
+    syn cluster Spell add=spellcheckFilepath
+    syn cluster Spell add=spellcheckCamelCase
+  endif
+endfunction
 
-au BufRead,BufNewFile * :cal IgnoreSpell()
+autocmd BufRead,BufNewFile * :call SpellCheckIgnoreRules()
 
 
 " ----------------------------------------------------------------------------
