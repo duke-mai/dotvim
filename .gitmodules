@@ -146,3 +146,9 @@
 [submodule "pack/plugins/opt/calculator"]
 	path = pack/plugins/opt/calculator
 	url = https://github.com/fedorenchik/calculator.vim.git
+[submodule "pack/writing/start/thesaurus_query"]
+	path = pack/writing/start/thesaurus_query
+	url = https://github.com/Ron89/thesaurus_query.vim.git
+[submodule "pack/writing/start/wordy"]
+	path = pack/writing/start/wordy
+	url = https://github.com/preservim/vim-wordy.git
