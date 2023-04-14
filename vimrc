@@ -1204,7 +1204,7 @@ if hr >= 18
   hi ColorColumn guibg=DarkRed ctermbg=DarkRed
 elsei hr >= 7
   se background=light
-elsei hr >= 0
+el
   se background=dark
   hi ColorColumn guibg=DarkRed ctermbg=DarkRed
 end
