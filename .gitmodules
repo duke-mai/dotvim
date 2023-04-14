@@ -152,3 +152,9 @@
 [submodule "pack/writing/start/wordy"]
 	path = pack/writing/start/wordy
 	url = https://github.com/preservim/vim-wordy.git
+[submodule "pack/syntax/start/python-syntax-highlighting"]
+	path = pack/syntax/start/python-syntax-highlighting
+	url = https://github.com/hdima/python-syntax.git
+[submodule "pack/writing/start/grammarous"]
+	path = pack/writing/start/grammarous
+	url = https://github.com/rhysd/vim-grammarous.git
