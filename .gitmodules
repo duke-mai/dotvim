@@ -143,3 +143,6 @@
 [submodule "pack/syntax/start/shellcheck"]
 	path = pack/syntax/start/shellcheck
 	url = https://github.com/itspriddle/vim-shellcheck.git
+[submodule "pack/plugins/opt/calculator"]
+	path = pack/plugins/opt/calculator
+	url = https://github.com/fedorenchik/calculator.vim.git
