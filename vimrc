@@ -22,18 +22,27 @@ silent! helptags ALL " Load help for all plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load word files
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-so ~/.vim/dictionary/wordlist.vim
-so ~/.vim/dictionary/abbreviation.vim
-set spf=~/.vim/dictionary/en.utf-8.add
-set dictionary+=~/.vim/dictionary/en_US.txt
-set dictionary+=~/.vim/dictionary/british-english-insane.txt
-set dictionary+=~/.vim/dictionary/english_words/words.txt
-set dictionary+=~/.vim/dictionary/moby_data/acronyms.txt
-set dictionary+=~/.vim/dictionary/moby_data/names.txt
-set dictionary+=~/.vim/dictionary/moby_data/names-f.txt
-set dictionary+=~/.vim/dictionary/moby_data/names-m.txt
-set dictionary+=~/.vim/dictionary/moby_data/oftenmis.txt
-set dictionary+=~/.vim/dictionary/moby_data/places.txt
+source ~/.vim/wordlist/abbreviation/common.vim
+source ~/.vim/wordlist/abbreviation/custom.vim
+set dictionary+=/usr/share/hunspell/en_AU.dic
+set dictionary+=/usr/share/dict/english-words/words.txt
+set spellfile+=~/.vim/wordlist/spelling/en.utf-8.add
+set spellfile+=/usr/share/dict/moby_words/files/acronyms.txt.utf-8.add
+set spellfile+=/usr/share/dict/moby_words/files/common.txt.utf-8.add
+set spellfile+=/usr/share/dict/moby_words/files/compound.txt.utf-8.add
+set spellfile+=/usr/share/dict/moby_words/files/names-f.txt.utf-8.add
+set spellfile+=/usr/share/dict/moby_words/files/names-m.txt.utf-8.add
+set spellfile+=/usr/share/dict/moby_words/files/names.txt.utf-8.add
+set spellfile+=/usr/share/dict/moby_words/files/places.txt.utf-8.add
+set spellfile+=/usr/share/dict/moby_words/files/single.txt.utf-8.add
+" set thesaurus+=~/.vim/wordlist/wordnet/data.verb
+set thesaurus+=/usr/share/dict/moby_words/files/mthesaur.txt
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vietnamese wordlist
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set dictionary+=/usr/share/dict/vn_words/Viet74K.txt
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -61,7 +70,7 @@ endf
 " Basics {
 se nocompatible        " Must be first line
 if !WINDOWS()
-    se shell=/bin/sh
+  se shell=/usr/bin/sh
 en
 " }
 
@@ -512,7 +521,6 @@ au! User GoyoLeave nested call <SID>goyo_leave()
 " ----------------------------------------------------------------------------
 " RainbowParentheses
 " ----------------------------------------------------------------------------
-" Rainbow parentheses
 let g:rbpt_max = 10
 let g:rbpt_colorpairs = [
     \ ['gray',      'HotPink1'],
@@ -599,7 +607,8 @@ let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 au! FileType fzf set laststatus=0 noshowmode noruler
   \| au BufLeave <buffer> set laststatus=2 showmode ruler
 
-com! -bang VimDir call fzf#vim#files('~/.files/', <bang>0)
+com! -bang VimDir call fzf#vim#files('~/.vim/', <bang>0)
+com! -bang DictDir call fzf#vim#files('/usr/share/dict/', <bang>0)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -671,6 +680,14 @@ call fake#define('email', 'tolower(substitute(printf("%s@%s.%s",'
       \ . 'fake#gen("name"),'
       \ . 'fake#gen("surname"),'
       \ . 'fake#gen("gtld")), "\\s", "-", "g"))')
+
+
+" ----------------------------------------------------------------------------
+" Thesaurus Query
+" ----------------------------------------------------------------------------
+let g:tq_online_backends_timeout = 0.4
+let g:tq_truncation_on_definition_num = 2
+let g:tq_truncation_on_syno_list_size = 20
 
 " }}}
 " ============================================================================
@@ -846,12 +863,6 @@ nn <Leader>b :ls<CR>:b<Leader>
 vn <Tab> >gv
 vn <S-Tab> <gv
 
-
-" ----------------------------------------------------------------------------
-" Open a bash terminal vertically
-" ----------------------------------------------------------------------------
-nn <Leader>t :vert term bash<CR><C-\><C-N>:vert resize -20<CR>a
-
 " }}}
 " ============================================================================
 " HOTKEYS {{{
@@ -902,7 +913,7 @@ nn  <silent> <F4>        : RainbowParenthesesOn              <CR>
 
 " }}}
 " ============================================================================
-" FUNCTIONS & COMMANDS {{{
+" FUNCTIONS {{{
 " ============================================================================
 
 " ----------------------------------------------------------------------------
@@ -914,6 +925,7 @@ fu! AddLineNumber()
   ec 'Every Line Has Been Numbered!'
 endf
 com! AddLineNumber call AddLineNumber()
+
 
 " ----------------------------------------------------------------------------
 " :CapitaliseEachWord
@@ -997,6 +1009,64 @@ fu! StripTrailingWhitespace()
   end
 endf
 com! StripTrailingWhitespace call StripTrailingWhitespace()
+
+
+" ----------------------------------------------------------------------------
+" Allow spaces in thesaurus entries
+" Source: https://www.reddit.com/r/vim/comments/55y53e/allow_spaces_in_thesaurus_entries/
+" ----------------------------------------------------------------------------
+function! s:thesaurus()
+    let s:saved_ut = &ut
+    if &ut > 200 | let &ut = 200 | endif
+    augroup ThesaurusAuGroup
+        autocmd CursorHold,CursorHoldI <buffer>
+                    \ let &ut = s:saved_ut |
+                    \ set iskeyword-=32 |
+                    \ autocmd! ThesaurusAuGroup
+    augroup END
+    return ":set iskeyword+=32\<cr>vaWovea\<c-x>\<c-t>"
+endfunction
+
+nnoremap <expr> <leader>t <SID>thesaurus()
+
+
+" ----------------------------------------------------------------------------
+" Open symlink under cursor
+" Source: https://github.com/jinzhu/configure/blob/master/.vimrc
+" ----------------------------------------------------------------------------
+function! FollowSymlink()
+  let b:orig_file = fnameescape(expand('%:p'))
+  if getftype(b:orig_file) == 'link'
+    execute 'lcd' fnamemodify(resolve(b:orig_file), ':p:h')
+    execute 'file' fnameescape(resolve(b:orig_file))
+    :edit!
+  endif
+  redraw!
+endfunction
+command! FollowSymlink :call FollowSymlink()
+
+" nnoremap <Leader>F :FollowSymlink<CR>
+
+
+" ----------------------------------------------------------------------------
+" Open URL under cursor in browser
+" Source: https://github.com/jinzhu/configure/blob/master/.vimrc
+" ----------------------------------------------------------------------------
+function! OpenURL(url)
+  let b:escape_url = escape(a:url, '"')
+  if executable("chromium")
+    exe "silent !chromium \"".b:escape_url."\""
+  elseif executable("gnome-open")
+    exe "silent !gnome-open \"".b:escape_url."\""
+  endif
+  redraw!
+endfunction
+command! -nargs=1 OpenURL :call OpenURL(<q-args>)
+
+nnoremap <Leader>G :OpenURL http://www.google.com/search?q=<cword><CR>
+vnoremap <Leader>G "zy:OpenURL http://www.google.com/search?q=<C-R>z<CR>
+nnoremap <Leader>D :OpenURL http://dict.youdao.com/search?q=<cword><CR>
+vnoremap <Leader>D "zy:OpenURL http://dict.youdao.com/search?q=<C-R>z<CR>
 
 " }}}
 " ============================================================================
