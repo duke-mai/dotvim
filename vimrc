@@ -35,7 +35,6 @@ set spellfile+=/usr/share/dict/moby_words/files/names-m.txt.utf-8.add
 set spellfile+=/usr/share/dict/moby_words/files/names.txt.utf-8.add
 set spellfile+=/usr/share/dict/moby_words/files/places.txt.utf-8.add
 set spellfile+=/usr/share/dict/moby_words/files/single.txt.utf-8.add
-" set thesaurus+=~/.vim/wordlist/wordnet/data.verb
 set thesaurus+=/usr/share/dict/moby_words/files/mthesaur.txt
 
 
@@ -894,22 +893,22 @@ let g:HelpMeItems = [
     \ "Press 'q' to close",
     \ ]
 
-nn  <silent> <Bslash>es  : sp ~/.files/dictionary/en.utf-8.add <CR>
-nn  <silent> <Bslash>eg  : tabe ~/.files/git/gitconfig         <CR>
-nn  <silent> <Bslash>ev  : tabe $MYVIMRC                     <CR>
-nn  <silent> <Bslash>sv  : so $MYVIMRC                       <CR>
-nn  <silent> <Bslash>k   : HelpMe                            <CR>
-nn  <silent> <Bslash>t   : FloatermToggle                    <CR>
-tno <silent> <Bslash>t   <C-\><C-n>:FloatermToggle           <CR>
-nn  <silent> <Bslash>g   : Goyo                              <CR>
-nn  <silent> <Bslash>m   : MaximizerToggle                   <CR>
-vn  <silent> <Bslash>m   : MaximizerToggle                   <CR> gv
-nn  <silent> <Leader>F   : FZF -m ~                          <CR>
-nn  <silent> <Leader>f   : FZF -m                            <CR>
-nn  <silent> <Leader>u   : UndotreeToggle                    <CR>
-nn  <silent> <F2>        : SignifyFold                       <CR>
-nn  <silent> <F3>        : SignifyDiff                       <CR>
-nn  <silent> <F4>        : RainbowParenthesesOn              <CR>
+nn  <silent> <Bslash>es  : sp ~/.vim/wordlist/abbreviation/common.vim <CR>
+nn  <silent> <Bslash>eg  : tabe ~/.files/git/gitconfig                <CR>
+nn  <silent> <Bslash>ev  : tabe $MYVIMRC                              <CR>
+nn  <silent> <Bslash>sv  : so $MYVIMRC                                <CR>
+nn  <silent> <Bslash>k   : HelpMe                                     <CR>
+nn  <silent> <Bslash>t   : FloatermToggle                             <CR>
+tno <silent> <Bslash>t   <C-\><C-n>:FloatermToggle                    <CR>
+nn  <silent> <Bslash>g   : Goyo                                       <CR>
+nn  <silent> <Bslash>m   : MaximizerToggle                            <CR>
+vn  <silent> <Bslash>m   : MaximizerToggle                            <CR> gv
+nn  <silent> <Leader>F   : FZF -m ~                                   <CR>
+nn  <silent> <Leader>f   : FZF -m                                     <CR>
+nn  <silent> <Leader>u   : UndotreeToggle                             <CR>
+nn  <silent> <F2>        : SignifyFold                                <CR>
+nn  <silent> <F3>        : SignifyDiff                                <CR>
+nn  <silent> <F4>        : RainbowParenthesesOn                       <CR>
 
 " }}}
 " ============================================================================
