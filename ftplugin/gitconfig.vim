@@ -13,3 +13,7 @@ setl nocul nocuc
 setl fdls=99
 setl nornu
 setl commentstring=#\ %s
+
+setl ts=2
+setl sts=2
+setl shiftwidth=2
