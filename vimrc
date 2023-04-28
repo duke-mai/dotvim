@@ -285,24 +285,26 @@ if has("persistent_undo")
 
   let &udir = undo_dir
   set undofile
-  set ul=1000        " Maximum number of changes that can be undone
-  set ur=10000       " Maximum number lines to save for undo on a buffer reload
+  set ul=1000      " Maximum number of changes that can be undone
+  set ur=10000     " Maximum number lines to save for undo on a buffer reload
 en
 
 
 " ----------------------------------------------------------------------------
-" Enable backup directory, but disable swap dir
+" Do not create swapfiles
 " ----------------------------------------------------------------------------
-" Create backup directory if possible and does not exist yet
-let backup_dir = expand('/tmp/.backup/')
+set noswapfile
+
+
+" ----------------------------------------------------------------------------
+" Create backup directory in case of crashes
+" ----------------------------------------------------------------------------
+let backup_dir = expand('/tmp/vimfiles/.backup/')
 if !isdirectory(backup_dir) && getftype(backup_dir) == "" && exists("*mkdir")
   call mkdir(backup_dir, "p", 0700)
 endif
 
-set bdir=/tmp/.backup/ " backups
-
-" Disable swap file
-set noswapfile
+set backupdir=/tmp/vimfiles/.backup/
 
 " }}}
 " ==============================================================================
