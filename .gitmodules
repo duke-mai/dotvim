@@ -43,18 +43,9 @@
 [submodule "pack/file-system/start/tabman"]
 	path = pack/file-system/start/tabman
 	url = https://github.com/kien/tabman.vim
-[submodule "pack/syntax/start/rainbow_parentheses"]
-	path = pack/syntax/start/rainbow_parentheses
-	url = https://github.com/kien/rainbow_parentheses.vim.git
 [submodule "pack/plugins/start/airline"]
 	path = pack/plugins/start/airline
 	url = https://github.com/vim-airline/vim-airline.git
-[submodule "pack/plugins/opt/magnum"]
-	path = pack/plugins/opt/magnum
-	url = https://github.com/glts/vim-magnum
-[submodule "pack/plugins/opt/radical"]
-	path = pack/plugins/opt/radical
-	url = https://github.com/glts/vim-radical
 [submodule "pack/plugins/start/repeat"]
 	path = pack/plugins/start/repeat
 	url = https://github.com/tpope/vim-repeat
@@ -74,15 +65,6 @@
 [submodule "pack/plugins/start/goyo"]
 	path = pack/plugins/start/goyo
 	url = https://github.com/junegunn/goyo.vim.git
-[submodule "pack/writing/opt/bullets"]
-	path = pack/writing/opt/bullets
-	url = https://github.com/dkarter/bullets.vim.git
-[submodule "pack/writing/opt/limelight"]
-	path = pack/writing/opt/limelight
-	url = https://github.com/junegunn/limelight.vim.git
-[submodule "pack/writing/opt/wiki"]
-	path = pack/writing/opt/wiki
-	url = https://github.com/vimwiki/vimwiki.git
 [submodule "pack/writing/start/supertab"]
 	path = pack/writing/start/supertab
 	url = https://github.com/ervandew/supertab.git
@@ -143,9 +125,6 @@
 [submodule "pack/syntax/start/shellcheck"]
 	path = pack/syntax/start/shellcheck
 	url = https://github.com/itspriddle/vim-shellcheck.git
-[submodule "pack/plugins/opt/calculator"]
-	path = pack/plugins/opt/calculator
-	url = https://github.com/fedorenchik/calculator.vim.git
 [submodule "pack/writing/start/thesaurus_query"]
 	path = pack/writing/start/thesaurus_query
 	url = https://github.com/Ron89/thesaurus_query.vim.git
@@ -158,3 +137,24 @@
 [submodule "pack/writing/start/grammarous"]
 	path = pack/writing/start/grammarous
 	url = https://github.com/rhysd/vim-grammarous.git
+[submodule "pack/writing/start/wiki"]
+	path = pack/writing/start/wiki
+	url = https://github.com/vimwiki/vimwiki.git
+[submodule "pack/writing/start/limelight"]
+	path = pack/writing/start/limelight
+	url = https://github.com/junegunn/limelight.vim.git
+[submodule "pack/writing/start/bullets"]
+	path = pack/writing/start/bullets
+	url = https://github.com/dkarter/bullets.vim.git
+[submodule "pack/writing/start/rainbow_parentheses"]
+	path = pack/writing/start/rainbow_parentheses
+	url = https://github.com/kien/rainbow_parentheses.vim.git
+[submodule "pack/plugins/start/calculator"]
+	path = pack/plugins/start/calculator
+	url = https://github.com/fedorenchik/calculator.vim.git
+[submodule "pack/plugins/start/magnum"]
+	path = pack/plugins/start/magnum
+	url = https://github.com/glts/vim-magnum.git
+[submodule "pack/plugins/start/radical"]
+	path = pack/plugins/start/radical
+	url = https://github.com/glts/vim-radical.git
