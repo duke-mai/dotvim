@@ -1,15 +1,3 @@
-[submodule "pack/colours/opt/gruvbox-material"]
-	path = pack/colours/opt/gruvbox-material
-	url = https://github.com/sainnhe/gruvbox-material.git
-[submodule "pack/colours/opt/colorizer"]
-	path = pack/colours/opt/colorizer
-	url = https://github.com/lilydjwg/colorizer.git
-[submodule "pack/colours/opt/papercolor"]
-	path = pack/colours/opt/papercolor
-	url = https://github.com/NLKNguyen/papercolor-theme.git
-[submodule "pack/colours/opt/one"]
-	path = pack/colours/opt/one
-	url = https://github.com/rakr/vim-one.git
 [submodule "pack/file-system/start/nerdtree"]
 	path = pack/file-system/start/nerdtree
 	url = https://github.com/preservim/nerdtree.git
@@ -113,12 +101,6 @@
 [submodule "pack/writing/start/markdown-toc"]
 	path = pack/writing/start/markdown-toc
 	url = https://github.com/mzlogin/vim-markdown-toc.git
-[submodule "pack/colours/opt/colors"]
-	path = pack/colours/opt/colors
-	url = https://github.com/romainl/vim-colors.git
-[submodule "pack/colours/opt/malotru"]
-	path = pack/colours/opt/malotru
-	url = https://github.com/romainl/vim-malotru.git
 [submodule "pack/plugins/start/maximizer"]
 	path = pack/plugins/start/maximizer
 	url = https://github.com/szw/vim-maximizer.git
@@ -158,3 +140,21 @@
 [submodule "pack/plugins/start/radical"]
 	path = pack/plugins/start/radical
 	url = https://github.com/glts/vim-radical.git
+[submodule "pack/colours/opt/gruvbox-material"]
+	path = pack/colours/opt/gruvbox-material
+	url = https://github.com/sainnhe/gruvbox-material.git
+[submodule "pack/colours/start/colorizer"]
+	path = pack/colours/start/colorizer
+	url = https://github.com/chrisbra/Colorizer.git
+[submodule "pack/colours/start/colorSchemeExplorer"]
+	path = pack/colours/start/colorSchemeExplorer
+	url = https://github.com/jlanzarotta/colorSchemeExplorer.git
+[submodule "pack/colours/opt/vim"]
+	path = pack/colours/opt/vim
+	url = https://github.com/rainglow/vim.git
+[submodule "pack/colours/opt/awesome-vim-colorschemes"]
+	path = pack/colours/opt/awesome-vim-colorschemes
+	url = https://github.com/rafi/awesome-vim-colorschemes.git
+[submodule "pack/colours/opt/malotru"]
+	path = pack/colours/opt/malotru
+	url = https://github.com/romainl/vim-malotru.git
