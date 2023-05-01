@@ -20,6 +20,7 @@ silent! helptags ALL   " Load help for all plugins
 
 if !exists(":Abolish")
   au FileType markdown runtime wordlist/plugins/britishise.vim
+  command! Britishise runtime wordlist/plugins/britishise.vim
 endif
 
 
