@@ -8,6 +8,8 @@ ia accesories accessories
 ia accidant accident
 ia accomodate accommodate
 ia accordingto according to
+ia accoutn account
+ia accoutns accounts
 ia accross across
 ia acheive achieve
 ia acheived achieved
@@ -137,6 +139,7 @@ ia benifit benefit
 ia benifits benefits
 ia betwen between
 ia beutiful beautiful
+ia botom bottom
 ia boxs boxes
 ia brodcast broadcast
 ia butthe but the
@@ -226,6 +229,7 @@ ia couldnt couldn't
 ia couldthe could the
 ia cpoy copy
 ia ctaegory category
+ia curent current
 ia cusotmer customer
 ia cusotmers customers
 ia cutsomer customer
@@ -277,6 +281,8 @@ ia differnt different
 ia diffrence difference
 ia diffrences differences
 ia diffrent different
+ia direcotry directory
+ia direcotyr directory
 ia directer director
 ia directers directors
 ia directiosn direction
