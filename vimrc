@@ -322,6 +322,8 @@ en
 " Create a file in ftplugin/filetype.vim for specific settings
 if has("autocmd")
   aug filetypes
+    au BufRead,BufNewFile,BufReadPost bash_*       se ft=sh
+    au BufRead,BufNewFile,BufReadPost bashrc       se ft=sh
     au BufRead,BufNewFile,BufReadPost *.template   se ft=text
     au BufRead,BufNewFile,BufReadPost *.md         se ft=markdown
     au BufRead,BufNewFile,BufReadPost *.jade       se ft=pug
