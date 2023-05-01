@@ -15,7 +15,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load the documentation for all the plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-packloadall          " Load all plugins
+" packloadall          " Load all plugins
 silent! helptags ALL " Load help for all plugins
 
 
@@ -334,6 +334,151 @@ en
 
 " }}}
 " ==============================================================================
+" COLOUR SCHEMES {{{
+" ==============================================================================
+
+syntax on
+
+if has('termguicolours')
+  se termguicolours
+end
+
+if &term =~ "xterm\\|rxvt"
+  " use a light_cyan cursor in insert mode
+  let &t_SI = "\<Esc>]12;LightCyan\x7"
+  " use an orange cursor otherwise
+  let &t_EI = "\<Esc>]12;LightGreen\x7"
+  silent !ec -ne "\033]12;LightGreen\007"
+end
+
+
+" ----------------------------------------------------------------------------
+" Configuration gruvbox-material
+" ----------------------------------------------------------------------------
+aug GruvboxMaterial
+
+  packadd gruvbox-material
+  let g:gruvbox_material_background = 'hard'
+  " Enable italic, but disable for comment
+  let g:gruvbox_material_enable_italic = 1
+  let g:gruvbox_material_disable_italic_comment = 1
+  " Enable bold in function name
+  let g:gruvbox_material_enable_bold = 1
+  " Control the |hl-Visual| and the |hl-VisualNOS| highlight group.
+  let g:gruvbox_material_visual = 'reverse'
+  " Customise the background colour of |hl-PmenuSel| and |hl-WildMenu|
+  let g:gruvbox_material_menu_selection_background = 'red'
+  " Make the background colour of sign column the same as normal text
+  let g:gruvbox_material_sign_column_background = 'none'
+  " The contrast of line numbers, indent lines, etc.
+  let g:gruvbox_material_ui_contrast = 'high'
+  " Some plugins support highlighting error/warning/info/hint texts, by default
+  " these texts are only underlined, but you can use this option to also
+  " highlight the background of them.
+  let g:gruvbox_material_diagnostic_text_highlight = 1
+  " Some plugins support highlighting error/warning/info/hint lines, but this
+  " feature is disabled by default in this colour scheme.
+  let g:gruvbox_material_diagnostic_line_highlight = 1
+  " Some plugins can use virtual text feature of neovim to display
+  " error/warning/info/hint information, you can use this option to adjust the
+  " colours of it.
+  let g:gruvbox_material_diagnostic_virtual_text = 'colored'
+  " Some plugins can highlight the word under current cursor, you can use this
+  " option to control their behaviour.
+  let g:gruvbox_material_current_word = 'bold'
+  " Determine the style of statusline
+  let g:gruvbox_material_statusline_style = 'original'
+  " Enable this option will reduce loading time by approximately 50%
+  let g:gruvbox_material_better_performance = 1
+
+aug END
+
+colo gruvbox-material
+
+
+" ----------------------------------------------------------------------------
+" Change colour scheme depending on the time of day
+" ----------------------------------------------------------------------------
+let hr=(strftime('%H'))
+
+if hr >= 18
+  set background=dark
+  colo gruvbox-material
+elseif hr >= 7
+  set background=light
+  colo gruvbox-material
+else
+  set background=dark
+  colo gruvbox-material
+endif
+
+
+" ----------------------------------------------------------------------------
+" Highlights
+" ----------------------------------------------------------------------------
+fu! MyHighlights() abort
+  " Badly spelled word
+  hi SpellBad cterm=NONE ctermfg=009 ctermbg=011
+  " Word with wrong caps
+  " hi SpellCap cterm=NONE ctermbg=LightCyan ctermfg=DarkRed
+  " Rare word
+  hi SpellRare cterm=NONE ctermbg=LightCyan ctermfg=DarkRed
+  " Word only exists in other region
+  hi SpellLocal cterm=italic ctermbg=White ctermfg=DarkRed
+
+  " Source: https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f
+  hi Visual ctermbg=76 ctermfg=16
+  " hi StatusLine cterm=NONE ctermbg=231 ctermfg=160
+  " hi Normal     cterm=NONE ctermbg=17
+  " hi NonText    cterm=NONE ctermbg=17
+
+  " hi clear CursorLine
+  hi ColorColumn ctermbg=LightRed ctermfg=Black
+  hi ErrorMsg ctermbg=Red ctermfg=Yellow
+  hi LineNr ctermfg=Darkgrey
+  hi Search ctermbg=Darkcyan ctermfg=White cterm=none
+  hi Comment cterm=italic
+  " hi SignColumn ctermbg=DarkGrey
+  " hi Folded ctermbg=235  ctermfg=0
+endf
+
+aug MyColors
+    au!
+    au ColorScheme * call MyHighlights()
+    au SourcePost vimrc call MyHighlights()
+    au ColorScheme * highlight SpecialKey ctermfg=238
+    au SourcePost vimrc highlight SpecialKey ctermfg=238
+aug END
+
+autocmd BufWritePost $MYVIMRC source $MYVIMRC
+
+" Remove highlight colour from current line number
+" hi clear CursorLineNr
+
+" Current line number row will have same background colour in relative mode
+" hi clear LineNr
+
+" Highlight conflicts
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
+" ------------------------------------------------------------------------------
+" Detect trailing whitespace
+" ------------------------------------------------------------------------------
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight trailing whitespace
+set list
+highlight ExtraWhitespace ctermbg=DarkRed ctermfg=Black
+match ExtraWhitespace /\s\+$/
+
+
+" ------------------------------------------------------------------------------
+" Do not highlight all-cap words
+" ------------------------------------------------------------------------------
+syntax match None "\v<[A-Z]+>"
+syntax match None "\v<[A-Z]+s>"
+syntax match None "\v<[A-Z]+[0-9]>"
+
+" }}}
+" ==============================================================================
 " PLUGINS {{{
 " ==============================================================================
 
@@ -470,9 +615,9 @@ let g:floaterm_autoclose  = 1
 
 " Highlight
 " Set floaterm window's background to black
-hi Floaterm guibg=black
+" hi Floaterm ctermbg=black
 " Set floating window border line colour to cyan, and background to orange
-hi FloatermBorder guibg=orange guifg=cyan
+" hi FloatermBorder ctermbg=Black ctermfg=Cyan
 
 " Hide statusline
 au! FileType floaterm
@@ -536,36 +681,11 @@ let g:rbpt_colorpairs = [
     \ ['darkblue',  'brown1'],
     \ ]
 
-au VimEnter * RainbowParenthesesToggle
+au VimEnter * RainbowParenthesesToggleAll
 au Syntax   * RainbowParenthesesLoadRound
 au Syntax   * RainbowParenthesesLoadSquare
 au Syntax   * RainbowParenthesesLoadBraces
-
-
-" ----------------------------------------------------------------------------
-" Spelunker
-" ----------------------------------------------------------------------------
-" Disable URI checking
-let g:spelunker_disable_uri_checking                          = 1
-
-" Disable email-like words checking
-let g:spelunker_disable_email_checking                        = 1
-
-" Disable account name checking, e.g. @foobar, foobar@
-let g:spelunker_disable_account_name_checking                 = 1
-
-" Disable acronym checking
-let g:spelunker_disable_acronym_checking                      = 1
-
-" Disable checking words in backtick/backquote
-let g:spelunker_disable_backquoted_checking                   = 1
-
-" Disable default autogroup
-let g:spelunker_disable_auto_group                            = 1
-
-" Override highlight setting
-hi SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=#9e9e9e
-hi SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
+au Syntax   * RainbowParenthesesLoadChevrons
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -608,7 +728,9 @@ let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 au! FileType fzf set laststatus=0 noshowmode noruler
   \| au BufLeave <buffer> set laststatus=2 showmode ruler
 
-com! -bang VimDir call fzf#vim#files('~/.vim/', <bang>0)
+com! -bang DotVim call fzf#vim#files('$HOME/.vim/', <bang>0)
+com! -bang DotFiles call fzf#vim#files('$HOME/.files/', <bang>0)
+com! -bang HomeDir call fzf#vim#files('$HOME/', <bang>0)
 com! -bang DictDir call fzf#vim#files('/usr/share/dict/', <bang>0)
 
 
@@ -689,6 +811,12 @@ call fake#define('email', 'tolower(substitute(printf("%s@%s.%s",'
 let g:tq_online_backends_timeout = 0.4
 let g:tq_truncation_on_definition_num = 2
 let g:tq_truncation_on_syno_list_size = 20
+
+
+" ----------------------------------------------------------------------------
+" GitGutter
+" ----------------------------------------------------------------------------
+let g:gitgutter_preview_win_floating = 1
 
 " }}}
 " ============================================================================
@@ -872,6 +1000,7 @@ vn <S-Tab> <gv
 let g:HelpMeItems = [
     \ "Shortcuts:",
     \ "<BS>g                toggle Goyo",
+    \ "<BS>k                open HelpMe",
     \ "<BS>m                toggle Maximizer for the current window",
     \ "<BS>t                toggle Floaterm",
     \ "<Space>F             open FZF for files under home directory",
@@ -882,7 +1011,7 @@ let g:HelpMeItems = [
     \ "<Space>b             list current buffers",
     \ "<F2>                 fold all unchanged lines",
     \ "<F3>                 show changed lines with differences",
-    \ "<F4>                 toggle parentheses highlighting",
+    \ "<F4>                 toggle git changes highlighting",
     \ "<F5>                 (1) Execute script; (2) Generate ToC/Align tables",
     \ "",
     \ "Commands:",
@@ -891,8 +1020,6 @@ let g:HelpMeItems = [
     \ ":ClearRegisters      clear all Vim's registers",
     \ ":GB                  super cheap Git blame",
     \ ":Root                change directory to the Git repository's root",
-    \ "",
-    \ "Press 'q' to close",
     \ ]
 
 nn  <silent> <Bslash>es  : sp ~/.vim/wordlist/abbreviation/common.vim <CR>
@@ -905,12 +1032,11 @@ tno <silent> <Bslash>t   <C-\><C-n>:FloatermToggle                    <CR>
 nn  <silent> <Bslash>g   : Goyo                                       <CR>
 nn  <silent> <Bslash>m   : MaximizerToggle                            <CR>
 vn  <silent> <Bslash>m   : MaximizerToggle                            <CR> gv
-nn  <silent> <Leader>F   : FZF -m ~                                   <CR>
 nn  <silent> <Leader>f   : FZF -m                                     <CR>
 nn  <silent> <Leader>u   : UndotreeToggle                             <CR>
 nn  <silent> <F2>        : SignifyFold                                <CR>
 nn  <silent> <F3>        : SignifyDiff                                <CR>
-nn  <silent> <F4>        : RainbowParenthesesOn                       <CR>
+nn  <silent> <F4>        : GitGutterLineHighlightsToggle              <CR>
 
 " }}}
 " ============================================================================
@@ -1075,73 +1201,23 @@ vnoremap <Leader>D "zy:OpenURL http://dict.youdao.com/search?q=<C-R>z<CR>
 " ============================================================================
 
 " ----------------------------------------------------------------------------
-" Highlights
-" ----------------------------------------------------------------------------
-fu! MyHighlights() abort
-  " Badly spelled word
-  hi SpellBad    cterm=NONE ctermbg=LightGrey  ctermfg=DarkRed gui=NONE guibg=#5fd700 guifg=#d70000
-  " Word with wrong caps
-  " hi SpellCap    cterm=NONE ctermbg=LightCyan  ctermfg=DarkRed gui=NONE guibg=#5fd700 guifg=#d70000
-  " Rare word
-  hi SpellRare   cterm=NONE ctermbg=LightCyan  ctermfg=DarkRed gui=NONE guibg=#5fd700 guifg=#d70000
-  " Word only exists in other region
-  hi SpellLocal  cterm=NONE ctermbg=LightYellow ctermfg=DarkRed gui=NONE guibg=#5fd700 guifg=#d70000
-
-  " Source: https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f
-  hi Visual                 ctermbg=76         ctermfg=16      gui=NONE guibg=#5fd700 guifg=#000000
-  " hi StatusLine cterm=NONE ctermbg=231 ctermfg=160 gui=NONE guibg=#ffffff guifg=#d70000
-  " hi Normal     cterm=NONE ctermbg=17              gui=NONE guibg=#00005f
-  " hi NonText    cterm=NONE ctermbg=17              gui=NONE guibg=#00005f
-
-  hi clear CursorLine
-  hi colorcolumn ctermbg=232
-  hi Error ctermbg=red term=reverse
-  hi LineNr ctermfg=darkgrey
-  hi Search ctermbg=darkcyan ctermfg=white cterm=none
-  hi Comment cterm=italic
-  hi CursorLineNR cterm=none ctermfg=grey
-  hi SignColumn ctermbg=none
-  hi Folded guibg=Gray8 guifg=Gray ctermbg=235  ctermfg=0
-endf
-
-aug MyColors
-    au!
-    au ColorScheme * call MyHighlights()
-    au ColorScheme * highlight SpecialKey ctermfg=238
-aug END
-
-
-" SignColumn should match background
-hi clear SignColumn
-
-" Remove highlight colour from current line number
-hi clear CursorLineNr
-
-" Current line number row will have same background colour in relative mode
-" hi clear LineNr
-
-" Highlight conflicts
-mat ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-
-
-" ----------------------------------------------------------------------------
 " Ignore URLs and file paths when spellchecking
 "  ----------------------------------------------------------------------------
 fun! SpellCheckIgnoreRules()
-  if (&filetype=='markdown')
+  " if (&filetype=='markdown')
     syn case match
-    syn match spellcheckURL /\<http[^ ]\+/
-    syn match spellcheckFilepath / \/.*\>/
-    syn match spellcheckCamelCase /\<[A-Z][a-z]\+[A-Z].\{-}\>/
+    syn match None /\<http[^ ]\+/
+    syn match None / \/.*\>/
+    syn match None /\<[A-Z][a-z]\+[A-Z].\{-}\>/
     syn case ignore
-  else
-    syn match spellcheckURL /\<http[^ ]\+/ contains=@NoSpell transparent
-    syn match spellcheckFilepath / \/.*\>/ contains=@NoSpell transparent
-    syn match spellcheckCamelCase /\<[A-Z][a-z]\+[A-Z].\{-}\>/ contains=@NoSpell transparent
-    syn cluster Spell add=spellcheckURL
-    syn cluster Spell add=spellcheckFilepath
-    syn cluster Spell add=spellcheckCamelCase
-  endif
+  " else
+    " syn match spellcheckURL /\<http[^ ]\+/ contains=@NoSpell transparent
+    " syn match spellcheckFilepath / \/.*\>/ contains=@NoSpell transparent
+    " syn match spellcheckCamelCase /\<[A-Z][a-z]\+[A-Z].\{-}\>/ contains=@NoSpell transparent
+    " syn cluster Spell add=spellcheckURL
+    " syn cluster Spell add=spellcheckFilepath
+    " syn cluster Spell add=spellcheckCamelCase
+  " endif
 endfunction
 
 autocmd BufRead,BufNewFile * :call SpellCheckIgnoreRules()
@@ -1200,91 +1276,6 @@ au FileType * setl formatoptions-=c formatoptions-=r formatoptions-=o
 " Automatically save the file when a change if made
 " ----------------------------------------------------------------------------
 au TextChanged,InsertLeave * if &readonly==0 && filereadable(bufname('%'))|silent up|end
-
-
-" ----------------------------------------------------------------------------
-" Configuration for colour scheme
-" ----------------------------------------------------------------------------
-syntax on
-
-if has('termguicolours')
-  se termguicolours
-end
-
-if &term =~ "xterm\\|rxvt"
-  " use a light_cyan cursor in insert mode
-  let &t_SI = "\<Esc>]12;LightCyan\x7"
-  " use an orange cursor otherwise
-  let &t_EI = "\<Esc>]12;LightGreen\x7"
-  silent !ec -ne "\033]12;LightGreen\007"
-end
-
-
-" ----------------------------------------------------------------------------
-" Configuration gruvbox-material
-" ----------------------------------------------------------------------------
-aug GruvboxMaterial
-
-  packadd gruvbox-material
-  let g:gruvbox_material_background = 'hard'
-  " Enable italic, but disable for comment
-  let g:gruvbox_material_enable_italic = 1
-  let g:gruvbox_material_disable_italic_comment = 1
-  " Enable bold in function name
-  let g:gruvbox_material_enable_bold = 1
-  " Control the |hl-Visual| and the |hl-VisualNOS| highlight group.
-  let g:gruvbox_material_visual = 'reverse'
-  " Customise the background colour of |hl-PmenuSel| and |hl-WildMenu|
-  let g:gruvbox_material_menu_selection_background = 'red'
-  " Make the background colour of sign column the same as normal text
-  let g:gruvbox_material_sign_column_background = 'none'
-  " The contrast of line numbers, indent lines, etc.
-  let g:gruvbox_material_ui_contrast = 'high'
-  " Some plugins support highlighting error/warning/info/hint texts, by default
-  " these texts are only underlined, but you can use this option to also
-  " highlight the background of them.
-  let g:gruvbox_material_diagnostic_text_highlight = 1
-  " Some plugins support highlighting error/warning/info/hint lines, but this
-  " feature is disabled by default in this colour scheme.
-  let g:gruvbox_material_diagnostic_line_highlight = 1
-  " Some plugins can use virtual text feature of neovim to display
-  " error/warning/info/hint information, you can use this option to adjust the
-  " colours of it.
-  let g:gruvbox_material_diagnostic_virtual_text = 'colored'
-  " Some plugins can highlight the word under current cursor, you can use this
-  " option to control their behaviour.
-  let g:gruvbox_material_current_word = 'bold'
-  " Determine the style of statusline
-  let g:gruvbox_material_statusline_style = 'original'
-  " Enable this option will reduce loading time by approximately 50%
-  let g:gruvbox_material_better_performance = 1
-
-aug END
-
-colo gruvbox-material
-
-
-" ----------------------------------------------------------------------------
-" Change colour scheme depending on the time of day
-" ----------------------------------------------------------------------------
-let hr=(strftime('%H'))
-
-if hr >= 18
-  se background=dark
-  hi ColorColumn guibg=DarkRed ctermbg=DarkRed
-elsei hr >= 7
-  se background=light
-el
-  se background=dark
-  hi ColorColumn guibg=DarkRed ctermbg=DarkRed
-end
-
-
-" ------------------------------------------------------------------------------
-" Detect trailing whitespace
-" ----------------------------------------------------------------------------
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight trailing whitespace
-se list
 
 
 " ----------------------------------------------------------------------------
