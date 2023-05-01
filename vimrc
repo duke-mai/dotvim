@@ -15,7 +15,6 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load the documentation for all the plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible
 " packloadall          " Load all plugins
 silent! helptags ALL " Load help for all plugins
 
@@ -68,8 +67,9 @@ endf
 " }
 
 " Basics {
+se nocompatible        " Must be first line
 if !WINDOWS()
-  set shell=#!/bin/bash
+  se shell=/usr/bin/sh
 en
 " }
 
