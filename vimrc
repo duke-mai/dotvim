@@ -316,28 +316,22 @@ set backupdir=/tmp/vimfiles/.backup/
 " TEMPLATES & CUSTOM VIM FILETYPE SETTINGS {{{
 " ==============================================================================
 
-if has("autocmd")
-  aug templates
-    au BufNewFile *.sh 0r ~/.vim/template/sh.template
-    au BufNewFile *.html 0r ~/.vim/template/html.template
-    au BufNewFile *.py 0r ~/.vim/template/python.template
-  aug END
-en
+aug templates
+  au BufAdd,BufCreate,BufNew,BufNewFile,BufRead *.sh 0r ~/.vim/template/sh.template
+  au BufAdd,BufCreate,BufNew,BufNewFile,BufRead *.html 0r ~/.vim/template/html.template
+  au BufAdd,BufCreate,BufNew,BufNewFile,BufRead *.py 0r ~/.vim/template/python.template
+aug END
 
-" Create a file in ftplugin/filetype.vim for specific settings
-if has("autocmd")
-  aug filetypes
-    au BufRead,BufNewFile,BufReadPost bash_*       se ft=sh
-    au BufRead,BufNewFile,BufReadPost bashrc       se ft=sh
-    au BufRead,BufNewFile,BufReadPost *.template   se ft=text
-    au BufRead,BufNewFile,BufReadPost *.md         se ft=markdown
-    au BufRead,BufNewFile,BufReadPost *.jade       se ft=pug
-    au BufRead,BufNewFile,BufReadPost *.pug        se ft=pug
-    au BufRead,BufNewFile,BufReadPost *.coffee     se ft=coffee
-    au BufEnter ~/.files/git/gitconfig             se ft=gitconfig
-    au BufEnter ~/.files/git/commit_msg            se ft=gitcommit
-  aug END
-en
+aug filetypes
+  au BufEnter *.template              setf text
+  au BufEnter *.md                    setf markdown
+  au BufEnter *.jade                  setf pug
+  au BufEnter *.pug                   setf pug
+  au BufEnter *.coffee                setf coffee
+  au BufEnter ~/.files/bash/*         setf sh
+  au BufEnter ~/.files/git/gitconfig  setf gitconfig
+  au BufEnter ~/.files/git/commit_msg setf gitcommit
+aug END
 
 " }}}
 " ==============================================================================
