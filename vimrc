@@ -13,10 +13,14 @@
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Load the documentation for all the plugins
+" => Load plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " packloadall          " Load all plugins
-silent! helptags ALL " Load help for all plugins
+silent! helptags ALL   " Load help for all plugins
+
+if !exists(":Abolish")
+  au FileType markdown runtime wordlist/plugins/britishise.vim
+endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
