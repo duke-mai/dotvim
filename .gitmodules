@@ -16,9 +16,6 @@
 [submodule "pack/git/start/signify"]
 	path = pack/git/start/signify
 	url = https://github.com/mhinz/vim-signify.git
-[submodule "pack/file-system/start/undotree"]
-	path = pack/file-system/start/undotree
-	url = https://github.com/mbbill/undotree.git
 [submodule "pack/syntax/start/python"]
 	path = pack/syntax/start/python
 	url = https://github.com/purpleP/python-syntax.git
@@ -167,3 +164,6 @@
 [submodule "pack/writing/start/abolish"]
 	path = pack/writing/start/abolish
 	url = https://github.com/tpope/vim-abolish.git
+[submodule "pack/file-system/start/mundo"]
+	path = pack/file-system/start/mundo
+	url = https://github.com/simnalamburt/vim-mundo.git

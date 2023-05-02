@@ -323,9 +323,9 @@ set noswapfile
 " ==============================================================================
 
 aug templates
-  au BufAdd,BufCreate,BufNew,BufNewFile,BufRead *.sh 0r ~/.vim/template/sh.template
-  au BufAdd,BufCreate,BufNew,BufNewFile,BufRead *.html 0r ~/.vim/template/html.template
-  au BufAdd,BufCreate,BufNew,BufNewFile,BufRead *.py 0r ~/.vim/template/python.template
+  au BufNewFile *.sh 0r ~/.vim/template/sh.template
+  au BufNewFile *.html 0r ~/.vim/template/html.template
+  au BufNewFile *.py 0r ~/.vim/template/python.template
 aug END
 
 aug filetypes
@@ -1030,8 +1030,9 @@ let g:HelpMeItems = [
     \ ":Root                change directory to the Git repository's root",
     \ ]
 
-nn  <silent> <Bslash>es  : sp ~/.vim/wordlist/abbreviation/common.vim <CR>
+nn  <silent> <Bslash>eb  : tabe ~/.files/bash/bashrc                  <CR>
 nn  <silent> <Bslash>eg  : tabe ~/.files/git/gitconfig                <CR>
+nn  <silent> <Bslash>es  : sp ~/.vim/wordlist/abbreviation/common.vim <CR>
 nn  <silent> <Bslash>ev  : tabe $MYVIMRC                              <CR>
 nn  <silent> <Bslash>sv  : so $MYVIMRC                                <CR>
 nn  <silent> <Bslash>k   : HelpMe                                     <CR>
@@ -1041,7 +1042,7 @@ nn  <silent> <Bslash>g   : Goyo                                       <CR>
 nn  <silent> <Bslash>m   : MaximizerToggle                            <CR>
 vn  <silent> <Bslash>m   : MaximizerToggle                            <CR> gv
 nn  <silent> <Leader>f   : FZF -m                                     <CR>
-nn  <silent> <Leader>u   : UndotreeToggle                             <CR>
+nn  <silent> <Leader>u   : MundoToggle                                <CR>
 nn  <silent> <F2>        : SignifyFold                                <CR>
 nn  <silent> <F3>        : SignifyDiff                                <CR>
 nn  <silent> <F4>        : GitGutterLineHighlightsToggle              <CR>
