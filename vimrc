@@ -281,18 +281,34 @@ set nrformats-=octal
 " Set up persistent undo across all files
 " ----------------------------------------------------------------------------
 if has("persistent_undo")
-  let undo_dir = expand('/tmp/.undo/')
-
   " Create undo directory if possible and does not exist yet
-  if !isdirectory(undo_dir) && getftype(undo_dir) == "" && exists("*mkdir")
-    call mkdir(undo_dir, "p", 0700)
-  en
-
-  let &udir = undo_dir
+  let undodir = expand('/tmp/vimfiles/undodir/')
+  if !isdirectory(undodir) && getftype(undodir) == "" && exists("*mkdir")
+    call mkdir(undodir, "p", 0o700)
+  endif
+  let &undodir = undodir
   set undofile
-  set ul=1000      " Maximum number of changes that can be undone
-  set ur=10000     " Maximum number lines to save for undo on a buffer reload
-en
+  " Maximum number of changes that can be undone
+  set undolevels=1000
+  " Maximum number lines to save for undo on a buffer reload
+  set undoreload=10000
+endif
+
+
+" ----------------------------------------------------------------------------
+" Create backup directory in case of crashes
+" ----------------------------------------------------------------------------
+if has("writebackup")
+  let backupdir = expand('/tmp/vimfiles/backupdir/')
+  " Create backup directory if possible and does not exist yet
+  if !isdirectory(backupdir) && getftype(backupdir) == "" && exists("*mkdir")
+    call mkdir(backupdir, "p", 0o700)
+  endif
+  let &backupdir = backupdir
+  let &backupext = '-' .. strftime("%Y%b%d-%H:%M") .. '.bak'
+  " let &backupskip = '.git/*, /tmp/*'
+  set backup
+endif
 
 
 " ----------------------------------------------------------------------------
@@ -300,16 +316,6 @@ en
 " ----------------------------------------------------------------------------
 set noswapfile
 
-
-" ----------------------------------------------------------------------------
-" Create backup directory in case of crashes
-" ----------------------------------------------------------------------------
-let backup_dir = expand('/tmp/vimfiles/.backup/')
-if !isdirectory(backup_dir) && getftype(backup_dir) == "" && exists("*mkdir")
-  call mkdir(backup_dir, "p", 0700)
-endif
-
-set backupdir=/tmp/vimfiles/.backup/
 
 " }}}
 " ==============================================================================
