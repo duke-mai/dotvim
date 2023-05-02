@@ -1011,12 +1011,12 @@ let g:HelpMeItems = [
     \ "<BS>k                open HelpMe",
     \ "<BS>m                toggle Maximizer for the current window",
     \ "<BS>t                toggle Floaterm",
-    \ "<Space>F             open FZF for files under home directory",
-    \ "<Space>f             open FZF for files under working directory",
-    \ "<Space>m             toggle Tabman",
-    \ "<Space>n             toggle NERDTree",
-    \ "<Space>u             toggle Undotree",
-    \ "<Space>b             list current buffers",
+    \ "<Space>G             google the word under cursor",
+    \ "<Space>GG            google the Word/URL under cursor",
+    \ "<Space>D             define the word under cursor",
+    \ "<Space>b             quickly explore active buffers",
+    \ "<Space>bt            toggle bufexplorer",
+    \ "<Space>t             access the thesaurus for the word under cursor",
     \ "<F2>                 fold all unchanged lines",
     \ "<F3>                 show changed lines with differences",
     \ "<F4>                 toggle git changes highlighting",
@@ -1166,42 +1166,26 @@ nnoremap <expr> <leader>t <SID>thesaurus()
 
 
 " ----------------------------------------------------------------------------
-" Open symlink under cursor
-" Source: https://github.com/jinzhu/configure/blob/master/.vimrc
-" ----------------------------------------------------------------------------
-function! FollowSymlink()
-  let b:orig_file = fnameescape(expand('%:p'))
-  if getftype(b:orig_file) == 'link'
-    execute 'lcd' fnamemodify(resolve(b:orig_file), ':p:h')
-    execute 'file' fnameescape(resolve(b:orig_file))
-    :edit!
-  endif
-  redraw!
-endfunction
-command! FollowSymlink :call FollowSymlink()
-
-" nnoremap <Leader>F :FollowSymlink<CR>
-
-
-" ----------------------------------------------------------------------------
 " Open URL under cursor in browser
 " Source: https://github.com/jinzhu/configure/blob/master/.vimrc
 " ----------------------------------------------------------------------------
 function! OpenURL(url)
   let b:escape_url = escape(a:url, '"')
-  if executable("chromium")
-    exe "silent !chromium \"".b:escape_url."\""
+  if executable("firefox")
+    execute "silent !firefox \"".b:escape_url."\""
+  elseif executable("chromium")
+    execute "silent !chromium \"".b:escape_url."\""
   elseif executable("gnome-open")
-    exe "silent !gnome-open \"".b:escape_url."\""
+    execute "silent !gnome-open \"".b:escape_url."\""
   endif
   redraw!
 endfunction
 command! -nargs=1 OpenURL :call OpenURL(<q-args>)
 
 nnoremap <Leader>G :OpenURL http://www.google.com/search?q=<cword><CR>
-vnoremap <Leader>G "zy:OpenURL http://www.google.com/search?q=<C-R>z<CR>
-nnoremap <Leader>D :OpenURL http://dict.youdao.com/search?q=<cword><CR>
-vnoremap <Leader>D "zy:OpenURL http://dict.youdao.com/search?q=<C-R>z<CR>
+nnoremap <Leader>GG :OpenURL <cWORD><CR>
+nnoremap <Leader>D :OpenURL https://www.oxfordlearnersdictionaries.com/definition/english/<cword><CR>
+vnoremap <Leader>D "zy:OpenURL https://www.oxfordlearnersdictionaries.com/definition/english/<C-R>z<CR>
 
 " }}}
 " ============================================================================
