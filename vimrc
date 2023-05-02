@@ -406,14 +406,15 @@ colo gruvbox-material
 " ----------------------------------------------------------------------------
 " Change background colour depending on the time of day
 " ----------------------------------------------------------------------------
-let hr=(strftime('%H'))
-if hr >= 18
-  set background=dark
-elseif hr >= 7
-  set background=light
-else
-  set background=dark
-colo gruvbox-material
+if exists("*strftime")
+  let hr=(strftime('%H'))
+  if hr >= 18
+    set background=dark
+  elseif hr >= 7
+    set background=light
+  else
+    set background=dark
+  endif
 endif
 
 
