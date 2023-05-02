@@ -74,7 +74,7 @@ endf
 " Basics {
 se nocompatible        " Must be first line
 if !WINDOWS()
-  se shell=/usr/bin/sh
+  se shell=/bin/bash
 en
 " }
 
@@ -355,7 +355,7 @@ if &term =~ "xterm\\|rxvt"
   let &t_SI = "\<Esc>]12;LightCyan\x7"
   " use an orange cursor otherwise
   let &t_EI = "\<Esc>]12;LightGreen\x7"
-  silent !ec -ne "\033]12;LightGreen\007"
+  silent !echo -ne "\033]12;LightGreen\007"
 end
 
 
@@ -1057,7 +1057,7 @@ nn  <silent> <F4>        : GitGutterLineHighlightsToggle              <CR>
 fu! AddLineNumber()
   %s/^/\=printf('%-3d',line('.'))
   %s/\s\+$//e
-  ec 'Every Line Has Been Numbered!'
+  echo 'Every Line Has Been Numbered!'
 endf
 com! AddLineNumber call AddLineNumber()
 
@@ -1067,7 +1067,7 @@ com! AddLineNumber call AddLineNumber()
 " ----------------------------------------------------------------------------
 fu! CapitaliseEachWord()
   s/\v<(.)(\w*)/\u\1\L\2/g
-  ec 'Every Word Has Been Capitalised!'
+  echo 'Every Word Has Been Capitalised!'
 endf
 com! CapitaliseEachWord call CapitaliseEachWord()
 
@@ -1076,7 +1076,7 @@ com! CapitaliseEachWord call CapitaliseEachWord()
 " :ClearRegisters
 " ----------------------------------------------------------------------------
 com! ClearRegisters for i in range(34,122) | silent! call setreg(nr2char(i), [])
-      \| endfor | ec 'All Registers Has Been Cleared!'
+      \| endfor | echo 'All Registers Has Been Cleared!'
 
 
 " ----------------------------------------------------------------------------
@@ -1095,8 +1095,8 @@ fu! FixQuotes()
   :silent! %s/”/"/g
   :silent! %s/‘/'/g
   :silent! %s/’/'/g
-  ec "‘ and ’ have been substituted with '!"
-  ec '“ and ” have been substituted with "!'
+  echo "‘ and ’ have been substituted with '!"
+  echo '“ and ” have been substituted with "!'
 endf
 com! FixQuotes call FixQuotes()
 
@@ -1110,7 +1110,7 @@ fu! RainbowParenthesesOn()
   :RainbowParenthesesLoadSquare   " []
   :RainbowParenthesesLoadBraces   " {}
   :RainbowParenthesesLoadChevrons " <>
-  ec 'RainbowParentheses Has Been Toggled!'
+  echo 'RainbowParentheses Has Been Toggled!'
 endf
 com! RainbowParenthesesOn call RainbowParenthesesOn()
 
@@ -1121,10 +1121,10 @@ com! RainbowParenthesesOn call RainbowParenthesesOn()
 fu! s:root()
   let root = systemlist('git rev-parse --show-toplevel')[0]
   if v:shell_error
-    ec 'Not in git repo'
+    echo 'Not in git repo'
   else
     exe 'lcd' root
-    ec 'Changed directory to: '.root
+    echo 'Changed directory to: '.root
   end
 endf
 com! Root call s:root()
@@ -1139,7 +1139,7 @@ fu! StripTrailingWhitespace()
       let l:save = winsaveview()
       keepp %s/\s\+$//e
       call winrestview(l:save)
-      ec 'Trailing Whitespace Has Been Stripped!'
+      echo 'Trailing Whitespace Has Been Stripped!'
     end
   end
 endf
