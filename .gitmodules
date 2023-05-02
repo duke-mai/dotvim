@@ -167,3 +167,6 @@
 [submodule "pack/file-system/start/mundo"]
 	path = pack/file-system/start/mundo
 	url = https://github.com/simnalamburt/vim-mundo.git
+[submodule "pack/writing/start/caser"]
+	path = pack/writing/start/caser
+	url = https://github.com/arthurxavierx/vim-caser.git
