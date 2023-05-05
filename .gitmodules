@@ -170,3 +170,6 @@
 [submodule "pack/writing/start/caser"]
 	path = pack/writing/start/caser
 	url = https://github.com/arthurxavierx/vim-caser.git
+[submodule "pack/writing/start/expand-region"]
+	path = pack/writing/start/expand-region
+	url = https://github.com/terryma/vim-expand-region.git
