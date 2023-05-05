@@ -1316,3 +1316,9 @@ let g:airline_symbols.notexists = '∄'
 let g:airline_symbols.whitespace = 'Ξ'
 
 " }}}
+" ============================================================================
+" BACKGROUND FILE {{{
+" ============================================================================
+" This file is created locally and contain value (dark/light) for background.
+silent! source $HOME/.background.vim
+" }}}
