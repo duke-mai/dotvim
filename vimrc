@@ -170,37 +170,45 @@ set tags+=tags;
 " ----------------------------------------------------------------------------
 " Wildmenu completion
 " ----------------------------------------------------------------------------
-set wmnu                  " Enable auto completion menu after <TAB>
-set wim=longest,list,full " Make wildmenu behave akin to Bash completion
+set wildmenu                              " Enable autocompletion after <TAB>
+set wildmode=list:longest,list:full       " Use BASH style completion
 
 set wig+=.hg,.git,.svn                    " Version control
 set wig+=*.aux,*.out,*.toc,*.log,*.idx    " LaTeX intermediate files
 set wig+=*_aux,*.glg,*.glo,*.gls,*.ist    " LaTeX intermediate files
 set wig+=*.nlo,*.nls,*.pdf,*.bbl,*.dvi    " still LaTeX intermediate files
-set wig+=*.ilg,*.fdb_latexmk,*.synctex.gz " $(B!D(B LaTeX intermediate files
-set wig+=*.blg,*.ind                      " $(B!D!D!D(B LaTeX intermediate files
+set wig+=*.ilg,*.fdb_latexmk,*.synctex.gz " $(B!D(B LaTeX intermediate files
+set wig+=*.blg,*.ind                      " $(B!D!D!D(B LaTeX intermediate files
 set wig+=*.hi                             " Haskell linker files
 set wig+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+set wig+=*.mp4                            " binary videos
 set wig+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
 set wig+=*.spl                            " compiled spelling word lists
 set wig+=*.sw?                            " Vim swap files
 set wig+=*.DS_Store                       " OSX bullshit
-
 set wig+=*.luac                           " Lua byte code
-
 set wig+=migrations                       " Django migrations
 set wig+=*.pyc                            " Python byte code
-
 set wig+=*.orig                           " Merge resolution files
-
-" Clojure/Leiningen
 set wig+=classes
 set wig+=lib
+set wig+=*~,*/node_modules/*,_site,*/__pycache__/,*/venv/*,*/target/*
+set wig+=*/.vim$,\~$,*/.log,*/.aux,*/.cls,*/.aux,*/.bbl,*/.blg,*/.fls
+set wig+=*/.fdb*/,*/.toc,*/.out,*/.glo,*/.log,*/.ist,*/.fdb_latexmk,*.iso
 
 " Better Completion
-set cot=longest,menuone,preview,noinsert,noselect
-set ofu=syntaxcomplete#Complete
-set complete=.,w,b,u,t
+set completeopt=longest,menuone,preview,noinsert,noselect
+set complete=.,w,b,u,t,],s{*.pm}
+
+" Omni Completion
+set omnifunc=syntaxcomplete#Complete
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType c set omnifunc=ccomplete#Complete
 
 
 " ----------------------------------------------------------------------------
@@ -469,8 +477,19 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " ------------------------------------------------------------------------------
 " Detect trailing whitespace
 " ------------------------------------------------------------------------------
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight trailing whitespace
+" Show tabs as ▷⋅ and trailing spaces as⋅
+" http://got-ravings.blogspot.com/2008/10/vim-pr0n-statusline-whitespace-flags.html
 set list
+set listchars=tab:▷⋅,trail:⋅,nbsp:⋅,extends:#
+function ToggleListchars()
+    if &listchars =~ "eol"
+        set listchars=tab:▷⋅,trail:⋅,nbsp:⋅
+    else
+        set listchars=tab:▷⋅,trail:⋅,nbsp:⋅,eol:$
+    endif
+endfunction
+
+com! ToggleListchars call ToggleListchars()
 highlight ExtraWhitespace ctermbg=DarkRed ctermfg=Black
 match ExtraWhitespace /\s\+$/
 
@@ -501,8 +520,7 @@ nn <silent> <expr> <Leader>n g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufex
 
 " Have NERDtree show hidden files, but ignore certain files and directories
 let NERDTreeShowHidden=1
-let NERDTreeIgnore=['__pycache__','\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\~$', 'pip-log\.txt$', 'whoosh_index', 'xapian_index', '.*.pid', 'monitor.py', '.*-fixtures-.*.json', '.*\.o$', 'db.db']
-
+let NERDTreeRespectWildIgnore = 1
 let NERDTreeCaseSensitiveSort = 1
 let NERDTreeNaturalSort       = 1
 let NERDTreeSortHiddenFirst   = 1
@@ -959,6 +977,12 @@ nn <Leader>b :ls<CR>:b<Leader>
 " ----------------------------------------------------------------------------
 vn <Tab> >gv
 vn <S-Tab> <gv
+
+" ----------------------------------------------------------------------------
+" Switch tabs easily
+" ----------------------------------------------------------------------------
+nn <Tab> gt
+nn <S-Tab> gT
 
 " }}}
 " ============================================================================
