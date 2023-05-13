@@ -170,3 +170,6 @@
 [submodule "pack/writing/start/expand-region"]
 	path = pack/writing/start/expand-region
 	url = https://github.com/terryma/vim-expand-region.git
+[submodule "pack/api/start/wakatime"]
+	path = pack/api/start/wakatime
+	url = https://github.com/wakatime/vim-wakatime.git
