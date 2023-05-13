@@ -173,3 +173,6 @@
 [submodule "pack/api/start/wakatime"]
 	path = pack/api/start/wakatime
 	url = https://github.com/wakatime/vim-wakatime.git
+[submodule "pack/syntax/start/shfmt"]
+	path = pack/syntax/start/shfmt
+	url = https://github.com/z0mbix/vim-shfmt.git
