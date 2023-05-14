@@ -176,3 +176,6 @@
 [submodule "pack/syntax/start/shfmt"]
 	path = pack/syntax/start/shfmt
 	url = https://github.com/z0mbix/vim-shfmt.git
+[submodule "pack/writing/start/vimdent"]
+	path = pack/writing/start/vimdent
+	url = https://github.com/jessekelighine/vindent.vim.git
