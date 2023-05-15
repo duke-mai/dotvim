@@ -32,15 +32,15 @@ source ~/.vim/wordlist/abbreviation/custom.vim
 set dictionary+=/usr/share/hunspell/en_AU.dic
 set dictionary+=/usr/share/dict/english-words/words.txt
 set spellfile+=~/.vim/wordlist/spelling/en.utf-8.add
-set spellfile+=/usr/share/dict/moby_words/files/acronyms.txt.utf-8.add
-set spellfile+=/usr/share/dict/moby_words/files/common.txt.utf-8.add
-set spellfile+=/usr/share/dict/moby_words/files/compound.txt.utf-8.add
-set spellfile+=/usr/share/dict/moby_words/files/names-f.txt.utf-8.add
-set spellfile+=/usr/share/dict/moby_words/files/names-m.txt.utf-8.add
-set spellfile+=/usr/share/dict/moby_words/files/names.txt.utf-8.add
-set spellfile+=/usr/share/dict/moby_words/files/places.txt.utf-8.add
-set spellfile+=/usr/share/dict/moby_words/files/single.txt.utf-8.add
-set thesaurus+=/usr/share/dict/moby_words/files/mthesaur.txt
+set spellfile+=/usr/share/dict/moby_words/acronyms.txt.utf-8.add
+set spellfile+=/usr/share/dict/moby_words/common.txt.utf-8.add
+set spellfile+=/usr/share/dict/moby_words/compound.txt.utf-8.add
+set spellfile+=/usr/share/dict/moby_words/names-f.txt.utf-8.add
+set spellfile+=/usr/share/dict/moby_words/names-m.txt.utf-8.add
+set spellfile+=/usr/share/dict/moby_words/names.txt.utf-8.add
+set spellfile+=/usr/share/dict/moby_words/places.txt.utf-8.add
+set spellfile+=/usr/share/dict/moby_words/single.txt.utf-8.add
+set thesaurus+=/usr/share/dict/moby_words/mthesaur.txt
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
