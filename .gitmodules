@@ -179,3 +179,6 @@
 [submodule "pack/writing/start/vimdent"]
 	path = pack/writing/start/vimdent
 	url = https://github.com/jessekelighine/vindent.vim.git
+[submodule "pack/api/start/gnupg"]
+	path = pack/api/start/gnupg
+	url = https://github.com/jamessan/vim-gnupg.git
