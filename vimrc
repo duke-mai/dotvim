@@ -18,6 +18,7 @@
 " packloadall          " Load all plugins
 silent! helptags ALL   " Load help for all plugins
 source ~/.vim/pack/plugins.vim
+source ~/.vim/pack/lf.vim
 
 if !exists(":Abolish")
   au FileType markdown runtime wordlist/plugins/britishise.vim
@@ -676,11 +677,18 @@ nn <Leader>b :ls<CR>:b<Leader>
 vn <Tab> >gv
 vn <S-Tab> <gv
 
+
 " ----------------------------------------------------------------------------
 " Switch tabs easily
 " ----------------------------------------------------------------------------
 nn <Tab> gt
 nn <S-Tab> gT
+
+
+" ----------------------------------------------------------------------------
+" Use lf to select and open file(s)
+" ----------------------------------------------------------------------------
+nn <Leader>l :LF<CR>
 
 " }}}
 " ============================================================================
