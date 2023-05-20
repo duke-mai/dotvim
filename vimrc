@@ -690,6 +690,12 @@ nn <S-Tab> gT
 " ----------------------------------------------------------------------------
 nn <Leader>l :LF<CR>
 
+
+" ----------------------------------------------------------------------------
+" Open NERDTree at the current file or close NERDTree if pressed again
+" ----------------------------------------------------------------------------
+nn <silent> <expr> <Leader>n g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
+
 " }}}
 " ============================================================================
 " HOTKEYS {{{

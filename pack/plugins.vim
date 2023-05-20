@@ -10,9 +10,6 @@
 au BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") &&
 \ b:NERDTree.isTabTree()) | q | endif
 
-" Open NERDTree at the current file or close NERDTree if pressed again
-nn <silent> <expr> <Leader>n g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
-
 " Have NERDtree show hidden files, but ignore certain files and directories
 let NERDTreeShowHidden=1
 let NERDTreeRespectWildIgnore = 1
