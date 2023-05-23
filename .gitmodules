@@ -113,9 +113,6 @@
 [submodule "pack/writing/start/grammarous"]
 	path = pack/writing/start/grammarous
 	url = https://github.com/rhysd/vim-grammarous.git
-[submodule "pack/writing/start/wiki"]
-	path = pack/writing/start/wiki
-	url = https://github.com/vimwiki/vimwiki.git
 [submodule "pack/writing/start/limelight"]
 	path = pack/writing/start/limelight
 	url = https://github.com/junegunn/limelight.vim.git
