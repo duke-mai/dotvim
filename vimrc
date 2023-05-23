@@ -200,7 +200,7 @@ set wig+=*/.fdb*/,*/.toc,*/.out,*/.glo,*/.log,*/.ist,*/.fdb_latexmk,*.iso
 
 " Better Completion
 set completeopt=longest,menuone,preview,noinsert,noselect
-set complete=.,w,b,u,t,],s{*.pm}
+set complete=.,w,b,u,k,t,],s{*.pm}
 
 " Omni Completion
 set omnifunc=syntaxcomplete#Complete
@@ -339,12 +339,12 @@ aug templates
 aug END
 
 aug filetypes
-  au BufEnter *.template              setf text
+  au BufEnter *.template,*.txt        setf text
   au BufEnter *.md                    setf markdown
   au BufEnter *.jade                  setf pug
   au BufEnter *.pug                   setf pug
   au BufEnter *.coffee                setf coffee
-  au BufEnter ~/.files/bash/*         setf sh
+  au BufEnter *.sh,~/.files/bash/*    setf bash
   au BufEnter ~/.files/git/gitconfig  setf gitconfig
   au BufEnter ~/.files/git/commit_msg setf gitcommit
 aug END
@@ -883,6 +883,17 @@ nnoremap <Leader>G :OpenURL http://www.google.com/search?q=<cword><CR>
 nnoremap <Leader>GG :OpenURL <cWORD><CR>
 nnoremap <Leader>D :OpenURL https://www.oxfordlearnersdictionaries.com/definition/english/<cword><CR>
 vnoremap <Leader>D "zy:OpenURL https://www.oxfordlearnersdictionaries.com/definition/english/<C-R>z<CR>
+
+
+" ----------------------------------------------------------------------------
+" e.g. inoremap <F5> <C-R>=ListMonths()<CR>
+" ----------------------------------------------------------------------------
+function! ListMonths()
+  call complete(col('.'), ['January', 'February', 'March',
+        \ 'April', 'May', 'June', 'July', 'August', 'September',
+        \ 'October', 'November', 'December'])
+  return ''
+endfunction
 
 " }}}
 " ============================================================================
