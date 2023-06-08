@@ -320,3 +320,9 @@ let g:vindent_object_XX_ii     = 'ii' " select current block.
 let g:vindent_object_XX_ai     = 'ai' " select current block + one extra line  at beginning.
 let g:vindent_object_XX_aI     = 'aI' " select current block + two extra lines at beginning and end.
 let g:vindent_jumps            = 1    " make vindent motion count as a |jump-motion| (works with |jumplist|).
+
+
+" ----------------------------------------------------------------------------
+" Maximizer
+" ----------------------------------------------------------------------------
+let g:maximizer_set_default_mapping = 0
