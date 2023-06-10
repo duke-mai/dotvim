@@ -1,10 +1,27 @@
-name: Update plugins
+name: Update submodules
 
 on:
   workflow_dispatch:
+  workflow_call:
   schedule:
     - cron: '0 3 * * *'
 
 jobs:
   update:
-    uses: tanducmai/dotfiles/.github/workflows/update-submodules.yml@master
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+
+      - name: Pull submodules recursively
+        shell: bash
+        run: |
+          git submodule update --init --recursive --remote
+
+      - name: Commit and push changes
+        shell: bash
+        continue-on-error: true
+        run: |
+          git config --global user.name ${{ github.repository_owner }}
+          git config --global user.email ${{ secrets.USER_EMAIL }}
+          git commit -am "Update submodules"
+          git push
