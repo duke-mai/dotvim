@@ -179,6 +179,3 @@
 [submodule "pack/api/start/gnupg"]
 	path = pack/api/start/gnupg
 	url = https://github.com/jamessan/vim-gnupg.git
-[submodule "example"]
-	path = example
-	url = https://github.com/tanducmai/example
