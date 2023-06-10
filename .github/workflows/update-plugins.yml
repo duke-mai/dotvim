@@ -21,7 +21,5 @@ jobs:
         shell: bash
         continue-on-error: true
         run: |
-          git config --global user.name ${{ github.repository_owner }}
-          git config --global user.email ${{ secrets.USER_EMAIL }}
           git commit -am "Update submodules"
           git push
