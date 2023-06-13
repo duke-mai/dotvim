@@ -14,8 +14,7 @@ setl laststatus=0 noshowmode noruler
   \| au BufLeave <buffer> setl laststatus=2 showmode ruler
 
 " Quick push during a commit window
-com! Gpush :!clear && echo 'Wait for the local commits to be pushed to GitHub
-      \ ...\n--------------------' && git push
+com! Gpush :!clear && git push
 
 " Auto destroy Fugitive buffers
 " http://vimcasts.org/episodes/fugitive-vim-browsing-the-git-object-database/
