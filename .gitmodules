@@ -140,12 +140,6 @@
 [submodule "pack/colours/start/colorSchemeExplorer"]
 	path = pack/colours/start/colorSchemeExplorer
 	url = https://github.com/jlanzarotta/colorSchemeExplorer.git
-[submodule "pack/colours/opt/vim"]
-	path = pack/colours/opt/vim
-	url = https://github.com/rainglow/vim.git
-[submodule "pack/colours/opt/awesome-vim-colorschemes"]
-	path = pack/colours/opt/awesome-vim-colorschemes
-	url = https://github.com/rafi/awesome-vim-colorschemes.git
 [submodule "pack/colours/opt/malotru"]
 	path = pack/colours/opt/malotru
 	url = https://github.com/romainl/vim-malotru.git
@@ -182,3 +176,6 @@
 [submodule "pack/plugins/start/eval-expression"]
 	path = pack/plugins/start/eval-expression
 	url = https://github.com/fvictorio/vim-eval-expression.git
+[submodule "pack/colours/start/awesome-vim-colorschemes"]
+	path = pack/colours/start/awesome-vim-colorschemes
+	url = https://github.com/rafi/awesome-vim-colorschemes.git
