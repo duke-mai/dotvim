@@ -134,9 +134,6 @@
 [submodule "pack/colours/opt/gruvbox-material"]
 	path = pack/colours/opt/gruvbox-material
 	url = https://github.com/sainnhe/gruvbox-material.git
-[submodule "pack/colours/start/colorizer"]
-	path = pack/colours/start/colorizer
-	url = https://github.com/chrisbra/Colorizer.git
 [submodule "pack/colours/start/colorSchemeExplorer"]
 	path = pack/colours/start/colorSchemeExplorer
 	url = https://github.com/jlanzarotta/colorSchemeExplorer.git
@@ -179,3 +176,6 @@
 [submodule "pack/colours/start/awesome-vim-colorschemes"]
 	path = pack/colours/start/awesome-vim-colorschemes
 	url = https://github.com/rafi/awesome-vim-colorschemes.git
+[submodule "pack/colours/start/colorizer"]
+	path = pack/colours/start/colorizer
+	url = https://github.com/lilydjwg/colorizer

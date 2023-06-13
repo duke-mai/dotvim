@@ -356,8 +356,8 @@ aug END
 
 syntax on
 
-if has('termguicolours')
-  se termguicolours
+if has('termguicolors')
+  set termguicolors
 end
 
 if &term =~ "xterm\\|rxvt"
