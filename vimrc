@@ -17,8 +17,8 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " packloadall          " Load all plugins
 silent! helptags ALL   " Load help for all plugins
-source ~/.vim/pack/plugins.vim
-source ~/.vim/pack/lf.vim
+source $DOTVIM/pack/plugins.vim
+source $DOTVIM/pack/lf.vim
 
 if !exists(":Abolish")
   au FileType markdown runtime wordlist/plugins/britishise.vim
@@ -29,11 +29,11 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load word files
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-source ~/.vim/wordlist/abbreviation/common.vim
-source ~/.vim/wordlist/abbreviation/custom.vim
+source $DOTVIM/wordlist/abbreviation/common.vim
+source $DOTVIM/wordlist/abbreviation/custom.vim
 set dictionary+=/usr/share/hunspell/en_AU.dic
 set dictionary+=/usr/share/dict/english-words/words.txt
-set spellfile+=~/.vim/wordlist/spelling/en.utf-8.add
+set spellfile+=$DOTVIM/wordlist/spelling/en.utf-8.add
 set spellfile+=/usr/share/dict/moby_words/acronyms.txt.utf-8.add
 set spellfile+=/usr/share/dict/moby_words/common.txt.utf-8.add
 set spellfile+=/usr/share/dict/moby_words/compound.txt.utf-8.add
@@ -54,8 +54,8 @@ set thesaurus+=/usr/share/dict/moby_words/mthesaur.txt
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Reload quote files
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au BufWinLeave ~/.files/doc/quotes/technology :!strfile technology
-au BufWinLeave ~/.files/doc/quotes/inspiration :!strfile inspiration
+au BufWinLeave $DOTFILES/doc/quotes/technology :!strfile technology
+au BufWinLeave $DOTFILES/doc/quotes/inspiration :!strfile inspiration
 
 
 " ============================================================================
@@ -333,20 +333,20 @@ set noswapfile
 " ==============================================================================
 
 aug templates
-  au BufNewFile *.sh 0r ~/.vim/template/sh.template
-  au BufNewFile *.html 0r ~/.vim/template/html.template
-  au BufNewFile *.py 0r ~/.vim/template/python.template
+  au BufNewFile *.sh   0r $DOTVIM/template/sh.template
+  au BufNewFile *.html 0r $DOTVIM/template/html.template
+  au BufNewFile *.py   0r $DOTVIM/template/python.template
 aug END
 
 aug filetypes
-  au BufEnter *.template,*.txt        setf text
-  au BufEnter *.md                    setf markdown
-  au BufEnter *.jade                  setf pug
-  au BufEnter *.pug                   setf pug
-  au BufEnter *.coffee                setf coffee
-  au BufEnter *.sh,~/.files/bash/*    setf bash
-  au BufEnter ~/.files/git/gitconfig  setf gitconfig
-  au BufEnter ~/.files/git/commit_msg setf gitcommit
+  au BufEnter *.template,*.txt                   setf text
+  au BufEnter *.md                               setf markdown
+  au BufEnter *.jade                             setf pug
+  au BufEnter *.pug                              setf pug
+  au BufEnter *.coffee                           setf coffee
+  au BufEnter $DOTFILES/git/*                    setf gitconfig
+  au BufEnter *.sh,$DOTFILES/bash/*              setf bash
+  au BufEnter $DOTFILES/sh/*,$DOTFILES/install/* setf bash
 aug END
 
 " }}}
@@ -475,6 +475,7 @@ autocmd BufWritePost $MYVIMRC source $MYVIMRC
 
 " Highlight conflicts
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
 
 " ------------------------------------------------------------------------------
 " Detect trailing whitespace
@@ -726,9 +727,9 @@ let g:HelpMeItems = [
     \ ":Root                change directory to the Git repository's root",
     \ ]
 
-nn  <silent> <Bslash>eb  : tabe ~/.files/bash/bashrc                  <CR>
-nn  <silent> <Bslash>eg  : tabe ~/.files/git/gitconfig                <CR>
-nn  <silent> <Bslash>es  : sp ~/.vim/wordlist/abbreviation/common.vim <CR>
+nn  <silent> <Bslash>eb  : tabe $DOTFILES/bash/bashrc                  <CR>
+nn  <silent> <Bslash>eg  : tabe $DOTFILES/git/gitconfig                <CR>
+nn  <silent> <Bslash>es  : sp $DOTVIM/wordlist/abbreviation/common.vim <CR>
 nn  <silent> <Bslash>ev  : tabe $MYVIMRC                              <CR>
 nn  <silent> <Bslash>sv  : so $MYVIMRC                                <CR>
 nn  <silent> <Bslash>k   : HelpMe                                     <CR>
@@ -927,16 +928,6 @@ autocmd BufRead,BufNewFile * :call SpellCheckIgnoreRules()
 " Open pdf files in the default pdf reader
 " ----------------------------------------------------------------------------
 au BufRead *.pdf sil exe "!xdg-open " . shellescape(expand("%:p")) | bd | let &ft=&ft | redraw!
-
-
-" ----------------------------------------------------------------------------
-" Disable making changes to file (plugins)
-" ----------------------------------------------------------------------------
-aug readonly
-  au!
-  au BufEnter ~/.files/pack/* setl nomodifiable
-  au BufEnter ~/.files/pack/* setl nocursorline nocursorcolumn
-aug END
 
 
 " ----------------------------------------------------------------------------
