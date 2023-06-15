@@ -1,0 +1,10 @@
+name: 📥 Sync plugins
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+
+jobs:
+  sync:
+    name: ⤵️ Sync Submodules
+    uses: tanducmai/dotfiles/.github/workflows/sync-submodules.yml@master

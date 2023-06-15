@@ -1,9 +1,0 @@
-name: Update plugins
-
-on:
-  schedule:
-    - cron: '0 3 * * *'
-
-jobs:
-  update:
-    uses: tanducmai/dotfiles/.github/workflows/update-submodules.yml@master
