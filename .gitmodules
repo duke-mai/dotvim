@@ -176,3 +176,6 @@
 [submodule "pack/colours/start/colorizer"]
 	path = pack/colours/start/colorizer
 	url = https://github.com/lilydjwg/colorizer
+[submodule "pack/colours/start/awesome-vim-colorschemes"]
+	path = pack/colours/start/awesome-vim-colorschemes
+	url = https://github.com/rafi/awesome-vim-colorschemes
