@@ -137,9 +137,6 @@
 [submodule "pack/colours/start/colorSchemeExplorer"]
 	path = pack/colours/start/colorSchemeExplorer
 	url = https://github.com/jlanzarotta/colorSchemeExplorer.git
-[submodule "pack/colours/opt/malotru"]
-	path = pack/colours/opt/malotru
-	url = https://github.com/romainl/vim-malotru.git
 [submodule "pack/file-system/start/bufexplorer"]
 	path = pack/file-system/start/bufexplorer
 	url = https://github.com/jlanzarotta/bufexplorer.git
