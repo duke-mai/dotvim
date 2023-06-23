@@ -52,10 +52,11 @@ set thesaurus+=/usr/share/dict/moby_words/mthesaur.txt
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Reload quote files
+" => Reload files on exit
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au BufWinLeave $DOTFILES/doc/quotes/technology :!strfile technology
 au BufWinLeave $DOTFILES/doc/quotes/inspiration :!strfile inspiration
+au BufWinLeave $DOTFILES/bash/crontab :!sudo cp % /etc/crontab
 
 
 " ============================================================================
