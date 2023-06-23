@@ -1,3 +1,17 @@
+ia Ameria America
+ia Asutralia Australia
+ia Asutralian Australian
+ia Iam I am
+ia Im I'm
+ia Netwokr Network
+ia Oython Python
+ia TEh The
+ia THat That
+ia THe The
+ia Teh The
+ia Theyare They are
+ia UnitedStates United States
+ia Youre You're
 ia abbout about
 ia abotu about
 ia abouta about a
@@ -58,7 +72,6 @@ ia alwats always
 ia alway always
 ia alwyas always
 ia amde made
-ia Ameria America
 ia amke make
 ia amkes makes
 ia amned amend
@@ -97,8 +110,6 @@ ia asdvertising advertising
 ia aslo also
 ia assistent assistant
 ia asthe as the
-ia Asutralia Australia
-ia Asutralian Australian
 ia atention attention
 ia atmospher atmosphere
 ia attentioin attention
@@ -347,8 +358,8 @@ ia exhcanges exchanges
 ia exicting exciting
 ia experiance experience
 ia experienc experience
-ia exprienced experienced
 ia exprience experience
+ia exprienced experienced
 ia eyar year
 ia eyt yet
 ia faeture feature
@@ -367,10 +378,10 @@ ia finalyl finally
 ia firends friends
 ia firts first
 ia flase false
+ia fo of
 ia follwo follow
 ia follwoing following
 ia fomr form
-ia fo of
 ia fora for a
 ia foriegn foreign
 ia forthe for the
@@ -391,8 +402,8 @@ ia fwe few
 ia garantee guarantee
 ia gaurd guard
 ia gemeral general
-ia genrated generated
 ia genrate generate
+ia genrated generated
 ia genration generation
 ia gerat great
 ia geting getting
@@ -410,8 +421,8 @@ ia grwo grow
 ia guidlines guidelines
 ia hadbeen had been
 ia haev have
-ia hapened happened
 ia hapen happen
+ia hapened happened
 ia hapening happening
 ia hapens happens
 ia happend happened
@@ -435,11 +446,11 @@ ia hsa has
 ia hsi his
 ia htan than
 ia htat that
+ia hte the
 ia htem them
 ia hten then
 ia htere there
 ia htese these
-ia hte the
 ia htey they
 ia hting thing
 ia htink think
@@ -450,7 +461,6 @@ ia hvaing having
 ia hvea have
 ia hwich which
 ia hwo how
-ia Iam I am
 ia idae idea
 ia idaes ideas
 ia identofy identify
@@ -458,7 +468,6 @@ ia ifnormation information
 ia ihs his
 ia imediate immediate
 ia imediatly immediately
-ia Im I'm
 ia immediatly immediately
 ia importent important
 ia importnat important
@@ -493,9 +502,9 @@ ia isthe is the
 ia isze size
 ia itis it is
 ia ititial initial
+ia itnerest interest
 ia itnerested interested
 ia itneresting interesting
-ia itnerest interest
 ia itnerests interests
 ia itwas it was
 ia iused used
@@ -526,8 +535,8 @@ ia levle level
 ia libary library
 ia librarry library
 ia librery library
-ia liekd liked
 ia liek like
+ia liekd liked
 ia lieutenent lieutenant
 ia liev live
 ia likly likely
@@ -559,9 +568,9 @@ ia merchent merchant
 ia mesage message
 ia mesages messages
 ia mial mail
+ia mispell misspell
 ia mispelling misspelling
 ia mispellings misspellings
-ia mispell misspell
 ia misture mixture
 ia mkae make
 ia mkaes makes
@@ -584,7 +593,6 @@ ia necesarily necessarily
 ia necesary necessary
 ia negotiaing negotiating
 ia netwokr network
-ia Netwokr Network
 ia niether neither
 ia nkow know
 ia nkwo know
@@ -625,15 +633,14 @@ ia optoin option
 ia optoins options
 ia orginization organization
 ia orginized organized
-ia otehr other
 ia ot to
+ia otehr other
 ia otu out
 ia outof out of
 ia overthe over the
 ia owrk work
 ia owuld would
 ia oxident oxidant
-ia Oython Python
 ia packagage package
 ia packagages packages
 ia paide paid
@@ -693,13 +700,13 @@ ia realyl really
 ia reccomend recommend
 ia reccommend recommend
 ia receieve receive
-ia recieved received
 ia recieve receive
+ia recieved received
 ia recieving receiving
+ia recomend recommend
 ia recomendation recommendation
 ia recomendations recommendations
 ia recomended recommended
-ia recomend recommend
 ia reconize recognize
 ia recrod record
 ia rela real
@@ -707,14 +714,14 @@ ia religous religious
 ia reluctent reluctant
 ia remeber remember
 ia reommend recommend
-ia reoutinely routinely
 ia reoutine routine
+ia reoutinely routinely
 ia representativs representatives
 ia representives representatives
 ia represetned represented
 ia represnt represent
-ia requried required
 ia requrie require
+ia requried required
 ia reserach research
 ia resollution resolution
 ia resorces resources
@@ -728,8 +735,8 @@ ia responsiblity responsibility
 ia restaraunt restaurant
 ia restuarant restaurant
 ia reult result
-ia reveiwing reviewing
 ia reveiw review
+ia reveiwing reviewing
 ia rulle rule
 ia rumers rumors
 ia rwite write
@@ -739,8 +746,8 @@ ia saidit said it
 ia saidthat said that
 ia saidthe said the
 ia sasy says
-ia sceduled scheduled
 ia scedule schedule
+ia sceduled scheduled
 ia scrapper scraper
 ia scrapping scraping
 ia secratary secretary
@@ -783,11 +790,11 @@ ia soudn sound
 ia soudns sounds
 ia soze size
 ia speach speech
-ia specificalyl specifically
 ia specificaly specifically
+ia specificalyl specifically
 ia speeed speed
-ia statments statements
 ia statment statement
+ia statments statements
 ia stnad stand
 ia stopry story
 ia stoyr story
@@ -799,21 +806,21 @@ ia struggel struggle
 ia strugle struggle
 ia studnet student
 ia successfull successful
-ia successfulyl successfully
 ia successfuly successfully
-ia sucessfull successful
+ia successfulyl successfully
 ia sucess success
+ia sucessfull successful
 ia sufficiant sufficient
 ia suposed supposed
 ia suppossed supposed
-ia suppresing suppressing
 ia suppres suppress
-ia supresing suppressing
-ia supressing suppressing
-ia supress suppress
+ia suppresing suppressing
 ia supres suppress
-ia suprised surprised
+ia supresing suppressing
+ia supress suppress
+ia supressing suppressing
 ia suprise surprise
+ia suprised surprised
 ia swiming swimming
 ia syas says
 ia ta at
@@ -823,12 +830,10 @@ ia talekd talked
 ia talkign talking
 ia tath that
 ia tecnical technical
+ia teh the
 ia tehir their
 ia tehn then
 ia tehre there
-ia teh the
-ia Teh The
-ia TEh The
 ia tehy they
 ia termoil turmoil
 ia tghe the
@@ -837,21 +842,18 @@ ia thanit than it
 ia thansk thanks
 ia thast that
 ia thats that's
-ia THat That
 ia thatthe that the
 ia thecompany the company
 ia thefirst the first
 ia thegovernment the government
 ia theh then
-ia themselfs themselves
 ia themself themselves
+ia themselfs themselves
 ia thenew the new
 ia theri their
 ia thesame the same
-ia THe The
 ia thetwo the two
 ia theyare they are
-ia Theyare They are
 ia theyll they'll
 ia theyve they've
 ia thgat that
@@ -861,28 +863,28 @@ ia thign thing
 ia thigsn things
 ia thisyear this year
 ia thme them
+ia thn then
 ia thna than
 ia thne then
-ia thnigs things
 ia thnig thing
-ia thn then
-ia threatend threatened
+ia thnigs things
 ia thre there
+ia threatend threatened
 ia thsi this
 ia thsoe those
 ia thta that
 ia thyat that
 ia thye they
+ia ti it
 ia tiem time
 ia tihs this
-ia ti it
 ia timne time
 ia tiogether together
 ia tiome time
 ia tje the
 ia tjhe the
-ia tkaes takes
 ia tkae take
+ia tkaes takes
 ia tkaing taking
 ia tlaking talking
 ia todya today
@@ -890,8 +892,8 @@ ia togehter together
 ia tomorow tomorrow
 ia tongiht tonight
 ia tonihgt tonight
-ia totalyl totally
 ia totaly totally
+ia totalyl totally
 ia tothe to the
 ia towrad toward
 ia traditionalyl traditionally
@@ -909,11 +911,10 @@ ia tyhe they
 ia udnerstand understand
 ia uise use
 ia understnad understand
-ia UnitedStates United States
 ia unliek unlike
 ia unpleasently unpleasantly
-ia untilll until
 ia untill until
+ia untilll until
 ia useing using
 ia usualyl usually
 ia veyr very
@@ -936,9 +937,9 @@ ia whn when
 ia whta what
 ia wief wife
 ia wierd weird
+ia wih with
 ia wihch which
 ia wiht with
-ia wih with
 ia willbe will be
 ia willk will
 ia windoes windows
@@ -946,15 +947,15 @@ ia witha with a
 ia withe with
 ia withh with
 ia withit with it
-ia withthe with the
 ia witht with
+ia withthe with the
 ia witn with
 ia wiull will
+ia wnat want
 ia wnated wanted
 ia wnats wants
-ia wnat want
-ia wohle whole
 ia woh who
+ia wohle whole
 ia wokr work
 ia wordload workload
 ia woudl would
@@ -964,22 +965,21 @@ ia wriet write
 ia writting writing
 ia wrod word
 ia wroet wrote
-ia wroking working
 ia wrok work
+ia wroking working
 ia wtih with
 ia wuould would
 ia wya way
 ia yaer year
-ia yeras years
 ia yera year
+ia yeras years
 ia yersa years
 ia yoiu you
 ia yoru your
 ia youare you are
 ia youre you're
-ia Youre You're
 ia youve you've
 ia yrea year
 ia ytou you
-ia yuor your
 ia yuo you
+ia yuor your
