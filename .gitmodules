@@ -107,9 +107,6 @@
 [submodule "pack/syntax/start/python-syntax-highlighting"]
 	path = pack/syntax/start/python-syntax-highlighting
 	url = https://github.com/hdima/python-syntax.git
-[submodule "pack/writing/start/grammarous"]
-	path = pack/writing/start/grammarous
-	url = https://github.com/rhysd/vim-grammarous.git
 [submodule "pack/writing/start/limelight"]
 	path = pack/writing/start/limelight
 	url = https://github.com/junegunn/limelight.vim.git
