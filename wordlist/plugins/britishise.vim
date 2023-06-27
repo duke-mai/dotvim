@@ -1,7 +1,7 @@
 " -or to -our
 "  e.g. color -> colour
 "  suffixes: colour, colours, coloured, colourless, colourist, honourable
-Abolish -buffer {col,behavi,fav,flav,hon,neighb,rum,lab}or{,s,ed,less,able,ing} {}our{}
+Abolish -buffer {col,behavi,fav,flav,hon,neighb,rum,lab,rum}or{,s,ed,less,able,ing} {}our{}
 
 " -er to -re
 "  e.g. liter -> litre
