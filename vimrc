@@ -195,9 +195,9 @@ set wig+=*.pyc                            " Python byte code
 set wig+=*.orig                           " Merge resolution files
 set wig+=classes
 set wig+=lib
-set wig+=*~,*/node_modules/*,_site,*/__pycache__/,*/venv/*,*/target/*
+set wig+=*~,*/node_modules*,_site,*/__pycache__*,*/venv*,*/target*
 set wig+=*/.vim$,\~$,*/.log,*/.aux,*/.cls,*/.aux,*/.bbl,*/.blg,*/.fls
-set wig+=*/.fdb*/,*/.toc,*/.out,*/.glo,*/.log,*/.ist,*/.fdb_latexmk,*.iso
+set wig+=*/.fdb*,*/.toc,*/.out,*/.glo,*/.log,*/.ist,*/.fdb_latexmk,*.iso
 
 " Better Completion
 set completeopt=longest,menuone,preview,noinsert,noselect
