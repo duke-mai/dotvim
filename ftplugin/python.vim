@@ -269,9 +269,9 @@ endf
 " ----------------------------------------------------------------------------
 " Run Python script.
 " ----------------------------------------------------------------------------
-nn         <F5> :!clear && python3 %                   <CR>
-nn <Bslash><F5> :!clear && python3 -m pytest %         <CR>
-nn <Leader><F5> :!clear && rm -f flake8.txt && flake8 %<CR>
+nn         <F5> :!clear && python3 %           <CR>
+nn <Bslash><F5> :!clear && python3 -m pytest % <CR>
+map <buffer> <Leader><F5> :call flake8#Flake8()<CR>
 
 " ----------------------------------------------------------------------------
 " Format paragraph (selected or not) to 80 character lines.
@@ -295,11 +295,10 @@ let g:autopep8_aggressive=2
 " ----------------------------------------------------------------------------
 " Autoflake8
 " ----------------------------------------------------------------------------
-" Remove all unused imports (whether or not they are from the standard library).
-let g:autoflake_remove_all_unused_imports=1
-
-" Remove unused variables.
-let g:autoflake_remove_unused_variables=1
+let g:no_flake8_maps = 1
+let g:flake8_quickfix_height=8
+nn <C-K> :call flake8#Flake8ShowError()<CR>
+" autocmd BufWritePost *.py call flake8#Flake8()
 
 " ----------------------------------------------------------------------------
 " Pydocstring
