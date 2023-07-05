@@ -114,6 +114,8 @@ nn PPT :!clear && echo 'Start Generating The PPT Version...' &&
 " Abbreviations for the above conversion
 " ----------------------------------------------------------------------------
 ia abbr <Esc>ggO---<CR>title:<CR>- My Presentation<CR>author:<CR>- Tan Duc Mai<CR>theme:<CR>- Copenhagen<CR>date:<CR>- December 29th, 2021<CR>---<CR><ESC>
+ia -onotice- {{< notice info >}}<CR><CR>
+ia -cnotice- {{< /notice >}}<ESC>
 
 
 " ----------------------------------------------------------------------------
