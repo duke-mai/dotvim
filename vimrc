@@ -33,7 +33,7 @@ source $DOTVIM/wordlist/abbreviation/common.vim
 source $DOTVIM/wordlist/abbreviation/custom.vim
 set dictionary+=/usr/share/hunspell/en_AU.dic
 set dictionary+=/usr/share/dict/english-words/words.txt
-set spellfile+=$DOTVIM/wordlist/spelling/en.utf-8.add
+set spellfile+=$DOTVIM/wordlist/spellfile/en.utf-8.add
 set spellfile+=/usr/share/dict/moby_words/acronyms.txt.utf-8.add
 set spellfile+=/usr/share/dict/moby_words/common.txt.utf-8.add
 set spellfile+=/usr/share/dict/moby_words/compound.txt.utf-8.add
