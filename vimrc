@@ -411,8 +411,7 @@ aug GruvboxMaterial
 
 aug END
 
-colo gruvbox-material
-
+colo gruvbox
 
 " ----------------------------------------------------------------------------
 " Change background colour depending on the time of day
@@ -460,10 +459,9 @@ endf
 
 aug MyColors
     au!
-    au ColorScheme * call MyHighlights()
-    au SourcePost vimrc call MyHighlights()
-    au ColorScheme * highlight SpecialKey ctermfg=238
-    au SourcePost vimrc highlight SpecialKey ctermfg=238
+    au ColorScheme * call MyHighlights() | highlight SpecialKey ctermfg=238
+    au BufRead * colo gruvbox-material | call MyHighlights() | highlight SpecialKey ctermfg=238
+    au SourcePost vimrc colo gruvbox-material | call MyHighlights() | highlight SpecialKey ctermfg=238
 aug END
 
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
