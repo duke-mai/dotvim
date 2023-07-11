@@ -420,7 +420,7 @@ if exists("*strftime")
   let hr=(strftime('%H'))
   if hr >= 18
     set background=dark
-  elseif hr >= 7
+  elseif hr >= 8
     set background=light
   else
     set background=dark
