@@ -464,8 +464,6 @@ aug MyColors
     au SourcePost vimrc colo gruvbox-material | call MyHighlights() | highlight SpecialKey ctermfg=238
 aug END
 
-autocmd BufWritePost $MYVIMRC source $MYVIMRC
-
 " Remove highlight colour from current line number
 " hi clear CursorLineNr
 
