@@ -89,9 +89,6 @@
 [submodule "pack/syntax/start/pydocstring"]
 	path = pack/syntax/start/pydocstring
 	url = https://github.com/heavenshell/vim-pydocstring.git
-[submodule "pack/writing/start/markdown-toc"]
-	path = pack/writing/start/markdown-toc
-	url = https://github.com/mzlogin/vim-markdown-toc.git
 [submodule "pack/plugins/start/maximizer"]
 	path = pack/plugins/start/maximizer
 	url = https://github.com/szw/vim-maximizer.git
