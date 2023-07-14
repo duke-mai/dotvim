@@ -304,14 +304,15 @@ nn <C-K> :call flake8#Flake8ShowError()<CR>
 " Pydocstring
 " ----------------------------------------------------------------------------
 " Set installed doq path for pydocstring plugin.
-let g:pydocstring_doq_path = '~/.local/bin/doq'
+let g:pydocstring_doq_path = '$HOME/.local/bin/doq'
 
-" Built-in formatter
-let g:pydocstring_formatter = 'numpy'
+" formatter
+let g:pydocstring_formatter = 'google'
 
-" Ignore generate __init__ docstring.;k
+" Ignore generate __init__ docstring.
 let g:pydocstring_ignore_init = 1
-let g:pydocstring_templates_path = '~/.vim/template/pydocstring/'
+let g:pydocstring_templates_path = '$DOTVIM/template/pydocstring/'
+let g:pydocstring_enable_mapping = 0
 
 " }}}
 
