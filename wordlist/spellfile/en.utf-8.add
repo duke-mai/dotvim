@@ -115,6 +115,7 @@ OSI
 OSPF
 PC1
 PC3
+PDU
 POP3
 PVST
 PoE
@@ -137,6 +138,7 @@ RSA
 RSTP
 RTP
 RTSP
+RVI
 Regex
 Reséaux
 S
@@ -153,6 +155,7 @@ STDIN
 STDOUT
 STP
 SVI
+SVIs
 SYS
 SYST
 Subnetting
@@ -197,6 +200,7 @@ e
 etc
 f
 failover
+fallback
 filesystem
 gmail
 https
@@ -225,11 +229,14 @@ py
 r
 randint
 refloods
+routable
 s
 s0
 shutdown
 startup
 stdin
+subinterface
+subinterfaces
 supernetting
 switchport
 syslog
