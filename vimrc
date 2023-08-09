@@ -783,7 +783,7 @@ com! -range GB echo join(systemlist("git -C " . shellescape(expand('%:p:h')) . "
 
 
 " ----------------------------------------------------------------------------
-" :FixQuotes | Look through the whole file and change the “ and ” to "
+" :FixQuotes | Change Unicode (“ and ”) to ASCII code (")
 " ----------------------------------------------------------------------------
 fu! FixQuotes()
   :silent! %s/“/"/g
