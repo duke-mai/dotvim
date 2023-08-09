@@ -64,13 +64,13 @@ au BufWinLeave $DOTFILES/bash/crontab :!sudo cp % /etc/crontab
 " ============================================================================
 " Identify platform {
 silent fu! OSX()
-    retu has('macunix')
+  return has('macunix')
 endf
 silent fu! LINUX()
-    retu has('unix') && !has('macunix') && !has('win32unix')
+  return has('unix') && !has('macunix') && !has('win32unix')
 endf
 silent fu! WINDOWS()
-    retu  (has('win32') || has('win64'))
+  return (has('win32') || has('win64'))
 endf
 " }
 
@@ -85,14 +85,14 @@ en
 " On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
 " across (heterogeneous) systems easier.
 if WINDOWS()
-  se runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.files/after
+  se runtimepath=$DOTVIM,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$DOTFILES/after
 en
 " }
 
 " Arrow Key Fix {
 " https://github.com/spf13/spf13.files/issues/780
 if &term[:4] == "xterm" || &term[:5] == 'screen' || &term[:3] == 'rxvt'
-    inoremap <silent> <C-[>OC <RIGHT>
+  inoremap <silent> <C-[>OC <RIGHT>
 en
 " }
 
@@ -293,7 +293,7 @@ set nrformats-=octal
 " ----------------------------------------------------------------------------
 if has("persistent_undo")
   " Create undo directory if possible and does not exist yet
-  let undodir = expand('/tmp/vimfiles/undodir/')
+  let undodir = expand('$DOTVIM/.tmp/undodir/')
   if !isdirectory(undodir) && getftype(undodir) == "" && exists("*mkdir")
     call mkdir(undodir, "p", 0o700)
   endif
@@ -310,7 +310,7 @@ endif
 " Create backup directory in case of crashes
 " ----------------------------------------------------------------------------
 if has("writebackup")
-  let backupdir = expand('/tmp/vimfiles/backupdir/')
+  let backupdir = expand('$DOTVIM/.tmp/backupdir/')
   " Create backup directory if possible and does not exist yet
   if !isdirectory(backupdir) && getftype(backupdir) == "" && exists("*mkdir")
     call mkdir(backupdir, "p", 0o700)
@@ -1013,10 +1013,4 @@ let g:airline_symbols.spell = 'Ꞩ'
 let g:airline_symbols.notexists = '∄'
 let g:airline_symbols.whitespace = 'Ξ'
 
-" }}}
-" ============================================================================
-" BACKGROUND FILE {{{
-" ============================================================================
-" This file is created locally and contain value (dark/light) for background.
-silent! source $HOME/.background.vim
 " }}}
