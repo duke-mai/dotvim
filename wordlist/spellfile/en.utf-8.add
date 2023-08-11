@@ -57,12 +57,14 @@ F
 F0
 FCS
 FHRPs
+FastEthernet
 FindIT
 G0
 GFM
 GLBP
 Gbps
 Gigabit
+GigabitEthernet
 HDLC
 HSRP
 HTTPS
@@ -114,6 +116,7 @@ NVRAM
 O
 OSI
 OSPF
+P2P
 PC1
 PC3
 PDU
@@ -214,8 +217,10 @@ jpg
 l2
 l3
 lan
+loopback
 mac
 mislearning
+multiaccess
 multicasts
 n
 netstat
@@ -257,3 +262,4 @@ vlan
 vlans
 vs
 w
+wildcard
