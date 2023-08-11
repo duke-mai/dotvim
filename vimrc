@@ -715,6 +715,7 @@ let g:HelpMeItems = [
     \ "<F3>                 show changed lines with differences",
     \ "<F4>                 toggle git changes highlighting",
     \ "<F5>                 (1) Execute script; (2) Generate ToC/Align tables",
+    \ "<F6>                 Change DOS-style line endings to Unix-style",
     \ "",
     \ "Commands:",
     \ ":AddLineNumber       add line numbers to each line",
@@ -740,6 +741,7 @@ nn  <silent> <Leader>u   : MundoToggle                                <CR>
 nn  <silent> <F2>        : SignifyFold                                <CR>
 nn  <silent> <F3>        : SignifyDiff                                <CR>
 nn  <silent> <F4>        : GitGutterLineHighlightsToggle              <CR>
+nn  <silent> <F6>        : !dos2unix %                                <CR>
 
 " }}}
 " ============================================================================
