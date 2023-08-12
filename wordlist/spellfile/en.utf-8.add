@@ -11,6 +11,7 @@ ASNs
 AfriNIC
 Aggregatable
 Anycast
+Autoconfiguration
 Autonegotiation
 B
 BDRs
@@ -39,6 +40,7 @@ DHCPDISCOVER
 DHCPOFFER
 DHCPREQUEST
 DHCPv4
+DHCPv6
 DNS
 DP
 DPs
@@ -56,6 +58,7 @@ Européens
 F
 F0
 FCS
+FFFF
 FHRPs
 FastEthernet
 FindIT
@@ -149,6 +152,7 @@ S
 S1
 S2
 SCCP
+SLAAC
 SNMP
 SQL
 SSH
@@ -234,12 +238,14 @@ portfast
 py
 r
 randint
+reachability
 refloods
 routable
 s
 s0
 shutdown
 startup
+stateful
 stdin
 subinterface
 subinterfaces
