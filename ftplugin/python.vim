@@ -293,12 +293,16 @@ xn fp gqa<Esc> :ec 'Paragraph Formatted !' <CR>
 let g:autopep8_aggressive=2
 
 " ----------------------------------------------------------------------------
-" Autoflake8
+" Flake8
 " ----------------------------------------------------------------------------
 let g:no_flake8_maps = 1
 let g:flake8_quickfix_height=8
-nn <C-K> :call flake8#Flake8ShowError()<CR>
-" autocmd BufWritePost *.py call flake8#Flake8()
+
+" let g:flake8_show_in_gutter=1
+" let g:flake8_show_in_file=1
+
+" Run Flake8 check every time I write a Python file
+" au BufWritePost *.py call flake8#Flake8()
 
 " ----------------------------------------------------------------------------
 " Pydocstring

@@ -274,16 +274,6 @@ let g:undotree_HelpLine = 0
 
 
 " ----------------------------------------------------------------------------
-" Flake8
-" ----------------------------------------------------------------------------
-" let g:flake8_show_in_gutter=1
-" let g:flake8_show_in_file=1
-
-" Run Flake8 check every time I write a Python file
-" au BufWritePost *.py call flake8#Flake8()
-
-
-" ----------------------------------------------------------------------------
 " Thesaurus Query
 " ----------------------------------------------------------------------------
 let g:tq_online_backends_timeout = 0.4
