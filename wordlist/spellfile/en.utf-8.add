@@ -6,6 +6,7 @@ ACL
 AOL
 APNIC
 ARIN
+ARP
 ASBRs
 ASN
 ASNs
@@ -23,6 +24,7 @@ BRE
 BackboneFast
 C
 CCNA
+CCTV
 CDP
 CEF
 CIDR
@@ -74,6 +76,7 @@ HSRP
 HTTPS
 IANA
 ICMP
+ICMPv4
 ICMPv6
 IGP
 IGRP
@@ -93,6 +96,7 @@ L2
 L3
 L4
 LACNIC
+LANs
 LEDs
 LIRs
 LSA
@@ -169,7 +173,10 @@ SVIs
 SYS
 SYST
 Subnetting
+Subnetwork
 Summarisation
+Supernet
+Supernetwork
 TFTP
 TTL
 Tbps
@@ -184,6 +191,8 @@ UplinkFast
 VID
 VLAN
 VLANs
+VLSM
+VLSMs
 VTP
 VTY
 VoIP
@@ -234,6 +243,7 @@ n
 nat
 netstat
 nonegotiate
+nutraceutical
 o
 ord
 ospf
@@ -254,6 +264,9 @@ stateful
 stdin
 subinterface
 subinterfaces
+subnetting
+subnetworks
+summarisation
 supernetting
 switchport
 syslog
@@ -274,4 +287,5 @@ vlan
 vlans
 vs
 w
+wholefood
 wildcard
