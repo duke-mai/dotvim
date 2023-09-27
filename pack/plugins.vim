@@ -1,4 +1,4 @@
-" Author    : Tan Duc Mai <henryfromvietnam@gmail.com>
+" Author    : Henry Mai <henryfromvietnam@gmail.com>
 " Vim plugins configuration
 
 " ----------------------------------------------------------------------------
