@@ -2,6 +2,7 @@
 1D
 32-bit
 ABRs
+ACDT
 acl
 ACL
 AfriNIC
@@ -196,7 +197,6 @@ RTP
 RTSP
 s
 S
-SCCP
 shutdown
 SLAAC
 SNMP
@@ -223,9 +223,7 @@ supernetwork
 SVI
 SVIs
 switchport
-SYS
 syslog
-SYST
 Tbps
 TeraTerm
 Teredo
@@ -234,8 +232,8 @@ thereunder
 throwable
 timeout
 timestamp
+timezone
 toc
-ToS
 trunking
 TTL
 txt
@@ -250,7 +248,7 @@ untrusted
 UplinkFast
 USB
 username
-var
+UTC
 virtualisation
 vlan
 VLAN
