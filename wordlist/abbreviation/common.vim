@@ -674,6 +674,8 @@ ia protoge protege
 ia psoition position
 ia ptogress progress
 ia puhs push
+ia punsihed punished
+ia punsih punish
 ia puting putting
 ia pwoer power
 ia quater quarter
