@@ -2,7 +2,7 @@
 " Vim plugins configuration
 
 " ----------------------------------------------------------------------------
-" NERDTree
+" NERDTree {{{
 " ----------------------------------------------------------------------------
 " au VimEnter * NERDTree     " Enable NERDTree on Vim start-up
 
@@ -23,9 +23,9 @@ let NERDTreeMinimalUI         = 1
 let NERDTreeDirArrows         = 1
 let NERDTreeAutoDeleteBuffer  = 1
 
-
+" }}}
 " ----------------------------------------------------------------------------
-" Tabman
+" Tabman {{{
 " ----------------------------------------------------------------------------
 " Disable the plugin completely
 let g:loaded_tabman = 0
@@ -44,9 +44,9 @@ let g:tabman_specials = 1
 " Disable line numbering
 let g:tabman_number = 0
 
-
+" }}}
 " ----------------------------------------------------------------------------
-" Unimpaired
+" Unimpaired {{{
 " ----------------------------------------------------------------------------
 " Toggle cursorcolumn
 nn yoc :set cursorcolumn!                              <CR>
@@ -63,9 +63,9 @@ nn yol :set cursorline!                                <CR>
 au FileType * nn [ol :set cursorline                   <CR>
 au FileType * nn ]ol :set nocursorline                 <CR>
 
-
+" }}}
 " ----------------------------------------------------------------------------
-" Easymotion
+" Easymotion {{{
 " ----------------------------------------------------------------------------
 let g:Easymotion_do_mapping = 0
 
@@ -106,9 +106,9 @@ omap / <Plug>(easymotion-tn)
 map n <Plug>(easymotion-next)
 map N <Plug>(easymotion-prev)
 
-
+" }}}
 " ----------------------------------------------------------------------------
-" Signify
+" Signify {{{
 " ----------------------------------------------------------------------------
 " Configuration for async update
 set updatetime=100
@@ -116,9 +116,9 @@ set updatetime=100
 " Enable number column highlighting in addition to using signs by default.
 let g:signify_number_highlight = 1
 
-
+" }}}
 " ----------------------------------------------------------------------------
-" Floaterm
+" Floaterm {{{
 " ----------------------------------------------------------------------------
 " Configuration
 let g:floaterm_gitcommit  = 'floaterm'
@@ -139,9 +139,9 @@ au! FileType floaterm
 au FileType floaterm set laststatus=0 noshowmode noruler
   \| au BufLeave <buffer> set laststatus=2 showmode ruler
 
-
+" }}}
 " ----------------------------------------------------------------------------
-" Goyo
+" Goyo {{{
 " ----------------------------------------------------------------------------
 let g:goyo_width = 83
 
@@ -178,9 +178,9 @@ endf
 au! User GoyoEnter nested call <SID>goyo_enter()
 au! User GoyoLeave nested call <SID>goyo_leave()
 
-
+" }}}
 " ----------------------------------------------------------------------------
-" RainbowParentheses
+" RainbowParentheses {{{
 " ----------------------------------------------------------------------------
 let g:rbpt_max = 10
 let g:rbpt_colorpairs = [
@@ -202,10 +202,10 @@ au Syntax   * RainbowParenthesesLoadSquare
 au Syntax   * RainbowParenthesesLoadBraces
 au Syntax   * RainbowParenthesesLoadChevrons
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" FZF
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" ----------------------------------------------------------------------------
+" FZF {{{
+" ----------------------------------------------------------------------------
 let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
 
 " Customise fzf colours to match your colourscheme.
@@ -248,20 +248,20 @@ com! -bang DotFiles call fzf#vim#files('$HOME/.files/', <bang>0)
 com! -bang HomeDir call fzf#vim#files('$HOME/', <bang>0)
 com! -bang DictDir call fzf#vim#files('/usr/share/dict/', <bang>0)
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Supertab
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" ----------------------------------------------------------------------------
+" Supertab {{{
+" ----------------------------------------------------------------------------
 " Enhanced longest match support.
 let g:SuperTabLongestEnhanced = 1
 
 " Use tab to scroll down the list.
 let g:SuperTabDefaultCompletionType = "<C-N>"
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Undotree
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" ----------------------------------------------------------------------------
+" Undotree {{{
+" ----------------------------------------------------------------------------
 " Configure window layout
 let g:undotree_CustomUndotreeCmd  = 'topleft vertical 22 new'
 let g:undotree_CustomDiffpanelCmd = 'botright 7 new'
@@ -272,17 +272,17 @@ let g:undotree_ShortIndicators = 1
 " Hide 'Press ? for help'
 let g:undotree_HelpLine = 0
 
-
+" }}}
 " ----------------------------------------------------------------------------
-" Thesaurus Query
+" Thesaurus Query {{{
 " ----------------------------------------------------------------------------
 let g:tq_online_backends_timeout = 0.4
 let g:tq_truncation_on_definition_num = 2
 let g:tq_truncation_on_syno_list_size = 20
 
-
+" }}}
 " ----------------------------------------------------------------------------
-" GitGutter
+" GitGutter {{{
 " ----------------------------------------------------------------------------
 let g:gitgutter_map_keys = 0
 let g:gitgutter_preview_win_floating = 1
@@ -292,9 +292,9 @@ nmap ghp <Plug>(GitGutterPreviewHunk)
 nmap ]h <Plug>(GitGutterNextHunk)
 nmap [h <Plug>(GitGutterPrevHunk)
 
-
+" }}}
 " ----------------------------------------------------------------------------
-" Vimdent
+" Vimdent {{{
 " ----------------------------------------------------------------------------
 let g:vindent_motion_OO_prev   = '[=' " jump to prev block of same indent.
 let g:vindent_motion_OO_next   = ']=' " jump to next block of same indent.
@@ -311,8 +311,10 @@ let g:vindent_object_XX_ai     = 'ai' " select current block + one extra line  a
 let g:vindent_object_XX_aI     = 'aI' " select current block + two extra lines at beginning and end.
 let g:vindent_jumps            = 1    " make vindent motion count as a |jump-motion| (works with |jumplist|).
 
-
+" }}}
 " ----------------------------------------------------------------------------
-" Maximizer
+" Maximizer {{{
 " ----------------------------------------------------------------------------
 let g:maximizer_set_default_mapping = 0
+
+" }}}
