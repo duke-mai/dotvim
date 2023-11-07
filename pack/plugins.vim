@@ -318,3 +318,20 @@ let g:vindent_jumps            = 1    " make vindent motion count as a |jump-mot
 let g:maximizer_set_default_mapping = 0
 
 " }}}
+" ----------------------------------------------------------------------------
+" Vimwiki {{{
+" ----------------------------------------------------------------------------
+let g:vimwiki_folding = 'expr' " Enable folding based on the syntax
+let g:vimwiki_listsyms = '✗○◐●✓' " Use custom symbols for todo lists
+let g:vimwiki_html_header_numbering = 1 " Enable header numbering in HTML
+let g:vimwiki_html_use_css = 1 " Enable CSS for HTML
+let g:vimwiki_html_css_name = '~/vimwiki/style.css' " Use a custom CSS file
+let g:vimwiki_diary_rel_path = 'diary/' " Set the diary subdirectory
+let g:vimwiki_diary_header = 'Diary: %d %b %Y' " Set the diary header format
+let g:vimwiki_diary_link_count = 7 " Set the number of diary links to show
+let g:vimwiki_conceal_brackets = 1 " Conceal the brackets around links
+let g:vimwiki_camel_case = 0 " Disable WikiWord auto-links
+let g:vimwiki_valid_html_tags = 'b,i,s,u,sub,sup,kbd,br,hr' " Set the valid HTML tags
+let g:vimwiki_global_ext = 0 " Disable global VimWiki commands
+
+"}}}
