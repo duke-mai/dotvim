@@ -824,6 +824,7 @@ ia supress suppress
 ia supressing suppressing
 ia suprise surprise
 ia suprised surprised
+ia surprice surprise
 ia swiming swimming
 ia syas says
 ia ta at
