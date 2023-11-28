@@ -719,7 +719,6 @@ let g:HelpMeItems = [
     \ "",
     \ "Commands:",
     \ ":AddLineNumber       add line numbers to each line",
-    \ ":CapitaliseEachWord  capitalise every word in the current line",
     \ ":ClearRegisters      clear all Vim's registers",
     \ ":GB                  super cheap Git blame",
     \ ":Root                change directory to the Git repository's root",
@@ -763,10 +762,10 @@ com! AddLineNumber call AddLineNumber()
 " :CapitaliseEachWord
 " ----------------------------------------------------------------------------
 fu! CapitaliseEachWord()
-  s/\v<(.)(\w*)/\u\1\L\2/g
+  silent '<,'>s/\v<(.)(\w*)/\u\1\L\2/g | redraw
   echo 'Every Word Has Been Capitalised!'
 endf
-com! CapitaliseEachWord call CapitaliseEachWord()
+vn \c :call CapitaliseEachWord()<CR>
 
 
 " ----------------------------------------------------------------------------
@@ -781,7 +780,8 @@ com! ClearRegisters for i in range(34,122) | silent! call setreg(nr2char(i), [])
 "       which last modified the line.
 " ----------------------------------------------------------------------------
 " Source: https://gist.github.com/romainl/5b827f4aafa7ee29bdc70282ecc31640
-com! -range GB echo join(systemlist("git -C " . shellescape(expand('%:p:h')) . " blame -L <line1>,<line2> " . expand('%:t')), "\n")
+com! -range GB echo join(systemlist("git -C " . shellescape(expand('%:p:h'))
+      \ . " blame -L <line1>,<line2> " . expand('%:t')), "\n")
 
 
 " ----------------------------------------------------------------------------
