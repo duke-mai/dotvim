@@ -727,20 +727,20 @@ let g:HelpMeItems = [
 nn  <silent> <Bslash>eb  : tabe $DOTFILES/bash/bashrc                  <CR>
 nn  <silent> <Bslash>eg  : tabe $DOTFILES/git/gitconfig                <CR>
 nn  <silent> <Bslash>es  : sp $DOTVIM/wordlist/abbreviation/common.vim <CR>
-nn  <silent> <Bslash>ev  : tabe $MYVIMRC                              <CR>
-nn  <silent> <Bslash>sv  : so $MYVIMRC                                <CR>
-nn  <silent> <Bslash>k   : HelpMe                                     <CR>
-nn  <silent> <Bslash>t   : FloatermToggle                             <CR>
-tno <silent> <Bslash>t   <C-\><C-n>:FloatermToggle                    <CR>
-nn  <silent> <Bslash>g   : Goyo                                       <CR>
-nn  <silent> <Bslash>m   : MaximizerToggle                            <CR>
-vn  <silent> <Bslash>m   : MaximizerToggle                            <CR> gv
-nn  <silent> <Leader>f   : FZF -m                                     <CR>
-nn  <silent> <Leader>u   : MundoToggle                                <CR>
-nn  <silent> <F2>        : SignifyFold                                <CR>
-nn  <silent> <F3>        : SignifyDiff                                <CR>
-nn  <silent> <F4>        : GitGutterLineHighlightsToggle              <CR>
-nn  <silent> <F6>        : !dos2unix %                                <CR>
+nn  <silent> <Bslash>ev  : tabe $MYVIMRC                               <CR>
+nn  <silent> <Bslash>sv  : so $MYVIMRC                                 <CR>
+nn  <silent> <Bslash>k   : HelpMe                                      <CR>
+nn  <silent> <Bslash>t   : FloatermToggle                              <CR>
+tno <silent> <Bslash>t   <C-\><C-n>:FloatermToggle                     <CR>
+nn  <silent> <Bslash>g   : Goyo                                        <CR>
+nn  <silent> <Bslash>m   : MaximizerToggle                             <CR>
+vn  <silent> <Bslash>m   : MaximizerToggle                             <CR> gv
+nn  <silent> <Leader>f   : FZF -m                                      <CR>
+nn  <silent> <Leader>u   : MundoToggle                                 <CR>
+nn  <silent> <F2>        : SignifyFold                                 <CR>
+nn  <silent> <F3>        : SignifyDiff                                 <CR>
+nn  <silent> <F4>        : GitGutterLineHighlightsToggle               <CR>
+nn  <silent> <F6>        : !dos2unix %                             <CR><CR>
 
 " }}}
 " ============================================================================
