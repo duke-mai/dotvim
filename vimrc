@@ -20,11 +20,6 @@ silent! helptags ALL   " Load help for all plugins
 source $DOTVIM/pack/plugins.vim
 source $DOTVIM/pack/lf.vim
 
-if !exists(":Abolish")
-  au FileType markdown runtime wordlist/plugins/britishise.vim
-  command! Britishise runtime wordlist/plugins/britishise.vim
-endif
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load word files
@@ -894,6 +889,20 @@ function! ListMonths()
         \ 'October', 'November', 'December'])
   return ''
 endfunction
+
+
+" ----------------------------------------------------------------------------
+" :Britishise
+" ----------------------------------------------------------------------------
+command! Britishise silent! runtime wordlist/plugins/britishise.vim
+      \| echo 'Page Has Been Translated to British English'
+
+
+" ----------------------------------------------------------------------------
+" :Americanize
+" ----------------------------------------------------------------------------
+command! Americanize silent! runtime wordlist/plugins/americanize.vim
+      \| echo 'Page Has Been Translated to American English'
 
 " }}}
 " ============================================================================

@@ -1,66 +1,66 @@
 " -or to -our
 "  e.g. color -> colour
 "  suffixes: colour, colours, coloured, colourless, colourist, honourable
-Abolish -buffer {col,behavi,fav,flav,hon,neighb,rum,lab,rum}or{,s,ed,less,able,ing} {}our{}
+%Subvert/{col,behavi,fav,flav,hon,neighb,rum,lab,rum}or{,s,ed,less,able,ing}/{}our{}/g
 
 " -er to -re
 "  e.g. liter -> litre
 "  suffixes: litre, litres
-Abolish -buffer {cent,met,kilomet,lit,lust,mit,nit,goit,reconnoit,saltpet,spect,theat,tit}er{,s} {}re{}
+%Subvert/{cent,met,kilomet,lit,lust,mit,nit,goit,reconnoit,saltpet,spect,theat,tit}er{,s}/{}re{}/g
 
 " -se to -ce
 "  e.g. defense -> defence
-Abolish -buffer {defen,offen,preten}se {}ce
+%Subvert/{defen,offen,preten}se/{}ce/g
 
 " Doubled consonants before a suffix
-Abolish -buffer jewelry jewellery
-Abolish -buffer fulfill fulfil
+%Subvert/jewelry/jewellery/g
+%Subvert/fulfill/fulfil/g
 
 " Added 'e'
-" merican: likable
+" american: likable
 " british: likeable
-Abolish -buffer {lik,liv,rat,sal,siz,unshak}able {}eable
-Abolish -buffer judgment judgement
+%Subvert/{lik,liv,rat,sal,siz,unshak}able/{}eable/g
+%Subvert/judgment/judgement/g
 
 " organise, organised, organisation and similar...
-Abolish -buffer {actual,aggrand,agon,alphabet,antagon,anthropomorph,aphor,apolog,arbor,author,autom,bapt,barbar,brutal,canon,capital,categor,cauter,character,civil,colon,color,compartmental,computer,conceptual,concret,criminal,critic,crystal,custom,demonet,departmental,desensit,destabil,digital,dogmat,dramat,econom,emphas,energ,eulog,euthan,extempor,external,factual,fantas,fertil,fibern,final,formal,fratern,galvan,general,global,harmon,hellen,homogen,hospital,human,hypothes,ideal,immobil,individual,institutional,internal,ion,legal,legitim,lion,material,memor,mesmer,method,moral,motor,national,natural,neutral,normal,notar,organ,ostrac,pagan,pasteur,patron,penal,personal,philosoph,plagiar,polar,popular,pressur,priorit,privat,proselyt,public,pulver,quant,random,rational,real,recogn,regional,satir,sensual,serial,social,special,stabil,standard,steril,stigmat,subsid,summar,symbol,synchron,synthes,terror,theor,total,tranquil,trivial,tyrann,universal,urban,util,vandal,vapor,vasectom,visual,vocal,weather,woman}iz{e,ed,er,es,ation} {}is{}
+%Subvert/{actual,aggrand,agon,alphabet,antagon,anthropomorph,aphor,apolog,arbor,author,autom,bapt,barbar,brutal,canon,capital,categor,cauter,character,civil,colon,color,compartmental,computer,conceptual,concret,criminal,critic,crystal,custom,demonet,departmental,desensit,destabil,digital,digit,dogmat,dramat,econom,emphas,energ,equal,eulog,euthan,extempor,external,factual,fantas,fertil,fibern,final,formal,fratern,galvan,general,global,harmon,hellen,homogen,hospital,human,hypnot,hypothes,ideal,immobil,individual,institutional,internal,ion,legal,legitim,lion,material,maxim,memor,mesmer,method,minim,mobil,moral,motor,national,natural,neutral,normal,notar,optim,organ,ostrac,pagan,pasteur,patron,penal,personal,philosoph,plagiar,polar,popular,pressur,priorit,privat,proselyt,public,pulver,quant,random,rational,real,recogn,regional,revital,satir,sensual,serial,social,special,stabil,standard,steril,stigmat,subsid,summar,symbol,synchron,synthes,terror,theor,total,tranquil,trivial,tyrann,universal,urban,util,vandal,vapor,vasectom,visual,vocal,weather,woman}iz{e,ed,er,es,ation}/{}is{}/g
 
 " analyse, analysed and similar...
-Abolish -buffer {anal,cata,hydrol,paral}yz{e,ed} {}ys{}
+%Subvert/{anal,cata,hydrol,paral}yz{e,ed}/{}ys{}/g
 
 " AE and OE simplifications
-Abolish -buffer ameba amoeba
-Abolish -buffer anemia anaemia
-Abolish -buffer anesthe{} anaesthe{sia,tic,siologist}
-Abolish -buffer anesthesiologist anaesthetist
-Abolish -buffer cesium caesium
-Abolish -buffer diarrhea diarrhoea
-Abolish -buffer encyclopedi{} encyclopaedi{a,c}
-Abolish -buffer feces faeces
-Abolish -buffer fet{} foet{al,us}
-Abolish -buffer gynecolog{} gynaecolog{y,ist}
-Abolish -buffer hemophilia haemophilia
-Abolish -buffer leukemia leukaemia
-Abolish -buffer esophagus oesophagus
-Abolish -buffer estrogen oestrogen
-Abolish -buffer orthopedic orthopaedic
-Abolish -buffer paleontology{} palaeontolog{y,ist}
-Abolish -buffer pediatric paediatric
-Abolish -buffer homeopath{} homoeopath{y,ic}
-Abolish -buffer medieval mediaeval
-Abolish -buffer maneuv{er,ers,ered} manoeuv{re,res,red}
+%Subvert/ameba/amoeba/g
+%Subvert/anemia/anaemia/g
+%Subvert/anesthe{}/anaesthe{sia,tic,siologist}/g
+%Subvert/anesthesiologist/anaesthetist/g
+%Subvert/cesium/caesium/g
+%Subvert/diarrhea/diarrhoea/g
+%Subvert/encyclopedi{}/encyclopaedi{a,c}/g
+%Subvert/feces/faeces/g
+%Subvert/fet{}/foet{al,us}/g
+%Subvert/gynecolog{}/gynaecolog{y,ist}/g
+%Subvert/hemophilia/haemophilia/g
+%Subvert/leukemia/leukaemia/g
+%Subvert/esophagus/oesophagus/g
+%Subvert/estrogen/oestrogen/g
+%Subvert/orthopedic/orthopaedic/g
+%Subvert/paleontology{}/palaeontolog{y,ist}/g
+%Subvert/pediatric/paediatric/g
+%Subvert/homeopath{}/homoeopath{y,ic}/g
+%Subvert/medieval/mediaeval/g
+%Subvert/maneuv{er,ers,ered}/manoeuv{re,res,red}/g
 
 " Miscellaneous
-Abolish -buffer check{,s,er,ers} cheque{,s,r,rs}
-Abolish -buffer chili chilli
-Abolish -buffer draft{,y,ed} draught{,y,ed}
-Abolish -buffer curb kerb
-Abolish -buffer licorice liquorice
-Abolish -buffer mold{,y} mould{,y}
-Abolish -buffer molt{,y} moult{,y}
-Abolish -buffer mustach moustache
-Abolish -buffer phony phoney
-Abolish -buffer pajamas pyjamas
-Abolish -buffer plow{,man} plough{,man}
-Abolish -buffer skeptic{,al,ism} sceptic{,al,ism}
-Abolish -buffer tire{,s} tyre{,s}
+%Subvert/check{,s,er,ers}/cheque{,s,r,rs}/g
+%Subvert/chili/chilli/g
+%Subvert/draft{,y,ed}/draught{,y,ed}/g
+%Subvert/curb/kerb/g
+%Subvert/licorice/liquorice/g
+%Subvert/mold{,y}/mould{,y}/g
+%Subvert/molt{,y}/moult{,y}/g
+%Subvert/mustach/moustache/g
+%Subvert/phony/phoney/g
+%Subvert/pajamas/pyjamas/g
+%Subvert/plow{,man}/plough{,man}/g
+%Subvert/skeptic{,al,ism}/sceptic{,al,ism}/g
+%Subvert/tire{,s}/tyre{,s}/g
