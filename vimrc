@@ -736,7 +736,7 @@ nn  <silent> <F2>        : SignifyFold                                 <CR>
 nn  <silent> <F3>        : SignifyDiff                                 <CR>
 nn  <silent> <F4>        : GitGutterLineHighlightsToggle               <CR>
 nn  <silent> <F6>        : !dos2unix %                             <CR><CR>
-nn  <silent> <S-F6>      : !sudo dos2unix %                        <CR><CR>
+nn  <silent> <S-F6>      : !sudo dos2unix % && chown $USER:$USER % <CR><CR>
 
 " }}}
 " ============================================================================
