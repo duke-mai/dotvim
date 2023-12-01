@@ -14,7 +14,8 @@
 
 " Doubled consonants before a suffix
 %Subvert/jewelry/jewellery/g
-%Subvert/fulfill/fulfil/g
+%Subvert/{fulfil}l{,s}/{}{}/g
+%Subvert/{cancel,fuel,travel}{ed,ing}/{}l{}/g
 
 " Added 'e'
 " american: likable
@@ -53,8 +54,10 @@
 " Miscellaneous
 %Subvert/check{,s,er,ers}/cheque{,s,r,rs}/g
 %Subvert/chili/chilli/g
-%Subvert/draft{,y,ed}/draught{,y,ed}/g
+" %Subvert/draft{,y,ed}/draught{,y,ed}/g
 %Subvert/curb/kerb/g
+%Subvert/faucet/tap/g
+%Subvert/ground{ meat, pork, beef}/minced{ meat, pork, pork}/g
 %Subvert/licorice/liquorice/g
 %Subvert/mold{,y}/mould{,y}/g
 %Subvert/molt{,y}/moult{,y}/g
@@ -63,4 +66,6 @@
 %Subvert/pajamas/pyjamas/g
 %Subvert/plow{,man}/plough{,man}/g
 %Subvert/skeptic{,al,ism}/sceptic{,al,ism}/g
+%Subvert/{green onion,scallion}/spring onion/g
 %Subvert/tire{,s}/tyre{,s}/g
+%Subvert/washbowl/washbasin/g

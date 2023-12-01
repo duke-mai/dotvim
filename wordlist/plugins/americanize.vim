@@ -14,7 +14,8 @@
 
 " Doubled consonants before a suffix
 %Subvert/jewellery/jewelry/g
-%Subvert/fulfil/fulfill/g
+%Subvert/{fulfil}{,s}/{}l{}/g
+%Subvert/{cancel,fuel,travel}l{ed,ing}/{}{}/g
 
 " Dropped 'e'
 " british: likeable
@@ -53,9 +54,10 @@
 " Miscellaneous
 %Subvert/cheque{,s,r,rs}/check{,s,er,ers}/g
 %Subvert/chilli/chili/g
-%Subvert/draught{,y,ed}/draft{,y,ed}/g
+" %Subvert/draught{,y,ed}/draft{,y,ed}/g
 %Subvert/kerb/curb/g
 %Subvert/liquorice/licorice/g
+%Subvert/minced{ meat, pork, beef}/ground{ meat, pork, pork}/g
 %Subvert/mould{,y}/mold{,y}/g
 %Subvert/moult{,y}/molt{,y}/g
 %Subvert/moustache/mustach/g
@@ -63,4 +65,7 @@
 %Subvert/pyjamas/pajamas/g
 %Subvert/plough{,man}/plow{,man}/g
 %Subvert/sceptic{,al,ism}/skeptic{,al,ism}/g
+%Subvert/spring onion/green onion/g
+%Subvert/tin/can/g
 %Subvert/tyre{,s}/tire{,s}/g
+%Subvert/washbasin/washbowl/g
