@@ -1,12 +1,12 @@
 " -or to -our
 "  e.g. color -> colour
 "  suffixes: colour, colours, coloured, colourless, colourist, honourable
-%Subvert/\b{col,behavi,fav,flav,hon,lab,neighb,rum,vap,rum}or{,s,ed,less,able,ing}/{}our{}/g
+%Subvert/ {col,behavi,fav,flav,hon,lab,neighb,rum,vap,rum}or{,s,ed,less,able,ing}/ {}our{}/g
 
 " -er to -re
 "  e.g. liter -> litre
 "  suffixes: litre, litres
-%Subvert/\b{cent,met,kilomet,lit,lust,mit,nit,goit,reconnoit,saltpet,spect,theat,tit}er{,s}/{}re{}/g
+%Subvert/ {cent,met,kilomet,lit,lust,mit,nit,goit,reconnoit,saltpet,spect,theat,tit}er{,s}/ {}re{}/g
 
 " -se to -ce
 "  e.g. defense -> defence
@@ -34,19 +34,20 @@
 %Subvert/anemia/anaemia/g
 %Subvert/anesthe{}/anaesthe{sia,tic,siologist}/g
 %Subvert/anesthesiologist/anaesthetist/g
+%Subvert/ archeo/ archaeo/g
 %Subvert/cesium/caesium/g
 %Subvert/diarrhea/diarrhoea/g
 %Subvert/encyclopedi{}/encyclopaedi{a,c}/g
 %Subvert/feces/faeces/g
-%Subvert/\bfet{}/foet{al,us}/g
+%Subvert/ fet{}/ foet{al,us}/g
 %Subvert/gynecolog{}/gynaecolog{y,ist}/g
 %Subvert/hemophilia/haemophilia/g
 %Subvert/leukemia/leukaemia/g
 %Subvert/esophagus/oesophagus/g
 %Subvert/estrogen/oestrogen/g
 %Subvert/orthopedic/orthopaedic/g
-%Subvert/paleontology{}/palaeontolog{y,ist}/g
-%Subvert/pediatric/paediatric/g
+%Subvert/ paleo/ palaeo/g
+%Subvert/ ped/ paed/g
 %Subvert/homeopath{}/homoeopath{y,ic}/g
 %Subvert/medieval/mediaeval/g
 %Subvert/maneuv{er,ers,ered}/manoeuv{re,res,red}/g
@@ -67,5 +68,5 @@
 %Subvert/plow{,man}/plough{,man}/g
 %Subvert/skeptic{,al,ism}/sceptic{,al,ism}/g
 %Subvert/{green onion,scallion}/spring onion/g
-%Subvert/\btire{,s}/tyre{,s}/g
+%Subvert/ tire{,s}/ tyre{,s}/g
 %Subvert/washbowl/washbasin/g
