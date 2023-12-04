@@ -170,6 +170,7 @@ VTY
 VoIP
 W
 acl
+afield
 aggregatable
 aka
 anycast
