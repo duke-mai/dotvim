@@ -813,6 +813,8 @@ ia successfuly successfully
 ia successfulyl successfully
 ia sucess success
 ia sucessfull successful
+ia sufferred suffered
+ia sufferring suffering
 ia sufficiant sufficient
 ia suposed supposed
 ia suppossed supposed

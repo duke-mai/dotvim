@@ -1,12 +1,12 @@
 " -our to -or
 "  e.g. colour -> color
 "  suffixes: color, colors, colored, colorless, colorist, honorable
-%Subvert/{col,behavi,fav,flav,hon,neighb,rum,lab}our{,s,ed,less,able,ing}/{}or{}/g
+%Subvert/{col,behavi,fav,flav,hon,lab,neighb,rum,vap,rum}our{,s,ed,less,able,ing}/{}or{}/g
 
 " -re to -er
 "  e.g. litre -> liter
 "  suffixes: liter, liters
-%Subvert/{cent,met,kilomet,lit,lust,mit,nit,goit,reconnoit,saltpet,spect,theat,tit}re{,s}/{}er{}/g
+%Subvert/\b{cent,met,kilomet,lit,lust,mit,nit,goit,reconnoit,saltpet,spect,theat,tit}re{,s}/{}er{}/g
 
 " -ce to -se
 "  e.g. defence -> defense
@@ -38,7 +38,7 @@
 %Subvert/diarrhoea/diarrhea/g
 %Subvert/encyclopaedi{a,c}/encyclopedi{}/g
 %Subvert/faeces/feces/g
-%Subvert/foet{al,us}/fet{}/g
+%Subvert/\bfoet{al,us}/fet{}/g
 %Subvert/gynaecolog{y,ist}/gynecolog{}/g
 %Subvert/haemophilia/hemophilia/g
 %Subvert/leukaemia/leukemia/g
@@ -66,6 +66,6 @@
 %Subvert/plough{,man}/plow{,man}/g
 %Subvert/sceptic{,al,ism}/skeptic{,al,ism}/g
 %Subvert/spring onion/green onion/g
-%Subvert/tin/can/g
-%Subvert/tyre{,s}/tire{,s}/g
+%Subvert/\btin/can/g
+%Subvert/\btyre{,s}/tire{,s}/g
 %Subvert/washbasin/washbowl/g
