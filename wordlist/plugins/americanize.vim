@@ -14,6 +14,7 @@
 
 " Doubled consonants before a suffix
 %Subvert/jewellery/jewelry/gc
+%Subvert/{,un}rivall{ed,ing}/{}rival{}/gc
 %Subvert/{fulfil}{,s}/{}l{}/gc
 %Subvert/{cancel,fuel,travel}l{ed,ing}/{}{}/gc
 
