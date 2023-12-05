@@ -321,7 +321,7 @@ let g:maximizer_set_default_mapping = 0
 " ----------------------------------------------------------------------------
 " Vimwiki {{{
 " ----------------------------------------------------------------------------
-let g:vimwiki_folding = 'expr' " Enable folding based on the syntax
+" let g:vimwiki_folding = 'expr' " Enable folding based on the syntax
 let g:vimwiki_listsyms = '✗○◐●✓' " Use custom symbols for todo lists
 let g:vimwiki_html_header_numbering = 1 " Enable header numbering in HTML
 let g:vimwiki_html_use_css = 1 " Enable CSS for HTML
