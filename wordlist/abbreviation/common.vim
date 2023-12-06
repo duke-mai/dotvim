@@ -841,6 +841,7 @@ ia tehir their
 ia tehn then
 ia tehre there
 ia tehy they
+ia temparate temperate
 ia termoil turmoil
 ia tghe the
 ia tghis this
