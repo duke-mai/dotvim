@@ -33,7 +33,7 @@
 " AE and OE simplifications
 %Subvert/amoeba/ameba/gc
 %Subvert/anaemia/anemia/gc
-%Subvert/anaesthe{sia,tic,siologist}/anesthe{}/gc
+%Subvert/anaesthe{sia,tic,tics,siologist}/anesthe{}/gc
 %Subvert/anaesthetist/anesthesiologist/gc
 %Subvert/ archaeo/ archeo/gc
 %Subvert/caesium/cesium/gc
@@ -41,7 +41,7 @@
 %Subvert/encyclopaedi{a,c}/encyclopedi{}/gc
 %Subvert/faeces/feces/gc
 %Subvert/ foet{al,us}/ fet{}/gc
-%Subvert/gcynaecolog{y,ist}/gcynecolog{}/gc
+%Subvert/gynaecolog{y,ist}/gynecolog{}/gc
 %Subvert/haemophilia/hemophilia/gc
 %Subvert/leukaemia/leukemia/gc
 %Subvert/oesophagus/esophagus/gc
@@ -59,7 +59,7 @@
 " %Subvert/draught{,y,ed}/draft{,y,ed}/gc
 %Subvert/kerb/curb/gc
 %Subvert/liquorice/licorice/gc
-%Subvert/minced{ meat, pork, beef}/gcround{ meat, pork, pork}/gc
+%Subvert/minced{ meat, pork, beef}/ground{}/gc
 %Subvert/mould{,y}/mold{,y}/gc
 %Subvert/moult{,y}/molt{,y}/gc
 %Subvert/moustache/mustach/gc
@@ -67,7 +67,7 @@
 %Subvert/pyjamas/pajamas/gc
 %Subvert/plough{,man}/plow{,man}/gc
 %Subvert/sceptic{,al,ism}/skeptic{,al,ism}/gc
-%Subvert/spring onion/gcreen onion/gc
+%Subvert/spring onion/green onion/gc
 %Subvert/ tin/ can/gc
 %Subvert/ tyre{,s}/ tire{,s}/gc
 %Subvert/washbasin/washbowl/gc

@@ -33,7 +33,7 @@
 " AE and OE simplifications
 %Subvert/ameba/amoeba/gc
 %Subvert/anemia/anaemia/gc
-%Subvert/anesthe{}/anaesthe{sia,tic,siologist}/gc
+%Subvert/anesthe{sia,tic,tics,siologist}/anaesthe{}/gc
 %Subvert/anesthesiologist/anaesthetist/gc
 %Subvert/ archeo/ archaeo/gc
 %Subvert/cesium/caesium/gc
@@ -41,7 +41,7 @@
 %Subvert/encyclopedi{}/encyclopaedi{a,c}/gc
 %Subvert/feces/faeces/gc
 %Subvert/ fet{}/ foet{al,us}/gc
-%Subvert/gcynecolog{}/gcynaecolog{y,ist}/gc
+%Subvert/gynecolog{}/gynaecolog{y,ist}/gc
 %Subvert/hemophilia/haemophilia/gc
 %Subvert/leukemia/leukaemia/gc
 %Subvert/esophagus/oesophagus/gc
@@ -59,7 +59,7 @@
 " %Subvert/draft{,y,ed}/draught{,y,ed}/gc
 %Subvert/curb/kerb/gc
 %Subvert/faucet/tap/gc
-%Subvert/gcround{ meat, pork, beef}/minced{ meat, pork, pork}/gc
+%Subvert/ground{ meat, pork, beef}/minced{}/gc
 %Subvert/licorice/liquorice/gc
 %Subvert/mold{,y}/mould{,y}/gc
 %Subvert/molt{,y}/moult{,y}/gc

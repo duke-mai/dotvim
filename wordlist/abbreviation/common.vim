@@ -715,6 +715,7 @@ ia recrod record
 ia rela real
 ia religous religious
 ia reluctent reluctant
+ia remanied Remained
 ia remeber remember
 ia reommend recommend
 ia reoutine routine
