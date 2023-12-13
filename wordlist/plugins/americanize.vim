@@ -15,7 +15,7 @@
 " Doubled consonants before a suffix
 %Subvert/jewellery/jewelry/gc
 %Subvert/{,un}rivall{ed,ing}/{}rival{}/gc
-%Subvert/{fulfil}{,s}/{}l{}/gc
+%Subvert/{enrol,fulfil}{,s,ment}/{}l{}/gc
 %Subvert/{cancel,fuel,travel}l{ed,ing}/{}{}/gc
 
 " Dropped 'e'
@@ -54,6 +54,7 @@
 %Subvert/manoeuv{re,res,red}/maneuv{er,ers,ered}/gc
 
 " Miscellaneous
+%Subvert/bookshop/bookstore/gc
 %Subvert/cheque{,s,r,rs}/check{,s,er,ers}/gc
 %Subvert/chilli/chili/gc
 " %Subvert/draught{,y,ed}/draft{,y,ed}/gc
