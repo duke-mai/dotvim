@@ -15,8 +15,14 @@
 " Doubled consonants before a suffix
 %Subvert/jewellery/jewelry/gc
 %Subvert/{,un}rivall{ed,ing}/{}rival{}/gc
-%Subvert/{enrol,fulfil}{,s,ment}/{}l{}/gc
+%Subvert/{enro,fulfil}l{l ,ls,lment}/{}{}/gc
 %Subvert/{cancel,fuel,travel}l{ed,ing}/{}{}/gc
+%Subvert/{program}m{ed,ing}/{}{}/gc
+%Subvert/programme/program/gc
+
+" enroll in -> enrol on
+%Subvert/{enro}{l ,ls} on/{}l{} in/gc
+%Subvert/{enrolled,enrolling} on/{} in/gc
 
 " Dropped 'e'
 " british: likeable
@@ -24,10 +30,10 @@
 %Subvert/{lik,liv,rat,sal,siz,unshak}eable/{}able/gc
 %Subvert/judgement/judgment/gc
 
-" organize, organized, organization and similar...
+" organize, organized, organization and the like ...
 %Subvert/{actual,aggrand,agon,alphabet,antagon,anthropomorph,aphor,apolog,arbor,author,autom,bapt,barbar,brutal,canon,capital,categor,cauter,character,civil,colon,color,commercial,compartmental,computer,conceptual,concret,criminal,critic,crystal,custom,demonet,departmental,desensit,destabil,digital,digit,dogmat,dramat,econom,emphas,energ,equal,eulog,euthan,extempor,external,factual,fantas,fertil,fibern,final,formal,fratern,galvan,general,global,harmon,hellen,homogen,hospital,human,hypnot,hypothes,ideal,immobil,incentiv,individual,institutional,internal,ion,legal,legitim,lion,material,maxim,memor,mesmer,method,militar,minim,mobil,moral,motor,national,natural,neutral,normal,notar,optim,organ,ostrac,pagan,pasteur,patron,penal,personal,philosoph,plagiar,polar,popular,pressur,priorit,privat,proselyt,public,pulver,quant,random,rational,real,recogn,regional,revital,satir,sensual,serial,social,special,stabil,standard,steril,stigmat,subsid,summar,symbol,synchron,synthes,terror,theor,total,tranquil,trivial,tyrann,universal,urban,util,vandal,vapor,vasectom,visual,vocal,weather,woman}is{e,ed,er,es,ation,ing}/{}iz{}/gc
 
-" analyse, analysed and similar...
+" analyse, analysed and the like ...
 %Subvert/{anal,cata,hydrol,paral}ys{e,ed}/{}yz{}/gc
 
 " AE and OE simplifications
