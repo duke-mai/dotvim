@@ -170,3 +170,6 @@
 [submodule "pack/writing/start/wiki"]
 	path = pack/writing/start/wiki
 	url = https://github.com/vimwiki/vimwiki
+[submodule "pack/api/start/copilot"]
+	path = pack/api/start/copilot
+	url = https://github.com/github/copilot.vim
