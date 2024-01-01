@@ -256,6 +256,7 @@ ia decison decision
 ia decisons decisions
 ia defendent defendant
 ia definately definitely
+ia degress degrees
 ia deptartment department
 ia desicion decision
 ia desicions decisions
