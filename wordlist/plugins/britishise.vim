@@ -63,7 +63,7 @@
 %Subvert/bookstore/bookshop/gc
 %Subvert/check{,s,er,ers}/cheque{,s,r,rs}/gc
 %Subvert/chili/chilli/gc
-" %Subvert/draft{,y,ed}/draught{,y,ed}/gc
+%Subvert/draft{,y,ed}/draught{,y,ed}/gc
 %Subvert/curb/kerb/gc
 %Subvert/faucet/tap/gc
 %Subvert/ground{ meat, pork, beef}/minced{}/gc
