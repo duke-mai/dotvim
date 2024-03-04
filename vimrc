@@ -335,7 +335,7 @@ aug templates
 aug END
 
 aug filetypes
-  au BufEnter *.template,*.txt                   setf text
+  au BufEnter *.template,*.txt,*.rst             setf text
   au BufEnter *.md                               setf markdown
   au BufEnter *.jade                             setf pug
   au BufEnter *.pug                              setf pug
