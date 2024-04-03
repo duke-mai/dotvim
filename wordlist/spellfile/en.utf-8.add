@@ -5,6 +5,7 @@ ABRs
 ACDT
 ACL
 AOL
+API
 APNIC
 ARIN
 ARP
@@ -12,6 +13,7 @@ ASBRs
 ASN
 ASNs
 AfriNIC
+Ansible
 B
 BDRs
 BGP
@@ -64,6 +66,7 @@ FastEthernet
 Gbps
 Gigabit
 GigabitEthernet
+GitHub
 HDLC
 HSRP
 HTTPS
@@ -161,6 +164,7 @@ U
 UDP
 USB
 UTC
+Ubuntu
 UplinkFast
 VLAN
 VLANs
@@ -195,6 +199,7 @@ caesar
 ccna
 classful
 config
+curated
 curation
 cyberattacker
 cyberattackers
@@ -255,6 +260,7 @@ jpg
 keylogger
 keyloggers
 loopback
+macOS
 mislearning
 movies
 multiaccess
@@ -271,6 +277,7 @@ ord
 ospf
 overtourism
 passwd
+phpIPAM
 pilgrimise
 png
 portfast
