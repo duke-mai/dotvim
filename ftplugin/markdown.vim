@@ -107,7 +107,7 @@ nn PPT :!clear && echo 'Start Generating The PPT Version...' &&
 " ----------------------------------------------------------------------------
 " Abbreviations
 " ----------------------------------------------------------------------------
-ia abbr <Esc>ggO---<CR>title:<CR>- My Presentation<CR>author:<CR>- Tan Duke Mai<CR>theme:<CR>- Copenhagen<CR>date:<CR>- December 29th, 2021<CR>---<CR><ESC>
+ia abbr <Esc>ggO---<CR>title:<CR>- My Presentation<CR>author:<CR>- Duke Mai<CR>theme:<CR>- Copenhagen<CR>date:<CR>- December 29th, 2021<CR>---<CR><ESC>
 ia -onotice- {{< notice info >}}<ESC>
 ia -cnotice- {{< /notice >}}<ESC>
 ia -doctoc- <!-- START doctoc --><!-- END doctoc --><ESC>F<i<ESC>
