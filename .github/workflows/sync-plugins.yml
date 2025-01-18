@@ -7,4 +7,4 @@ on:
 jobs:
   sync:
     name: ⤵️ Sync Submodules
-    uses: tandukemai/dotfiles/.github/workflows/sync-submodules.yml@master
+    uses: duke-mai/dotfiles/.github/workflows/sync-submodules.yml@master
