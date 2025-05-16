@@ -65,9 +65,9 @@
 
 " Miscellaneous
 %Subvert/bookshop/bookstore/gc
-%Subvert/cheque{,s,r,rs}/check{,s,er,ers}/gc
+" %Subvert/cheque{,s,r,rs}/check{,s,er,ers}/gc
 %Subvert/chilli/chili/gc
-%Subvert/draught{,y,ed}/draft{,y,ed}/gc
+" %Subvert/draught{,y,ed}/draft{,y,ed}/gc
 %Subvert/kerb/curb/gc
 %Subvert/liquorice/licorice/gc
 %Subvert/minced{ meat, pork, beef}/ground{}/gc
