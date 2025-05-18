@@ -173,3 +173,6 @@
 [submodule "pack/api/start/copilot"]
 	path = pack/api/start/copilot
 	url = https://github.com/github/copilot.vim
+[submodule "pack/api/opt/copilot"]
+	path = pack/api/opt/copilot
+	url = https://github.com/github/copilot.vim
