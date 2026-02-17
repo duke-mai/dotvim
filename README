@@ -1,1 +1,5 @@
 Duke Mike <ducmai.network@gmail.com>
+
+```git
+git clone --recursive https://github.com/duc-mt/dotvim.git "${HOME}/.vim"
+```
