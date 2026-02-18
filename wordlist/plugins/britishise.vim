@@ -17,7 +17,7 @@
 %Subvert/jewelry/jewellery/gc
 %Subvert/{,un}rival{ed,ing}/{}rivall{}/gc
 %Subvert/{enro,fulfil}l{l ,ls,lment}/{}{}/gc
-%Subvert/{cancel,fuel,travel}{ed,ing}/{}l{}/gc
+%Subvert/{cancel,fuel,travel,tunnel}{ed,ing}/{}l{}/gc
 %Subvert/{program}{ed,ing}/{}m{}/gc
 
 " enroll in -> enrol on
