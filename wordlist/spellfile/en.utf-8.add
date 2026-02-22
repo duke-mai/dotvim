@@ -1,7 +1,9 @@
+Cisco
 Facebook
 L1
 L2
 L3
+MPLS
 NETCONF
 NetFlow
 Netflix
@@ -113,6 +115,8 @@ movies
 multiaccess
 multicasts
 multiplayer
+neighborship
+neighborships
 netstat
 newsfeed
 nitty-gritty
@@ -180,7 +184,11 @@ unicast
 unsequenced
 untrusted
 username
+vAnalytics
+vBond
 vCenter
+vManage
+vSmart
 vSphere
 veganism
 virtualisation
