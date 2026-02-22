@@ -408,6 +408,7 @@ aug END
 
 colo gruvbox
 
+
 " ----------------------------------------------------------------------------
 " Change background colour depending on the time of day
 " ----------------------------------------------------------------------------
@@ -426,32 +427,6 @@ endif
 " ----------------------------------------------------------------------------
 " Highlights
 " ----------------------------------------------------------------------------
-fu! MyHighlights() abort
-  " Badly spelled word
-  hi SpellBad cterm=NONE ctermfg=009 ctermbg=011
-  " Word with wrong caps
-  " hi SpellCap cterm=NONE ctermbg=LightCyan ctermfg=DarkRed
-  " Rare word
-  hi SpellRare cterm=NONE ctermbg=LightCyan ctermfg=DarkRed
-  " Word only exists in other region
-  hi SpellLocal cterm=italic ctermbg=White ctermfg=DarkRed
-
-  " Source: https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f
-  hi Visual ctermbg=76 ctermfg=16
-  " hi StatusLine cterm=NONE ctermbg=231 ctermfg=160
-  " hi Normal     cterm=NONE ctermbg=17
-  " hi NonText    cterm=NONE ctermbg=17
-
-  " hi clear CursorLine
-  hi ColorColumn ctermbg=LightRed ctermfg=Black
-  hi ErrorMsg ctermbg=Red ctermfg=Yellow
-  hi LineNr ctermfg=Darkgrey
-  hi Search ctermbg=Darkcyan ctermfg=White cterm=none
-  hi Comment cterm=italic
-  " hi SignColumn ctermbg=DarkGrey
-  " hi Folded ctermbg=235  ctermfg=0
-endf
-
 aug MyColors
     au!
     au ColorScheme * call MyHighlights() | highlight SpecialKey ctermfg=238
@@ -459,14 +434,46 @@ aug MyColors
     au SourcePost vimrc colo gruvbox-material | call MyHighlights() | highlight SpecialKey ctermfg=238
 aug END
 
-" Remove highlight colour from current line number
-" hi clear CursorLineNr
+fu! MyHighlights() abort
+  " Spell checking highlights
+  hi SpellCap   cterm=italic ctermfg=DarkCyan  ctermbg=NONE
+  hi SpellBad   cterm=NONE ctermfg=DarkRed      ctermbg=Yellow
+  hi SpellLocal cterm=NONE ctermfg=Red          ctermbg=White
+  hi SpellRare  cterm=NONE ctermfg=Blue         ctermbg=Black
 
-" Current line number row will have same background colour in relative mode
-" hi clear LineNr
+  " Visual selection
+  hi Visual     cterm=NONE ctermbg=76  ctermfg=16
 
-" Highlight conflicts
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+  " Status line
+  hi StatusLine cterm=NONE ctermfg=160 ctermbg=231
+
+  " Backgrounds
+  hi Normal     cterm=NONE ctermbg=17
+  hi NonText    cterm=NONE ctermbg=17
+
+  " Line numbers
+  hi clear CursorLineNr
+  hi clear LineNr
+  hi LineNr     ctermfg=DarkGrey
+
+  " Conflict markers
+  match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
+  " Cursor line and columns
+  hi clear CursorLine
+  hi ColorColumn ctermfg=Black ctermbg=LightRed
+
+  " Errors and search
+  hi ErrorMsg   ctermfg=Yellow ctermbg=Red
+  hi Search     cterm=NONE ctermfg=White ctermbg=DarkCyan
+
+  " Comments and signs
+  hi Comment    cterm=italic
+  hi SignColumn ctermbg=DarkGrey
+
+  " Folding
+  hi Folded     ctermfg=0 ctermbg=235
+endf
 
 
 " ------------------------------------------------------------------------------
@@ -492,9 +499,14 @@ match ExtraWhitespace /\s\+$/
 " ------------------------------------------------------------------------------
 " Do not highlight all-cap words
 " ------------------------------------------------------------------------------
-syntax match None "\v<[A-Z]+>"
-syntax match None "\v<[A-Z]+s>"
-syntax match None "\v<[A-Z]+[0-9]>"
+set spellcapcheck=TRUE
+
+syntax match NoCaps "\v<[A-Z]+>"
+syntax match NoCaps "\v<[A-Z]+s>"
+syntax match NoCaps "\v<[A-Z]+[0-9]>"
+
+" Link the group to Normal so it has no special highlight
+highlight link NoCaps Normal
 
 " }}}
 " ============================================================================
