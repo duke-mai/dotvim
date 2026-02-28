@@ -16,7 +16,7 @@
 %Subvert/jewellery/jewelry/gc
 %Subvert/{,un}rivall{ed,ing}/{}rival{}/gc
 %Subvert/{enro,fulfil}l{l ,ls,lment}/{}{}/gc
-%Subvert/{cancel,fuel,travel}l{ed,ing}/{}{}/gc
+%Subvert/{cancel,fuel,travel,tunnel}l{ed,ing}/{}{}/gc
 %Subvert/{program}m{ed,ing}/{}{}/gc
 %Subvert/programme/program/gc
 
@@ -53,8 +53,8 @@
 %Subvert/oesophagus/esophagus/gc
 %Subvert/oestrogen/estrogen/gc
 %Subvert/orthopaedic/orthopedic/gc
-%Subvert/ palaeo/ paleo/gc
-%Subvert/ paed/ ped/gc
+%Subvert/palaeo/paleo/gc
+%Subvert/paed/ped/gc
 %Subvert/homoeopath{y,ic}/homeopath{}/gc
 %Subvert/mediaeval/medieval/gc
 %Subvert/manoeuv{re,res,red}/maneuv{er,ers,ered}/gc
