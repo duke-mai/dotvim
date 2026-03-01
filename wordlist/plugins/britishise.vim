@@ -71,7 +71,7 @@
 " %Subvert/draft{,y,ed}/draught{,y,ed}/gc
 %Subvert/mol{d,t}{,y}/moul{}{}/gc
 %Subvert/mustach/moustache/gc
-%Subvert/phony/phoney/gc
+%Subvert/ phony/ phoney/gc
 %Subvert/pajamas/pyjamas/gc
 %Subvert/plow{,man}/plough{}/gc
 %Subvert/skeptic{,al,ism}/sceptic{}/gc
