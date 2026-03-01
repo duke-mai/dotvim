@@ -75,7 +75,7 @@
 %Subvert/pajamas/pyjamas/gc
 %Subvert/plow{,man}/plough{}/gc
 %Subvert/skeptic{,al,ism}/sceptic{}/gc
-%Subvert/tire{,s}/tyre{}/gc
+%Subvert/ tire{,s}/ tyre{}/gc
 
 # Word Usage
 %Subvert/bookstore/bookshop/gc
