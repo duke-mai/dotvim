@@ -1,7 +1,7 @@
 " -or to -our
 "  e.g. color -> colour
 "  suffixes: colour, colours, coloured, colourless, colourist, honourable
-%Subvert/{ardor,armor,col,behavi,candor,fav,flav,glamor,harbor,humor,hon,lab,neighb,odor,rigor,rum,splendor,vap,rum}or{,s,ed,less,able,ing}/{}our{}/gc
+%Subvert/{ardor,armor,col,behavi,candor,fav,flav,glamor,harbor,humor,hon,lab,neighb,odor,rigor,rum,splendor,vap,rum}or{,s,ed,less,ist,able,ing}/{}our{}/gc
 
 " -er to -re
 "  e.g. liter -> litre
@@ -15,7 +15,7 @@
 
 " Doubled consonants before a suffix
 %Subvert/jewelry/jewellery/gc
-%Subvert/{,un}rival{ed,ing}/{}rivall{}/gc
+%Subvert/{,un}rival{s,ed,ing}/{}rivall{}/gc
 %Subvert/{enrol,fulfil}l{,s,ment,ed,ing}/{}{}/gc
 %Subvert/{cancel,fuel,label,model,travel,tunnel}{ed,ing}/{}l{}/gc
 %Subvert/{program}{ed,ing}/{}m{}/gc
@@ -33,7 +33,7 @@
 %Subvert/{actual,aggrand,agon,alphabet,antagon,anthropomorph,aphor,apolog,arbor,author,autom,bapt,barbar,brutal,canon,capital,categor,cauter,central,character,civil,colon,color,commercial,compartmental,computer,conceptual,concret,criminal,critic,crystal,custom,demonet,departmental,desensit,destabil,digital,digit,dogmat,dramat,econom,emphas,energ,equal,eulog,euthan,extempor,external,factual,fantas,fertil,fibern,final,formal,fratern,galvan,general,global,harmon,hellen,homogen,hospital,human,hypnot,hypothes,ideal,immobil,incentiv,individual,initial,institutional,internal,ion,legal,legitim,lion,material,maxim,memor,mesmer,method,militar,minim,mobil,moral,motor,national,natural,neutral,normal,notar,optim,organ,ostrac,pagan,pasteur,patron,penal,personal,philosoph,plagiar,polar,popular,pressur,priorit,privat,proselyt,public,pulver,quant,random,rational,real,recogn,regional,revital,satir,sensual,serial,social,special,stabil,standard,steril,stigmat,subsid,summar,symbol,synchron,synthes,terror,theor,total,tranquil,trivial,tyrann,universal,urban,util,vandal,vapor,vasectom,visual,vocal,weather,woman}iz{e,ed,er,es,ation,ing}/{}is{}/gc
 
 " analyse, analysed and the like ...
-%Subvert/{anal,cata,hydrol,paral}yz{e,ed}/{}ys{}/gc
+%Subvert/{ana,auto,cana,cata,cyto,dia,electro,fibrino,glyco,haemo,histo,hydro,lipo,para,proteo}lyz{e,es,ed,er,ation,ing}/{}lys{}/gc
 
 " AE and OE simplifications
 %Subvert/ameba/amoeba/gc
