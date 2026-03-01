@@ -6,7 +6,7 @@
 " -er to -re
 "  e.g. liter -> litre
 "  suffixes: litre, litres
-%Subvert/{caliber,cent,goit,kilomet,lit,lust,mit,met,nit,reconnoit,saltpet,spect,theat,tit}er{,s}/{}re{}/gc
+%Subvert/{caliber,cent,goit,kilomet,lit,lust, met,reconnoit,saltpet,spect,theat,tit}er{,s}/{}re{}/gc
 
 " -se to -ce
 "  e.g. defense -> defence
