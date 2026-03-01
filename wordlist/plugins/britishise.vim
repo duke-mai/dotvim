@@ -1,12 +1,12 @@
 " -or to -our
 "  e.g. color -> colour
 "  suffixes: colour, colours, coloured, colourless, colourist, honourable
-%Subvert/ {col,behavi,fav,flav,hon,lab,neighb,rum,vap,rum}or{,s,ed,less,able,ing}/ {}our{}/gc
+%Subvert/{ardor,armor,col,behavi,candor,fav,flav,glamor,harbor,humor,hon,lab,neighb,odor,rigor,rum,splendor,vap,rum}or{,s,ed,less,able,ing}/{}our{}/gc
 
 " -er to -re
 "  e.g. liter -> litre
 "  suffixes: litre, litres
-%Subvert/ {cent,met,kilomet,lit,lust,mit,nit,goit,reconnoit,saltpet,spect,theat,tit}er{,s}/ {}re{}/gc
+%Subvert/{caliber,cent,goit,kilomet,lit,lust,mit,met,nit,reconnoit,saltpet,spect,theat,tit}er{,s}/{}re{}/gc
 
 " -se to -ce
 "  e.g. defense -> defence
@@ -16,13 +16,12 @@
 " Doubled consonants before a suffix
 %Subvert/jewelry/jewellery/gc
 %Subvert/{,un}rival{ed,ing}/{}rivall{}/gc
-%Subvert/{enro,fulfil}l{l ,ls,lment}/{}{}/gc
-%Subvert/{cancel,fuel,travel,tunnel}{ed,ing}/{}l{}/gc
+%Subvert/{enrol,fulfil}l{,s,ment,ed,ing}/{}{}/gc
+%Subvert/{cancel,fuel,label,model,travel,tunnel}{ed,ing}/{}l{}/gc
 %Subvert/{program}{ed,ing}/{}m{}/gc
 
 " enroll in -> enrol on
-%Subvert/{enro}l{l ,ls} in/{}{} on/gc
-%Subvert/{enrolled,enrolling} in/{} on/gc
+%Subvert/{enrol}l{,s,ment,ed,ing} in/{}{} on/gc
 
 " Added 'e'
 " american: likable
@@ -41,20 +40,20 @@
 %Subvert/anemia/anaemia/gc
 %Subvert/anesthe{sia,tic,tics,siologist}/anaesthe{}/gc
 %Subvert/anesthesiologist/anaesthetist/gc
-%Subvert/ archeo/ archaeo/gc
+%Subvert/archeo/archaeo/gc
 %Subvert/cesium/caesium/gc
 %Subvert/diarrhea/diarrhoea/gc
 %Subvert/encyclopedi{}/encyclopaedi{a,c}/gc
 %Subvert/feces/faeces/gc
-%Subvert/ fet{}/ foet{al,us}/gc
+%Subvert/fet{}/foet{al,us}/gc
 %Subvert/gynecolog{}/gynaecolog{y,ist}/gc
 %Subvert/hemophilia/haemophilia/gc
 %Subvert/leukemia/leukaemia/gc
 %Subvert/esophagus/oesophagus/gc
 %Subvert/estrogen/oestrogen/gc
 %Subvert/orthopedic/orthopaedic/gc
-%Subvert/ paleo/ palaeo/gc
-%Subvert/ ped/ paed/gc
+%Subvert/paleo/palaeo/gc
+%Subvert/ped/paed/gc
 %Subvert/homeopath{}/homoeopath{y,ic}/gc
 %Subvert/medieval/mediaeval/gc
 %Subvert/maneuv{er,ers,ered}/manoeuv{re,res,red}/gc
@@ -76,5 +75,5 @@
 %Subvert/plow{,man}/plough{,man}/gc
 %Subvert/skeptic{,al,ism}/sceptic{,al,ism}/gc
 %Subvert/{green onion,scallion}/spring onion/gc
-%Subvert/ tire{,s}/ tyre{,s}/gc
+%Subvert/tire{,s}/tyre{,s}/gc
 %Subvert/washbowl/washbasin/gc
