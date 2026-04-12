@@ -1,4 +1,4 @@
-" Author    : Duke Mike <ducmai.network@gmail.com>
+" Author    : Duc Mai <ducmai.network@gmail.com>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
