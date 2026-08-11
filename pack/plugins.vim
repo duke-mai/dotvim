@@ -97,14 +97,23 @@ let g:EasyMotion_startofline = 0
 let g:EasyMotion_smartcase = 1
 
 " n-character search motion
-map  / <Plug>(easymotion-sn)
+" FIXED: was `map /` (Normal + Visual + Operator-pending). That silently
+" broke standard Visual-mode search (`v/pattern`) and any operator-pending
+" use of `/` outside the explicit `omap` below, by routing them through
+" EasyMotion instead of Vim's native incremental search. Restricting to
+" `nmap` keeps `/` doing plain Vim search everywhere except Normal mode,
+" where EasyMotion's overlay is the intended enhancement.
+nmap / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 
 " These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
 " Without these mappings, `n` & `N` works fine. (These mappings just provide
 " different highlight method and have some other features )
-map n <Plug>(easymotion-next)
-map N <Plug>(easymotion-prev)
+" FIXED: was `map n`/`map N` (also Visual + Operator-pending); restricted to
+" `nmap` so Visual-mode repeat-search (`gv` selections, `d n` etc.) is
+" unaffected and keeps standard Vim behaviour.
+nmap n <Plug>(easymotion-next)
+nmap N <Plug>(easymotion-prev)
 
 " }}}
 " ----------------------------------------------------------------------------

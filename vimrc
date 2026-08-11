@@ -13,19 +13,49 @@
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Environment fallbacks
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" This config assumes $DOTVIM and $DOTFILES are exported by the shell before
+" Vim starts. If either is unset OR empty (e.g. this vimrc was launched
+" directly with `vim -u vimrc`, from cron, from an IDE terminal, or any shell
+" that hasn't sourced the user's profile), fall back to sane defaults instead
+" of silently failing every `source $DOTVIM/...` below (this used to throw
+" E484 "Can't open file" errors and skip plugin/wordlist loading entirely).
+if empty($DOTVIM)
+  let $DOTVIM = expand('<sfile>:p:h')
+endif
+if empty($DOTFILES)
+  let $DOTFILES = expand('~/.files')
+endif
+
+" Source a file only if it exists; warn (don't hard-error) if it doesn't, so
+" one missing optional file never blocks the rest of vimrc from loading.
+function! s:SourceIfExists(path) abort
+  let l:path = expand(a:path)
+  if filereadable(l:path)
+    execute 'source' fnameescape(l:path)
+  else
+    echohl WarningMsg
+    echom 'vimrc: skipped missing file: ' . l:path
+    echohl None
+  endif
+endfunction
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " packloadall          " Load all plugins
 silent! helptags ALL   " Load help for all plugins
-source $DOTVIM/pack/plugins.vim
-source $DOTVIM/pack/lf.vim
+call s:SourceIfExists('$DOTVIM/pack/plugins.vim')
+call s:SourceIfExists('$DOTVIM/pack/lf.vim')
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load word files
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-source $DOTVIM/wordlist/abbreviation/common.vim
-source $DOTVIM/wordlist/abbreviation/custom.vim
+call s:SourceIfExists('$DOTVIM/wordlist/abbreviation/common.vim')
+call s:SourceIfExists('$DOTVIM/wordlist/abbreviation/custom.vim')
 set dictionary+=/usr/share/hunspell/en_AU.dic
 set dictionary+=/usr/share/dict/english-words/words.txt
 set spellfile+=$DOTVIM/wordlist/spellfile/en.utf-8.add
@@ -51,7 +81,13 @@ set thesaurus+=/usr/share/dict/moby_words/mthesaur.txt
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au BufWinLeave $DOTFILES/doc/quotes/technology :!strfile technology
 au BufWinLeave $DOTFILES/doc/quotes/inspiration :!strfile inspiration
-au BufWinLeave $DOTFILES/bash/crontab :!sudo cp % /etc/crontab
+" REMOVED (security): this used to silently run
+"   :!sudo cp % /etc/crontab
+" on every BufWinLeave from $DOTFILES/bash/crontab — an unprompted privileged
+" file copy triggered just by switching windows/buffers away from that file,
+" including after a crash-recovery reload. Install the crontab manually when
+" you actually intend to, e.g.:
+"   sudo cp $DOTFILES/bash/crontab /etc/crontab
 
 
 " ============================================================================
@@ -499,7 +535,11 @@ match ExtraWhitespace /\s\+$/
 " ------------------------------------------------------------------------------
 " Do not highlight all-cap words
 " ------------------------------------------------------------------------------
-set spellcapcheck=TRUE
+" 'spellcapcheck' takes a regex (the pattern before a capitalised word check
+" applies), not a boolean. "TRUE" was being used literally as that regex,
+" which never matches the intended pattern, so capitalisation checking never
+" actually ran. An empty value disables the check outright, matching intent.
+set spellcapcheck=
 
 syntax match NoCaps "\v<[A-Z]+>"
 syntax match NoCaps "\v<[A-Z]+s>"
