@@ -25,27 +25,6 @@ let NERDTreeAutoDeleteBuffer  = 1
 
 " }}}
 " ----------------------------------------------------------------------------
-" Tabman {{{
-" ----------------------------------------------------------------------------
-" Disable the plugin completely
-let g:loaded_tabman = 0
-
-" Override command
-let g:tabman_toggle = '<leader>m'
-let g:tabman_focus = '<leader>m'
-
-" Configure window layout
-let g:tabman_width = 20
-let g:tabman_side = 'right'
-
-" Show windows created by plugins, help and quickfix
-let g:tabman_specials = 1
-
-" Disable line numbering
-let g:tabman_number = 0
-
-" }}}
-" ----------------------------------------------------------------------------
 " Unimpaired {{{
 " ----------------------------------------------------------------------------
 " Toggle cursorcolumn
@@ -342,5 +321,29 @@ let g:vimwiki_conceal_brackets = 1 " Conceal the brackets around links
 let g:vimwiki_camel_case = 0 " Disable WikiWord auto-links
 let g:vimwiki_valid_html_tags = 'b,i,s,u,sub,sup,kbd,br,hr' " Set the valid HTML tags
 let g:vimwiki_global_ext = 0 " Disable global VimWiki commands
+
+"}}}
+" ----------------------------------------------------------------------------
+" Colorizer (lazy) {{{
+" ----------------------------------------------------------------------------
+" Moved from pack/colours/start to pack/colours/opt: colorizer scans every
+" buffer for colour codes to highlight, which is only useful in CSS-family
+" files. Loading it unconditionally at startup costs time on every buffer,
+" including source files with no colour codes at all.
+augroup LazyColorizer
+  au!
+  au FileType css,html,scss,less,sass,javascript packadd colorizer
+augroup END
+
+"}}}
+" ----------------------------------------------------------------------------
+" awesome-vim-colorschemes (lazy) {{{
+" ----------------------------------------------------------------------------
+" Moved from pack/colours/start to pack/colours/opt: this bundle parses
+" ~80 colour scheme files at startup, none of which are the active
+" gruvbox-material theme. :Colors loads the bundle plus the scheme browser
+" on demand instead.
+command! Colors packadd awesome-vim-colorschemes | packadd colorSchemeExplorer
+      \ | ColorSchemeExplorer
 
 "}}}

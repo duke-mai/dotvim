@@ -35,7 +35,11 @@ setl define=^\s*\\(def\\\\|class\\)
 setl tw=79
 
 " Source: https://gist.github.com/romainl/eabe0fe8c564da1b6cfe1826e1482536
-aug TooLong
+" NOTE: was "aug TooLong" — identical name to the augroup in ftplugin/sh.vim.
+" Whichever filetype's ftplugin ran last would `au!` (clear) the other's
+" autocmds, silently disabling the 79/88-column highlight for one filetype
+" depending on file-open order. Renamed unique per filetype.
+aug TooLongPython
     au!
     au WinEnter,BufEnter * cal clearmatches()
           \| cal matchadd('ColorColumn', '\%>79v', 100)

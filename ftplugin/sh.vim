@@ -20,7 +20,10 @@ setl shiftwidth=2
 setl tw=88
 
 " Source: https://gist.github.com/romainl/eabe0fe8c564da1b6cfe1826e1482536
-aug TooLong
+" NOTE: was "aug TooLong" — identical name to the augroup in
+" ftplugin/python.vim, which cleared this one's autocmds via `au!`
+" depending on file-open order. Renamed unique per filetype.
+aug TooLongSh
     au!
     au WinEnter,BufEnter * cal clearmatches()
           \| cal matchadd('ColorColumn', '\%>88v', 100)

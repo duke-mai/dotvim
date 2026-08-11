@@ -54,7 +54,12 @@ call s:SourceIfExists('$DOTVIM/pack/lf.vim')
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load word files
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call s:SourceIfExists('$DOTVIM/wordlist/abbreviation/common.vim')
+" wordlist/abbreviation/common.vim is ~19KB of `iabbrev` statements — sourcing
+" it unconditionally at startup measurably adds to launch time. Deferred to
+" the first time Insert mode is entered, since abbreviations only matter once
+" you're actually typing; ++once makes the autocmd remove itself after firing
+" so it only ever runs a single time per session.
+au InsertEnter * ++once call s:SourceIfExists('$DOTVIM/wordlist/abbreviation/common.vim')
 call s:SourceIfExists('$DOTVIM/wordlist/abbreviation/custom.vim')
 set dictionary+=/usr/share/hunspell/en_AU.dic
 set dictionary+=/usr/share/dict/english-words/words.txt
@@ -442,7 +447,11 @@ aug GruvboxMaterial
 
 aug END
 
-colo gruvbox
+" REMOVED: `colo gruvbox` — always immediately overridden below by
+" `au SourcePost vimrc colo gruvbox-material`, which fires right after this
+" file finishes sourcing. The line never had a visible effect; it only cost
+" a wasted colorscheme switch (and required the separate 'gruvbox' scheme to
+" resolve at all) on every startup.
 
 
 " ----------------------------------------------------------------------------
@@ -988,7 +997,16 @@ autocmd BufRead,BufNewFile * :call SpellCheckIgnoreRules()
 " ----------------------------------------------------------------------------
 " Open pdf files in the default pdf reader
 " ----------------------------------------------------------------------------
-au BufRead *.pdf sil exe "!xdg-open " . shellescape(expand("%:p")) | bd | let &ft=&ft | redraw!
+" NOTE: was unconditionally `!xdg-open`, which only exists on Linux and
+" silently fails (does nothing, no error) on macOS or Windows. Branches on
+" the OSX()/LINUX()/WINDOWS() helpers already defined above.
+if LINUX()
+  au BufRead *.pdf sil exe "!xdg-open " . shellescape(expand("%:p")) | bd | let &ft=&ft | redraw!
+elseif OSX()
+  au BufRead *.pdf sil exe "!open " . shellescape(expand("%:p")) | bd | let &ft=&ft | redraw!
+elseif WINDOWS()
+  au BufRead *.pdf sil exe "!start " . shellescape(expand("%:p")) | bd | let &ft=&ft | redraw!
+endif
 
 
 " ----------------------------------------------------------------------------
@@ -1027,7 +1045,15 @@ au FileType * setl formatoptions-=c formatoptions-=r formatoptions-=o
 " ----------------------------------------------------------------------------
 " Automatically save the file when a change if made
 " ----------------------------------------------------------------------------
-au TextChanged,InsertLeave * if &readonly==0 && filereadable(bufname('%'))|silent up|end
+" NOTE: was `au TextChanged,InsertLeave *`. TextChanged fires on EVERY
+" text-changing operation, not just typing — `dd`, `p`, `u`, macro playback,
+" and held-key repeats each independently trigger an immediate disk write.
+" On a large file or during a rapid edit burst this can mean many writes per
+" second. CursorHold fires once, only after the cursor has been idle for
+" 'updatetime' ms (currently 100ms, set in pack/plugins.vim for Signify), so
+" it naturally batches a burst of edits into a single write. InsertLeave is
+" kept so leaving insert mode still saves right away, same as before.
+au CursorHold,InsertLeave * if &readonly==0 && filereadable(bufname('%'))|silent up|end
 
 
 " ----------------------------------------------------------------------------

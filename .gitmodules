@@ -16,18 +16,12 @@
 [submodule "pack/git/start/signify"]
 	path = pack/git/start/signify
 	url = https://github.com/mhinz/vim-signify.git
-[submodule "pack/syntax/start/python"]
-	path = pack/syntax/start/python
-	url = https://github.com/purpleP/python-syntax.git
 [submodule "pack/syntax/start/flake8"]
 	path = pack/syntax/start/flake8
 	url = https://github.com/nvie/vim-flake8.git
 [submodule "pack/syntax/start/cool"]
 	path = pack/syntax/start/cool
 	url = https://github.com/romainl/vim-cool.git
-[submodule "pack/file-system/start/tabman"]
-	path = pack/file-system/start/tabman
-	url = https://github.com/kien/tabman.vim
 [submodule "pack/plugins/start/airline"]
 	path = pack/plugins/start/airline
 	url = https://github.com/vim-airline/vim-airline.git
@@ -101,9 +95,6 @@
 [submodule "pack/writing/start/wordy"]
 	path = pack/writing/start/wordy
 	url = https://github.com/preservim/vim-wordy.git
-[submodule "pack/syntax/start/python-syntax-highlighting"]
-	path = pack/syntax/start/python-syntax-highlighting
-	url = https://github.com/hdima/python-syntax.git
 [submodule "pack/writing/start/limelight"]
 	path = pack/writing/start/limelight
 	url = https://github.com/junegunn/limelight.vim.git
@@ -125,8 +116,8 @@
 [submodule "pack/colours/opt/gruvbox-material"]
 	path = pack/colours/opt/gruvbox-material
 	url = https://github.com/sainnhe/gruvbox-material.git
-[submodule "pack/colours/start/colorSchemeExplorer"]
-	path = pack/colours/start/colorSchemeExplorer
+[submodule "pack/colours/opt/colorSchemeExplorer"]
+	path = pack/colours/opt/colorSchemeExplorer
 	url = https://github.com/jlanzarotta/colorSchemeExplorer.git
 [submodule "pack/file-system/start/bufexplorer"]
 	path = pack/file-system/start/bufexplorer
@@ -161,11 +152,11 @@
 [submodule "pack/plugins/start/eval-expression"]
 	path = pack/plugins/start/eval-expression
 	url = https://github.com/fvictorio/vim-eval-expression.git
-[submodule "pack/colours/start/colorizer"]
-	path = pack/colours/start/colorizer
+[submodule "pack/colours/opt/colorizer"]
+	path = pack/colours/opt/colorizer
 	url = https://github.com/lilydjwg/colorizer
-[submodule "pack/colours/start/awesome-vim-colorschemes"]
-	path = pack/colours/start/awesome-vim-colorschemes
+[submodule "pack/colours/opt/awesome-vim-colorschemes"]
+	path = pack/colours/opt/awesome-vim-colorschemes
 	url = https://github.com/rafi/awesome-vim-colorschemes
 [submodule "pack/writing/start/wiki"]
 	path = pack/writing/start/wiki
