@@ -58,8 +58,13 @@ call s:SourceIfExists('$DOTVIM/pack/lf.vim')
 " it unconditionally at startup measurably adds to launch time. Deferred to
 " the first time Insert mode is entered, since abbreviations only matter once
 " you're actually typing; ++once makes the autocmd remove itself after firing
-" so it only ever runs a single time per session.
-au InsertEnter * ++once call s:SourceIfExists('$DOTVIM/wordlist/abbreviation/common.vim')
+" so it only ever runs a single time per session. Wrapped in an augroup with
+" au! so reloading vimrc (\sv) re-arms this cleanly instead of stacking a
+" second ++once autocmd alongside one that hasn't fired yet.
+augroup LazyWordlist
+  au!
+  au InsertEnter * ++once call s:SourceIfExists('$DOTVIM/wordlist/abbreviation/common.vim')
+augroup END
 call s:SourceIfExists('$DOTVIM/wordlist/abbreviation/custom.vim')
 set dictionary+=/usr/share/hunspell/en_AU.dic
 set dictionary+=/usr/share/dict/english-words/words.txt
@@ -84,8 +89,11 @@ set thesaurus+=/usr/share/dict/moby_words/mthesaur.txt
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Reload files on exit
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au BufWinLeave $DOTFILES/doc/quotes/technology :!strfile technology
-au BufWinLeave $DOTFILES/doc/quotes/inspiration :!strfile inspiration
+augroup ReloadOnExit
+  au!
+  au BufWinLeave $DOTFILES/doc/quotes/technology :!strfile technology
+  au BufWinLeave $DOTFILES/doc/quotes/inspiration :!strfile inspiration
+augroup END
 " REMOVED (security): this used to silently run
 "   :!sudo cp % /etc/crontab
 " on every BufWinLeave from $DOTFILES/bash/crontab — an unprompted privileged
@@ -241,13 +249,16 @@ set complete=.,w,b,u,k,t,],s{*.pm}
 
 " Omni Completion
 set omnifunc=syntaxcomplete#Complete
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-autocmd FileType c set omnifunc=ccomplete#Complete
+augroup OmniCompletion
+  au!
+  autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType python set omnifunc=pythoncomplete#Complete
+  autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+  autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+  autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+  autocmd FileType c set omnifunc=ccomplete#Complete
+augroup END
 
 
 " ----------------------------------------------------------------------------
@@ -653,8 +664,12 @@ set foldlevelstart=0
 " ----------------------------------------------------------------------------
 " Colon shortcuts to access command line mode.
 " ----------------------------------------------------------------------------
-nn ; :
-vn ; :
+" NOTE: was `nn ; :` / `vn ; :`, which overwrote Vim's native `;` (repeat
+" last f/t/F/T motion). Moved to <Leader>; so the quick command-line access
+" is preserved while `;` goes back to its standard behaviour. If you'd
+" rather have the original binding back, just swap the key below.
+nn <Leader>; :
+vn <Leader>; :
 
 
 " ----------------------------------------------------------------------------
@@ -783,8 +798,13 @@ let g:HelpMeItems = [
 nn  <silent> <Bslash>eb  : tabe $DOTFILES/bash/bashrc                  <CR>
 nn  <silent> <Bslash>eg  : tabe $DOTFILES/git/gitconfig                <CR>
 nn  <silent> <Bslash>es  : sp $DOTVIM/wordlist/abbreviation/common.vim <CR>
-nn  <silent> <Bslash>ev  : tabe $MYVIMRC                               <CR>
-nn  <silent> <Bslash>sv  : so $MYVIMRC                                 <CR>
+" NOTE: $MYVIMRC is only set by Vim's own default vimrc auto-discovery.
+" Confirmed empirically that it's empty when Vim is launched with
+" `-u {path}` pointing directly at a vimrc file — which would silently
+" break both mappings below. Falls back to $DOTVIM/vimrc, which is always
+" set thanks to the environment guard near the top of this file.
+nn  <silent> <Bslash>ev  : exe 'tabe' fnameescape(!empty($MYVIMRC) ? $MYVIMRC : $DOTVIM . '/vimrc')  <CR>
+nn  <silent> <Bslash>sv  : exe 'source' fnameescape(!empty($MYVIMRC) ? $MYVIMRC : $DOTVIM . '/vimrc') <CR>
 nn  <silent> <Bslash>k   : HelpMe                                      <CR>
 nn  <silent> <Bslash>t   : FloatermToggle                              <CR>
 tno <silent> <Bslash>t   <C-\><C-n>:FloatermToggle                     <CR>
@@ -991,7 +1011,16 @@ fun! SpellCheckIgnoreRules()
   " endif
 endfunction
 
-autocmd BufRead,BufNewFile * :call SpellCheckIgnoreRules()
+" NOTE: was `autocmd BufRead,BufNewFile * :call SpellCheckIgnoreRules()` — ran
+" four `syn match` commands on every single file opened, including binary
+" files and plugin scratch buffers (NERDTree, fzf, fugitive) where spell
+" checking is irrelevant. Gated to filetypes where spell checking actually
+" applies. Also wrapped in an augroup with au! to prevent duplication on
+" vimrc reload.
+augroup SpellCheckIgnore
+  au!
+  autocmd FileType markdown,text,rst,gitcommit :call SpellCheckIgnoreRules()
+augroup END
 
 
 " ----------------------------------------------------------------------------
@@ -1033,13 +1062,25 @@ aug END
 " ----------------------------------------------------------------------------
 " Automatically centre the current line when I enter it in Insert mode.
 " ----------------------------------------------------------------------------
-au InsertEnter * norm zz
+" NOTE: was `au InsertEnter * norm zz` — fired on every insert in every
+" filetype, including code, jumping the view to centre even in a small split
+" where that's disruptive rather than helpful. Scoped to prose filetypes,
+" where recentering to keep the current line visible while writing is
+" actually the point. Wrapped in an augroup with au! to prevent duplication
+" on vimrc reload.
+augroup CentreOnInsert
+  au!
+  au InsertEnter * if index(['markdown', 'text', 'rst'], &filetype) >= 0 | norm zz | endif
+augroup END
 
 
 " ----------------------------------------------------------------------------
 " Disable automatic commenting on the new line
 " ----------------------------------------------------------------------------
-au FileType * setl formatoptions-=c formatoptions-=r formatoptions-=o
+augroup NoAutoComment
+  au!
+  au FileType * setl formatoptions-=c formatoptions-=r formatoptions-=o
+augroup END
 
 
 " ----------------------------------------------------------------------------
@@ -1053,13 +1094,19 @@ au FileType * setl formatoptions-=c formatoptions-=r formatoptions-=o
 " 'updatetime' ms (currently 100ms, set in pack/plugins.vim for Signify), so
 " it naturally batches a burst of edits into a single write. InsertLeave is
 " kept so leaving insert mode still saves right away, same as before.
-au CursorHold,InsertLeave * if &readonly==0 && filereadable(bufname('%'))|silent up|end
+augroup AutoSave
+  au!
+  au CursorHold,InsertLeave * if &readonly==0 && filereadable(bufname('%'))|silent up|end
+augroup END
 
 
 " ----------------------------------------------------------------------------
 " Resize splits when the window is resized
 " ----------------------------------------------------------------------------
-au VimResized * exe "normal! \<c-w>="
+augroup ResizeSplits
+  au!
+  au VimResized * exe "normal! \<c-w>="
+augroup END
 
 
 " ----------------------------------------------------------------------------

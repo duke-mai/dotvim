@@ -127,6 +127,14 @@ au! FileType floaterm
 au FileType floaterm set laststatus=0 noshowmode noruler
   \| au BufLeave <buffer> set laststatus=2 showmode ruler
 
+" Lazy-load: floaterm was moved from pack/plugins/start to pack/plugins/opt.
+" This stub loads the real plugin, which immediately redefines
+" :FloatermToggle with its own command — the second segment below then
+" resolves to that new definition, not back to this stub, so it does not
+" recurse. The \t mappings later in vimrc are unchanged; they just call
+" :FloatermToggle as before.
+command! FloatermToggle packadd floaterm | FloatermToggle
+
 " }}}
 " ----------------------------------------------------------------------------
 " Goyo {{{
@@ -260,6 +268,13 @@ let g:undotree_ShortIndicators = 1
 " Hide 'Press ? for help'
 let g:undotree_HelpLine = 0
 
+" Lazy-load: mundo (this plugin's config vars above use its original
+" 'undotree' naming) was moved from pack/file-system/start to
+" pack/file-system/opt. This stub loads the real plugin before running
+" the actual command, so <Leader>u later in vimrc keeps working unchanged.
+" Same non-recursive packadd-then-run pattern as FloatermToggle above.
+command! MundoToggle packadd mundo | MundoToggle
+
 " }}}
 " ----------------------------------------------------------------------------
 " Thesaurus Query {{{
@@ -309,6 +324,20 @@ let g:maximizer_set_default_mapping = 0
 " ----------------------------------------------------------------------------
 " Vimwiki {{{
 " ----------------------------------------------------------------------------
+" NOTE: left eager (pack/writing/start), deliberately NOT moved to opt/
+" despite being one of the heavier plugins here. vimwiki's own filetype
+" detection (matching *.wiki files) lives in ITS OWN ftdetect/ directory —
+" Vim only scans an opt/ package's ftdetect scripts once that package has
+" already been packadd-ed. Lazy-loading it correctly needs this repo's own
+" `BufRead *.wiki` hook to packadd the plugin BEFORE its native detection
+" would normally run, then re-fire detection for the buffer already open.
+" That pattern is only verifiable against vimwiki's actual ftdetect/ftplugin
+" behaviour, which isn't available in this sandbox (submodule content isn't
+" included in a zip export). Rather than ship an unverified change that
+" could silently break .wiki file handling, this is left as-is. If you want
+" to revisit it: move to pack/writing/opt/vimwiki, then add
+"   au BufNewFile,BufRead *.wiki ++once packadd vimwiki | doautocmd BufRead
+" and test opening a .wiki file actually gets filetype=wiki applied.
 " let g:vimwiki_folding = 'expr' " Enable folding based on the syntax
 let g:vimwiki_listsyms = '✗○◐●✓' " Use custom symbols for todo lists
 let g:vimwiki_html_header_numbering = 1 " Enable header numbering in HTML

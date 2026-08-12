@@ -16,7 +16,12 @@ end
 ru! ftplugin/html.vim ftplugin/html_*.vim ftplugin/html/*.vim
 
 " Enable plugin
-packadd gfm-syntax
+" NOTE: gfm-syntax is not present in .gitmodules — confirmed absent, not a
+" missing search. Without silent!, this threw E919 "file does not exist in
+" packpath" every time a markdown file was opened. If you want GFM-flavoured
+" syntax highlighting, add the submodule at pack/writing/start/gfm-syntax (or
+" wherever you keep it) and drop the silent! below.
+silent! packadd gfm-syntax
 packadd limelight
 
 set ts=4

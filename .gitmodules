@@ -7,8 +7,8 @@
 [submodule "pack/git/start/fugitive"]
 	path = pack/git/start/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-[submodule "pack/git/start/gv"]
-	path = pack/git/start/gv
+[submodule "pack/git/opt/gv"]
+	path = pack/git/opt/gv
 	url = https://github.com/junegunn/gv.vim.git
 [submodule "pack/git/start/rhubarb"]
 	path = pack/git/start/rhubarb
@@ -28,8 +28,8 @@
 [submodule "pack/plugins/start/repeat"]
 	path = pack/plugins/start/repeat
 	url = https://github.com/tpope/vim-repeat
-[submodule "pack/plugins/start/floaterm"]
-	path = pack/plugins/start/floaterm
+[submodule "pack/plugins/opt/floaterm"]
+	path = pack/plugins/opt/floaterm
 	url = https://github.com/voldikss/vim-floaterm.git
 [submodule "pack/plugins/start/helpme"]
 	path = pack/plugins/start/helpme
@@ -92,8 +92,8 @@
 [submodule "pack/writing/start/thesaurus_query"]
 	path = pack/writing/start/thesaurus_query
 	url = https://github.com/Ron89/thesaurus_query.vim.git
-[submodule "pack/writing/start/wordy"]
-	path = pack/writing/start/wordy
+[submodule "pack/writing/opt/wordy"]
+	path = pack/writing/opt/wordy
 	url = https://github.com/preservim/vim-wordy.git
 [submodule "pack/writing/start/limelight"]
 	path = pack/writing/start/limelight
@@ -128,8 +128,8 @@
 [submodule "pack/writing/start/abolish"]
 	path = pack/writing/start/abolish
 	url = https://github.com/tpope/vim-abolish.git
-[submodule "pack/file-system/start/mundo"]
-	path = pack/file-system/start/mundo
+[submodule "pack/file-system/opt/mundo"]
+	path = pack/file-system/opt/mundo
 	url = https://github.com/simnalamburt/vim-mundo.git
 [submodule "pack/writing/start/caser"]
 	path = pack/writing/start/caser
