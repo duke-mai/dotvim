@@ -375,6 +375,37 @@ endif
 set noswapfile
 
 
+" ----------------------------------------------------------------------------
+" Prevent decrypted GPG content from leaking to disk or the system clipboard
+" ----------------------------------------------------------------------------
+" vim-gnupg (pack/api/start/gnupg) transparently decrypts *.gpg/*.asc/*.pgp
+" files for editing, and generally disables undofile/backup/swapfile for its
+" own buffers internally — but that protection lives inside the plugin and
+" depends on it loading correctly and matching the extension you're using.
+" `set undofile` and `set backup` above are both GLOBAL, so without this
+" safety net, editing an encrypted file could still write the DECRYPTED
+" plaintext to $DOTVIM/.tmp/undodir/ or $DOTVIM/.tmp/backupdir/ on disk if
+" the plugin's own guard doesn't fire for any reason. `clipboard=unnamed`
+" (set earlier in this section) is a separate leak: every yank from a
+" decrypted buffer syncs to the system clipboard, where clipboard-history
+" managers (macOS, GNOME, KDE) can retain it well after the file is closed.
+" This hook is independent of the plugin and applies regardless of whether
+" it's working.
+augroup GPGSafety
+  au!
+  au BufReadPre,FileReadPre *.gpg,*.asc,*.pgp
+        \ setlocal noundofile nobackup noswapfile viminfo= nowritebackup
+        \ | let b:gpg_editing = 1
+  " Block clipboard sync for the duration of editing an encrypted buffer.
+  " &clipboard is a global option, so this saves/restores it per-buffer
+  " rather than toggling it for the whole session.
+  au BufReadPre,FileReadPre *.gpg,*.asc,*.pgp
+        \ let b:gpg_saved_clipboard = &clipboard | set clipboard=
+  au BufWinLeave *.gpg,*.asc,*.pgp
+        \ if exists('b:gpg_saved_clipboard') | let &clipboard = b:gpg_saved_clipboard | endif
+augroup END
+
+
 " }}}
 " ==============================================================================
 " TEMPLATES & CUSTOM VIM FILETYPE SETTINGS {{{

@@ -19,6 +19,17 @@ if exists("b:did_indent")
 en
 let b:did_indent = 1
 
+" Lazy-load: autopep8, flake8, and pydocstring were moved from
+" pack/syntax/start to pack/syntax/opt. This file only runs for Python
+" buffers, so it's the natural trigger point — packadd is idempotent
+" (harmless no-op if already loaded), and this doesn't require knowing
+" each plugin's exact command/mapping names since it just ensures they're
+" loaded by the time you'd use them, same as when they were eager, just
+" deferred until a .py file is actually opened.
+packadd autopep8
+packadd flake8
+packadd pydocstring
+
 setl ts=4
 setl sts=4
 setl shiftwidth=4

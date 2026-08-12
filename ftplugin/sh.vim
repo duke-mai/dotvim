@@ -9,6 +9,12 @@
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Lazy-load: shellcheck and shfmt were moved from pack/syntax/start to
+" pack/syntax/opt. This file only runs for shell buffers, so it's the
+" natural trigger point — same reasoning as ftplugin/python.vim.
+packadd shellcheck
+packadd shfmt
+
 setl ts=2
 setl sts=2
 setl shiftwidth=2
