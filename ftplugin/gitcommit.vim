@@ -9,6 +9,11 @@
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+if exists("b:did_ftplugin")
+  fini
+en
+let b:did_ftplugin = 1
+
 " Enable spell checking for gitcommit
 setl spell spl=en_au
 

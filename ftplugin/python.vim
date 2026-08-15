@@ -49,10 +49,19 @@ setl tw=79
 " NOTE: was "aug TooLong" — identical name to the augroup in ftplugin/sh.vim.
 " Whichever filetype's ftplugin ran last would `au!` (clear) the other's
 " autocmds, silently disabling the 79/88-column highlight for one filetype
-" depending on file-open order. Renamed unique per filetype.
+" depending on file-open order. Renamed unique per filetype. Also fixed the
+" pattern from "*" to "<buffer>" — "*" meant this 79-column highlight leaked
+" to every buffer opened afterward in the session, not just Python ones,
+" once a single .py file had triggered this augroup once. Also removed
+" au! -- this file (and its augroup) re-runs once per Python buffer opened,
+" not once per session, and au! clears the WHOLE augroup including
+" buffer-local entries from any OTHER already-open Python buffer. Verified:
+" with au!, opening buf1 then buf2 wiped buf1's highlight; without it, both
+" keep theirs. The b:did_indent guard above already prevents this file
+" (and this aug block) from running twice for the SAME buffer, so au! was
+" never needed for that purpose here.
 aug TooLongPython
-    au!
-    au WinEnter,BufEnter * cal clearmatches()
+    au WinEnter,BufEnter <buffer> cal clearmatches()
           \| cal matchadd('ColorColumn', '\%>79v', 100)
 aug END
 
@@ -284,15 +293,15 @@ endf
 " ----------------------------------------------------------------------------
 " Run Python script.
 " ----------------------------------------------------------------------------
-nn         <F5> :!clear && python3 %           <CR>
-nn <Bslash><F5> :!clear && python3 -m pytest % <CR>
+nnoremap <buffer>         <F5> :!clear && python3 %           <CR>
+nnoremap <buffer> <Bslash><F5> :!clear && python3 -m pytest % <CR>
 map <buffer> <Leader><F5> :call flake8#Flake8()<CR>
 
 " ----------------------------------------------------------------------------
 " Format paragraph (selected or not) to 80 character lines.
 " ----------------------------------------------------------------------------
-nn fp gqap     :ec 'Paragraph Formatted !' <CR>
-xn fp gqa<Esc> :ec 'Paragraph Formatted !' <CR>
+nnoremap <buffer> fp gqap     :ec 'Paragraph Formatted !' <CR>
+xnoremap <buffer> fp gqa<Esc> :ec 'Paragraph Formatted !' <CR>
 
 " }}}
 
@@ -353,7 +362,7 @@ ia validanswers VALID_ANSWERS = ['y', 'yes', 'n', 'no']<CR>
 " ----------------------------------------------------------------------------
 " List all functions in current buffer
 " ----------------------------------------------------------------------------
-nn <Leader>lf :ilist def.*<CR>:
+nnoremap <buffer> <Leader>lf :ilist def.*<CR>:
 
 " ----------------------------------------------------------------------------
 " Function docstring

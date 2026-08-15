@@ -9,12 +9,17 @@
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+if exists("b:did_ftplugin")
+  fini
+en
+let b:did_ftplugin = 1
+
 " Hide statusline fugitive
 setl laststatus=0 noshowmode noruler
   \| au BufLeave <buffer> setl laststatus=2 showmode ruler
 
 " Quick push during a commit window
-com! Gpush :!clear && git push
+com! -buffer Gpush :!clear && git push
 
 " Auto destroy Fugitive buffers
 " http://vimcasts.org/episodes/fugitive-vim-browsing-the-git-object-database/

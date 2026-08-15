@@ -9,6 +9,11 @@
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+if exists("b:did_ftplugin")
+  fini
+en
+let b:did_ftplugin = 1
+
 setl nocul nocuc
 setl fdls=99
 setl nornu

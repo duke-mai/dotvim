@@ -9,6 +9,11 @@
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+if exists("b:did_ftplugin")
+  fini
+en
+let b:did_ftplugin = 1
+
 " Lazy-load: shellcheck and shfmt were moved from pack/syntax/start to
 " pack/syntax/opt. This file only runs for shell buffers, so it's the
 " natural trigger point — same reasoning as ftplugin/python.vim.
@@ -28,53 +33,59 @@ setl tw=88
 " Source: https://gist.github.com/romainl/eabe0fe8c564da1b6cfe1826e1482536
 " NOTE: was "aug TooLong" — identical name to the augroup in
 " ftplugin/python.vim, which cleared this one's autocmds via `au!`
-" depending on file-open order. Renamed unique per filetype.
+" depending on file-open order. Renamed unique per filetype. Also fixed the
+" pattern from "*" to "<buffer>" (was leaking the 88-column highlight to
+" every buffer, not just shell ones) and removed au! (was wiping the
+" buffer-local entry from any other already-open shell buffer, since this
+" augroup is shared across all shell buffers but the file re-runs once per
+" buffer opened -- verified this exact failure mode on python.vim's
+" equivalent block before applying the same fix here). The b:did_ftplugin
+" guard above already prevents this file running twice for the same buffer.
 aug TooLongSh
-    au!
-    au WinEnter,BufEnter * cal clearmatches()
+    au WinEnter,BufEnter <buffer> cal clearmatches()
           \| cal matchadd('ColorColumn', '\%>88v', 100)
 aug END
 
 " ----------------------------------------------------------------------------
 " Seamlessly treat visual lines as actual lines when moving around.
 " ----------------------------------------------------------------------------
-nn j gj
-nn k gk
+nnoremap <buffer> j gj
+nnoremap <buffer> k gk
 
 " ----------------------------------------------------------------------------
 " Run bash script.
 " ----------------------------------------------------------------------------
-nn <F5>         :!clear && bash %<CR>
+nnoremap <buffer> <F5>         :!clear && bash %<CR>
 
 " ----------------------------------------------------------------------------
 " Perform ShellCheck on bash script.
 " ----------------------------------------------------------------------------
-nn <Leader><F5> :ShellCheck!     <CR>
-vn <Leader><F5> :ShellCheck!     <CR>
+nnoremap <buffer> <Leader><F5> :ShellCheck!     <CR>
+vnoremap <buffer> <Leader><F5> :ShellCheck!     <CR>
 
 " ----------------------------------------------------------------------------
 " source: https://raw.githubusercontent.com/andreafrancia/dot-files/master/.vim/ftplugin/sh.vim
 " ----------------------------------------------------------------------------
-nn <Leader>mf  :call MakeFunction()              <CR>
-vn <Leader>rec :call ExtractCommandInVariable()  <CR>
-vn <Leader>rea :call ExtractArgumentInVariable() <CR>
-nn <Leader>ri  :call InlineVariableBash()        <CR>
+nnoremap <buffer> <Leader>mf  :call <SID>MakeFunction()              <CR>
+vnoremap <buffer> <Leader>rec :call <SID>ExtractCommandInVariable()  <CR>
+vnoremap <buffer> <Leader>rea :call <SID>ExtractArgumentInVariable() <CR>
+nnoremap <buffer> <Leader>ri  :call <SID>InlineVariableBash()        <CR>
 
-function! MakeFunction()
+function! s:MakeFunction()
   let name = expand('<cword>')
   execute "normal O".name."() {\<cr>:\<cr>}"
 endfunction
 
 " adding . to iskeyword make CTRL-N complete file names
-set iskeyword+=.
+setl iskeyword+=.
 
-function! ExtractArgumentInVariable()
+function! s:ExtractArgumentInVariable()
     let name = input("Variable name (BASH): ")
     if name == ''
         return
     endif
 
-    let expression = GetVisualSelection()
+    let expression = s:GetVisualSelection()
     echom expression
     " Replace selected text with the variable name
     exec "normal! gvc" . '"$' . name . '"'
@@ -83,13 +94,13 @@ function! ExtractArgumentInVariable()
     " Paste the original selected text to be the variable value
 endfunction
 
-function! ExtractCommandInVariable()
+function! s:ExtractCommandInVariable()
     let name = input("Variable name (BASH): ")
     if name == ''
         return
     endif
 
-    let expression = GetVisualSelection()
+    let expression = s:GetVisualSelection()
     echom expression
     " Replace selected text with the variable name
     exec "normal! gvc" . "echo " . '"$' . name . '"'
@@ -97,13 +108,13 @@ function! ExtractCommandInVariable()
     exec "normal! O" . name . "=" . '"$(' . expression . ')"'
     " Paste the original selected text to be the variable value
 endfunction
-function! ExtractCommandInVariableBash()
+function! s:ExtractCommandInVariableBash()
     let name = input("Variable name (BASH): ")
     if name == ''
         return
     endif
 
-    let expression = GetVisualSelection()
+    let expression = s:GetVisualSelection()
     echom expression
     " Replace selected text with the variable name
     exec "normal! gvc" . "echo " . '"$' . name . '"'
@@ -112,7 +123,7 @@ function! ExtractCommandInVariableBash()
     " Paste the original selected text to be the variable value
 endfunction
 
-function! InlineVariableBash()
+function! s:InlineVariableBash()
     " Copy the variable under the cursor into the 'a' register
     :let l:tmp_a = @a
     :normal "ayiw
@@ -144,7 +155,7 @@ endfunction
 "   Param: Optional parameter of '1' dictates cut, rather than copy
 "   Returns the text that was selected when the function was invoked
 "   without clobbering any registers
-function! GetVisualSelection(...) 
+function! s:GetVisualSelection(...)
   try
     let a_save = @a
     if a:0 >= 1 && a:1 == 1

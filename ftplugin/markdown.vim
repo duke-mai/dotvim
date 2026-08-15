@@ -24,9 +24,9 @@ ru! ftplugin/html.vim ftplugin/html_*.vim ftplugin/html/*.vim
 silent! packadd gfm-syntax
 packadd limelight
 
-set ts=4
-set shiftwidth=4
-set sts=4
+setl ts=4
+setl shiftwidth=4
+setl sts=4
 setl tw=80
 
 setl comments=fb:*,fb:-,fb:+,n:> commentstring=<!--%s-->
@@ -47,7 +47,7 @@ endf
 
 fu! s:disable_limelight()
   Limelight!
-  so $MYVIMRC
+  exe 'source' fnameescape(!empty($MYVIMRC) ? $MYVIMRC : $DOTVIM . '/vimrc')
 endf
 
 au! User GoyoEnter nested call <SID>enable_limelight()
@@ -57,7 +57,7 @@ au! User GoyoLeave nested call <SID>disable_limelight()
 " Tabular
 " ----------------------------------------------------------------------------
 " Call the :Tabularize command each time a | character is inserted
-ino <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+inoremap <buffer> <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 fu! s:align()
   let p = '^\s*|\s.*\s|\s*$'
   if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
@@ -72,21 +72,21 @@ endf
 " ----------------------------------------------------------------------------
 " Format paragraph (selected or not) to 80 character lines
 " ----------------------------------------------------------------------------
-nn fp gqap     :ec 'Paragraph Formatted !' <CR>
-xn fp gqa<Esc> :ec 'Paragraph Formatted !' <CR>
+nnoremap <buffer> fp gqap     :ec 'Paragraph Formatted !' <CR>
+xnoremap <buffer> fp gqa<Esc> :ec 'Paragraph Formatted !' <CR>
 
 
 " ----------------------------------------------------------------------------
 " Seamlessly treat visual lines as actual lines when moving around
 " ----------------------------------------------------------------------------
-nn j gj
-nn k gk
+nnoremap <buffer> j gj
+nnoremap <buffer> k gk
 
 
 " ----------------------------------------------------------------------------
 " Align tables
 " ----------------------------------------------------------------------------
-vn <F5> :Tabularize /\|<CR>:ec 'Table Aligned!' <CR>
+vnoremap <buffer> <F5> :Tabularize /\|<CR>:ec 'Table Aligned!' <CR>
 
 
 " ----------------------------------------------------------------------------
@@ -94,17 +94,17 @@ vn <F5> :Tabularize /\|<CR>:ec 'Table Aligned!' <CR>
 " ----------------------------------------------------------------------------
 " Requirements: $ sudo apt install pandoc, texlive-latex-extra
 
-nn PDF :!clear && echo 'Start Generating The PDF Version...' &&
+nnoremap <buffer> PDF :!clear && echo 'Start Generating The PDF Version...' &&
       \ pandoc % -t beamer -o %.pdf<CR>
       \ :ec 'The PDF Version Is Ready !'<CR>
 
 " Beautiful display on the web
-nn HTML :!clear && echo 'Start Generating The HTML Version...' &&
+nnoremap <buffer> HTML :!clear && echo 'Start Generating The HTML Version...' &&
       \ pandoc -t slidy -s % -o %.html<CR>
       \ :ec 'The HTML Version Is Ready !'<CR>
 
 " Not very useful since the formatting is not good
-nn PPT :!clear && echo 'Start Generating The PPT Version...' &&
+nnoremap <buffer> PPT :!clear && echo 'Start Generating The PPT Version...' &&
       \ pandoc % -o %.pptx<CR>
       \ :ec 'The PPT Version Is Ready !'<CR>
 

@@ -9,6 +9,11 @@
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+if exists("b:did_ftplugin")
+  fini
+en
+let b:did_ftplugin = 1
+
 setl ts=2
 setl sts=2
 setl shiftwidth=2
@@ -21,9 +26,16 @@ setl foldmethod=marker
 setl tw=80
 
 " Source: https://gist.github.com/romainl/eabe0fe8c564da1b6cfe1826e1482536
-aug TooLong
-    au!
-    au WinEnter,BufEnter * cal clearmatches()
+" NOTE: was "aug TooLong" — identical bare name to the augroup in
+" ftplugin/vim.vim, so whichever of the two loaded last would clear the
+" other's column-highlight autocmds via au!. Renamed unique per filetype,
+" same fix as applied to python.vim/sh.vim in an earlier pass. au! also
+" removed — this augroup is shared across all tex buffers but the file
+" re-runs once per buffer opened, so au! would wipe the buffer-local entry
+" from any other already-open tex buffer. The b:did_ftplugin guard above
+" already prevents this file running twice for the same buffer.
+aug TooLongTex
+    au WinEnter,BufEnter <buffer> cal clearmatches()
           \| cal matchadd('ColorColumn', '\%>80v', 100)
 aug END
 
@@ -31,5 +43,5 @@ aug END
 let g:tex_flavor='latex'
 " let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
-set conceallevel=1
+setl conceallevel=1
 let g:tex_conceal='abdmg'

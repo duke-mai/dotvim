@@ -9,6 +9,11 @@
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+if exists("b:did_ftplugin")
+  fini
+en
+let b:did_ftplugin = 1
+
 setl ts=4
 setl sts=4
 setl shiftwidth=4

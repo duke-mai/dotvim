@@ -9,4 +9,13 @@
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-nn <F5> :!clear && node %<CR>
+if exists("b:did_ftplugin")
+  fini
+en
+let b:did_ftplugin = 1
+
+setl ts=2
+setl sts=2
+setl shiftwidth=2
+
+nnoremap <buffer> <F5> :!clear && node %<CR>
