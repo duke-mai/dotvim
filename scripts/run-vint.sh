@@ -3,6 +3,18 @@
 # actually parse, and separately report vimrc's known parser-limitation
 # finding as non-blocking. See .vintrc.yaml for the full rationale.
 #
+# PREREQUISITE if running locally: `pip install "setuptools<81" vim-vint`,
+# not just `pip install vim-vint`. vim-vint (last released version 0.3.21)
+# imports the deprecated `pkg_resources` module; setuptools 81+ dropped it
+# entirely, which breaks vint outright with "ModuleNotFoundError: No
+# module named 'pkg_resources'" on any environment where pip installs the
+# newest setuptools by default. This bit CI directly once already (see
+# validate.yml's vimscript-lint job for the full incident notes). This is
+# a time-bounded workaround: pkg_resources itself is slated for full
+# removal from Python packaging as early as 2025-11-30, at which point
+# even `setuptools<81` won't help unless vim-vint's upstream has fixed
+# this by then.
+#
 # Usage: scripts/run-vint.sh
 # Exit code: 0 if the blocking set is clean, 1 if it finds a real error.
 # vimrc's parse limitation is reported but never affects the exit code.

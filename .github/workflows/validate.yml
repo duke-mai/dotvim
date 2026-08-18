@@ -76,10 +76,33 @@ jobs:
       - name: 🐍 Set up Python
         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
-          python-version: '3.x'
+          # Pinned rather than '3.x' -- not because vint is Python-version-
+          # sensitive (it isn't; see the setuptools note below), but because
+          # a floating selector previously resolved to whatever the newest
+          # available interpreter was on a given day, which is its own
+          # source of un-reproducible CI failures independent of this one.
+          python-version: '3.12'
 
       - name: 📦 Install vint
-        run: pip install vim-vint
+        # vim-vint (last released version 0.3.21) imports the deprecated
+        # `pkg_resources` module, with no apparent upstream fix for its
+        # removal. Newer setuptools versions (81+) dropped pkg_resources
+        # entirely, which broke this job outright with
+        # "ModuleNotFoundError: No module named 'pkg_resources'" --
+        # reproduced locally in a clean venv before this fix, confirmed
+        # fixed with a real lint run, not just `vint --help`. Note the pin
+        # is explicitly time-bounded: pkg_resources itself is slated for
+        # full removal from Python packaging as early as 2025-11-30 per
+        # setuptools' own deprecation warning, at which point this pin
+        # stops being a workaround and vint stops being usable at all
+        # unless its upstream fixes this first. If this step starts
+        # failing again with a pkg_resources-related error, that's most
+        # likely why -- check whether a vim-vint release newer than 0.3.21
+        # exists and has addressed it before assuming this pin needs
+        # adjusting further.
+        run: |
+          pip install "setuptools<81"
+          pip install vim-vint
 
       - name: 📜 Run vint
         run: bash scripts/run-vint.sh
