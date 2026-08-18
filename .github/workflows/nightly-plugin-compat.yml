@@ -1,0 +1,82 @@
+name: 🌙 Nightly plugin compatibility
+
+# Runs BEFORE sync-plugins.yml's scheduled 3am run (offset earlier),
+# previewing exactly what that job's `git submodule update --remote` +
+# direct push-to-master would produce. If tonight's real sync would
+# break the config, this surfaces it in advance rather than after an
+# unreviewed push has already landed on master.
+on:
+  schedule:
+    - cron: '0 1 * * *' # 01:00 UTC, 2 hours before sync-plugins.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: nightly-plugin-compat
+  cancel-in-progress: false
+
+jobs:
+  preview-sync:
+    name: 🌙 Preview tonight's sync
+    runs-on: ubuntu-latest
+    steps:
+      - name: ➡️ Checkout (with submodules)
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: 🐧 Install Vim
+        run: sudo apt-get update && sudo apt-get install -y vim
+
+      - name: 🌙 Preview tonight's sync and validate the result
+        id: preview
+        run: bash scripts/check-nightly-plugin-compat.sh
+
+      - name: 🚨 Open an issue if tonight's sync would break things
+        if: failure()
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
+        with:
+          script: |
+            const title = '🌙 Tonight\'s scheduled plugin sync would break the config';
+            const body = [
+              'nightly-plugin-compat.yml previewed what sync-plugins.yml',
+              'would produce if it ran as scheduled tonight, and validation',
+              'failed against that hypothetical state.',
+              '',
+              `Run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              '',
+              'sync-plugins.yml pushes directly to master with no review',
+              'gate, so if this issue isn\'t addressed before 03:00 UTC, the',
+              'broken state will land on master unreviewed. Consider',
+              'disabling sync-plugins.yml\'s schedule trigger temporarily,',
+              'or identifying and pinning the specific submodule causing',
+              'the break.',
+            ].join('\n');
+
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: ['nightly-sync-would-break'],
+            });
+
+            if (existing.data.length === 0) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ['nightly-sync-would-break'],
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.data[0].number,
+                body: `Still failing as of ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              });
+            }

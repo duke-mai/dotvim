@@ -1,0 +1,98 @@
+name: 🔎 Post-sync validation
+
+# The existing sync-plugins.yml delegates to an external reusable
+# workflow that runs `git submodule update --remote` (always takes each
+# plugin's latest upstream commit, unreviewed) and pushes straight to
+# master -- confirmed by reading that workflow's actual content, not
+# assumed. There is no PR gate on that push. This workflow exists to
+# catch a bad auto-sync AFTER it has already landed on master, since
+# nothing currently does.
+on:
+  workflow_run:
+    workflows: ["📥 Sync plugins"]
+    types: [completed]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: post-sync-validate
+  cancel-in-progress: false
+
+jobs:
+  validate-synced-state:
+    name: 🔎 Validate post-sync state
+    # Only run if the sync workflow itself succeeded -- if it failed
+    # outright there's nothing new to validate, and the sync failure is
+    # already visible in that workflow's own run.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: ➡️ Checkout master (post-sync state, with submodules)
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: master
+          submodules: recursive
+
+      - name: 🐧 Install Vim
+        run: sudo apt-get update && sudo apt-get install -y vim
+
+      - name: 🚀 Run startup smoke test against synced state
+        id: smoke
+        run: bash scripts/startup-smoke-test.sh
+
+      - name: 📂 Run per-filetype open test against synced state
+        id: ftopen
+        run: bash scripts/ftplugin-open-test.sh
+
+      - name: 🔗 Check .gitmodules ↔ pack/ consistency
+        id: gitmodules
+        run: bash scripts/check-gitmodules-consistency.sh
+
+      - name: 🚨 Open an issue if the auto-synced state is broken
+        if: failure()
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
+        with:
+          script: |
+            const title = '🚨 Auto-sync produced a broken config on master';
+            const body = [
+              'The scheduled plugin sync (sync-plugins.yml) pushed an',
+              'update directly to master, and post-sync validation of',
+              'that state failed.',
+              '',
+              `Run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              '',
+              'That workflow pushes to master with no review gate, so',
+              'master may currently be in a broken state. Consider:',
+              '- `git log -1 --format=%H` on master to find the sync commit',
+              '- `git revert` that commit if a specific plugin update is the cause',
+              '- Checking which submodule advanced furthest as the likely culprit',
+            ].join('\n');
+
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: ['auto-sync-broken'],
+            });
+
+            if (existing.data.length === 0) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ['auto-sync-broken'],
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.data[0].number,
+                body: `Still broken as of ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              });
+            }

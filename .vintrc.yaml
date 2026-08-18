@@ -1,0 +1,42 @@
+# vint (Vimscript linter) configuration.
+#
+# Policy severity is deliberately capped at "error" for the blocking CI
+# check, not vint's stricter "warning"/"style_problem" levels. A full run
+# at style_problem severity currently flags ~100 items against this
+# repo's established conventions (double- vs single-quoted strings, `==`
+# vs `==#`, autocmd-without-augroup in files where the surrounding
+# structure already makes that safe) -- none of which are the bug class
+# this repo's fix history has actually found (buffer-scoping, global
+# `set` in ftplugin files, missing re-entry guards). Those specific bugs
+# are covered precisely by scripts/check-ftplugin-hygiene.sh instead,
+# which targets exactly those patterns with zero false-positive noise.
+#
+# KNOWN LIMITATION: vint's underlying parser (vim-vimlparser) does not
+# support the `0o700`-style octal integer literal used in vimrc (valid,
+# working Vimscript -- present in this file before any of the fixes in
+# this repo's history, not something introduced by tooling changes). A
+# parse error on that one line aborts linting for the ENTIRE file, not
+# just that line, so vint currently cannot meaningfully lint vimrc at
+# all. This is tracked as a deliberate, documented gap (see
+# .github/workflows/validate.yml's vimscript-lint job) rather than
+# silently ignored or worked around by rewriting working code to fit a
+# linter's parser gap. Revisit if/when vim-vimlparser adds support for
+# this syntax.
+
+cmdargs:
+  error: []
+  warning: []
+  style_problem: []
+
+policies:
+  # Style-only, already inconsistent with this repo's established
+  # conventions (double-quoted strings throughout) -- not a bug class.
+  ProhibitUnnecessaryDoubleQuote:
+    enabled: false
+  # This repo already prefers `==` for the general case and uses `=~`
+  # deliberately in ftplugin/python.vim's indent-detection logic; a
+  # blanket "always use ==#" policy doesn't match intentional case-
+  # insensitive comparisons already reviewed and fixed for correctness
+  # elsewhere in this repo's history.
+  ProhibitEqualTildeOperator:
+    enabled: false

@@ -3,8 +3,33 @@ name: 📥 Sync plugins
 on:
   schedule:
     - cron: '0 3 * * *'
+  workflow_dispatch: {}
+
+# Least-privilege default; the sync job itself needs contents:write to
+# push the pointer bump, granted explicitly below rather than inherited
+# from an unspecified org/repo default.
+permissions:
+  contents: read
+
+concurrency:
+  group: sync-plugins
+  cancel-in-progress: false
 
 jobs:
   sync:
     name: ⤵️ Sync Submodules
-    uses: duc-mt/dotfiles/.github/workflows/sync-submodules.yml@master
+    permissions:
+      contents: write
+    # NOTE: was pinned to @master -- a mutable branch ref in a SEPARATE
+    # repository (duc-mt/dotfiles). Anyone with write access there (or a
+    # compromise of that repo) could silently change this workflow's
+    # behaviour with zero corresponding change visible in this repo's
+    # history. Pinned to the commit that was @master's HEAD at the time
+    # of this fix (verified via `git ls-remote`, not guessed). This
+    # workflow currently runs `git submodule update --remote` (always
+    # takes each plugin's latest upstream commit, not a reviewed one)
+    # and pushes directly to master with no PR gate -- see
+    # post-sync-validate.yml, which exists specifically to catch a bad
+    # auto-sync after the fact, and nightly-plugin-compat.yml, which
+    # tries to catch it before the 3am run even happens.
+    uses: duc-mt/dotfiles/.github/workflows/sync-submodules.yml@8abf98c7ea226809e281b8cfbbf9d0999dd7e029 # master, pinned 2026-08

@@ -1,0 +1,20 @@
+version: 2
+updates:
+  # Track updates to the 55 plugin submodules themselves. Pairs with
+  # nightly-plugin-compat.yml and post-sync-validate.yml so a Dependabot-
+  # proposed bump is validated the same way an auto-sync bump is.
+  - package-ecosystem: gitsubmodule
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
+
+  # Track the GitHub Actions used across every workflow in this repo,
+  # including the SHA-pinned ones -- Dependabot understands the
+  # `@sha # vX.Y.Z` comment convention and proposes both the new SHA and
+  # an updated comment together.
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10

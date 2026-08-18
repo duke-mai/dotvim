@@ -1,0 +1,66 @@
+name: 📊 Startup benchmark
+
+# Tracks Vim startup time over time. Protects the lazy-loading work done
+# across this repo's fix history (moving several plugins from start/ to
+# opt/, deferring the 19KB wordlist to first InsertEnter) from silently
+# regressing as new plugins are added later.
+#
+# Deliberately non-blocking (never fails the build): CI runner timing is
+# inherently noisy (shared hardware, variable load), so a hard numeric
+# threshold would produce false-positive failures unrelated to any real
+# regression in this repo. Instead this records the number as a build
+# artifact and a step-summary on every push to master, so a genuine
+# creeping regression is visible by comparing artifacts across runs in
+# the Actions history, without a fragile gate blocking unrelated PRs on
+# a noisy measurement.
+on:
+  push:
+    branches: [master]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: startup-benchmark-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  benchmark:
+    name: 📊 Measure startup time
+    runs-on: ubuntu-latest
+    steps:
+      - name: ➡️ Checkout (with submodules)
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          submodules: recursive
+
+      - name: 🐧 Install Vim
+        run: sudo apt-get update && sudo apt-get install -y vim
+
+      - name: 📊 Measure startup time (median of 5 runs)
+        id: measure
+        run: |
+          median=$(bash scripts/measure-startup-time.sh 5)
+          echo "median_ms=$median" >> "$GITHUB_OUTPUT"
+
+      - name: 📝 Write step summary
+        run: |
+          {
+            echo "### 📊 Startup time"
+            echo ""
+            echo "Median of 5 runs: **${{ steps.measure.outputs.median_ms }}ms**"
+            echo ""
+            echo "Commit: \`${{ github.sha }}\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: 📄 Write result file for the artifact
+        run: echo "${{ steps.measure.outputs.median_ms }}" > .startup-benchmark-result.txt
+
+      - name: 💾 Save result as an artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: startup-time-${{ github.sha }}
+          path: ${{ github.workspace }}/.startup-benchmark-result.txt
+          retention-days: 90
+        if: always()
