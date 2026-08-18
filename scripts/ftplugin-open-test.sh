@@ -37,7 +37,15 @@ OUT=$(mktemp)
 trap 'rm -f "$OUT"' EXIT
 
 unset DOTVIM DOTFILES
-timeout 30 vim -Nu ./vimrc -S "$SCRIPT_FILE" < /dev/null > "$OUT" 2>&1
+# See startup-smoke-test.sh for why this is needed: `vim -Nu ./vimrc`
+# never adds the checkout directory to &packpath/&runtimepath on its
+# own, which broke every `packadd <opt-plugin>` call in real CI with
+# E919/E185 even when submodules were genuinely checked out correctly.
+REPO_ROOT="$(pwd)"
+timeout 30 vim -Nu ./vimrc \
+  --cmd "set packpath+=$REPO_ROOT" \
+  --cmd "set runtimepath+=$REPO_ROOT" \
+  -S "$SCRIPT_FILE" < /dev/null > "$OUT" 2>&1
 
 echo "== output =="
 cat "$OUT"

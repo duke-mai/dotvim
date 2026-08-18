@@ -21,7 +21,22 @@ trap 'rm -f "$OUT"' EXIT
 # risk rather than masking it.
 unset DOTVIM DOTFILES
 
-timeout 30 vim -Nu ./vimrc -c 'set nomore' -c 'qa!' < /dev/null > "$OUT" 2>&1
+# `vim -Nu ./vimrc` does NOT add the checkout directory itself to
+# &packpath/&runtimepath -- unlike a real `~/.vim/vimrc` install, where
+# ~/.vim is one of Vim's own default runtimepath entries regardless of
+# vimrc content. Without this, every `packadd <opt-plugin>` call fails
+# with E919 even when the plugin's submodule is genuinely checked out
+# correctly -- this was a REAL CI failure (not the "shallow checkout"
+# caveat further down), confirmed by reproducing it locally: placing
+# real-looking plugin content directly in the checkout and confirming
+# the bare invocation still failed, then confirming this fix resolves it
+# with the identical content still in place.
+REPO_ROOT="$(pwd)"
+
+timeout 30 vim -Nu ./vimrc \
+  --cmd "set packpath+=$REPO_ROOT" \
+  --cmd "set runtimepath+=$REPO_ROOT" \
+  -c 'set nomore' -c 'qa!' < /dev/null > "$OUT" 2>&1
 vim_exit=$?
 
 echo "== vim exit code: $vim_exit =="
