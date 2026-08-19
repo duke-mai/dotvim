@@ -102,6 +102,12 @@ bash scripts/check-gitmodules-consistency.sh
 ```
 This is exactly the check that would have caught the failure above before it ever reached a real machine — run it locally, not just in CI, whenever you touch `.gitmodules` or move anything under `pack/`.
 
+**A second, distinct failure mode from the same root operation — this one has also happened for real:** `git submodule sync && git submodule update --init --recursive` does **not** create a new gitlink for a path that never had one committed. Those two commands only act on submodules that *already* have a commit-reference entry in the git tree — `sync` updates the remote URL for an already-initialized submodule, and `update --init` initializes a submodule that's already been `git submodule add`-ed and committed at that exact path. If a plugin's *new* `opt/` path was only ever declared in `.gitmodules` text (e.g. from applying a patch that changed the text but never ran `git submodule add` for real), running `sync && update --init --recursive` will silently do **nothing** for that path — no error, no directory, nothing. `.gitmodules` will say the plugin lives there; a fresh clone will have an empty hole where it should be.
+
+The symptom looks identical to a normal missing-submodule-content situation (an empty or absent directory), but `check-gitmodules-consistency.sh` will catch it precisely: `FAIL: .gitmodules declares '<path>' but no directory exists on disk`. The fix is the same `git submodule add <url> <path>` from the sequence above — it's safe to run even when `.gitmodules` already has a matching entry (git recognizes the existing declaration and won't duplicate it; it just creates the missing gitlink and clones the content).
+
+**The takeaway:** after moving *any* plugin's path, don't reach for `sync && update --init` as the fix--all. That pair is for keeping already-tracked submodules current, not for registering a brand new path. `git submodule add` is the only command that actually creates a new gitlink.
+
 ### 3.3 Deciding start/ vs opt/, and how to lazy-load correctly
 
 Default to `opt/` unless the plugin needs to be active from the very first keystroke (e.g. a statusline, a colourscheme companion). Every plugin currently in `opt/` got there because it was previously in `start/` and measurably added to every single startup regardless of whether it was used that session.
@@ -290,9 +296,16 @@ git ls-remote https://github.com/<owner>/<repo>.git refs/tags/<new-version>
 # repo's CI setup -- verify every time, even when a SHA looks plausible.)
 ```
 
-### vint's known limitation
+### vint's known limitations
 
-`vint` (the Vimscript linter run in `validate.yml`) cannot parse `vimrc` at all — it hits a parser error on the pre-existing `0o700` octal literal (used for `mkdir` permissions) and aborts linting the *entire file* on that one line, not just that construct. This is a `vint` limitation, not a bug in `vimrc` — the code is valid, working Vimscript. `scripts/run-vint.sh` reports this as informational only and does not fail the build because of it. `vint` *does* successfully lint `pack/plugins.vim`, `pack/lf.vim`, and every `ftplugin/*.vim` file, and failures there **do** block CI. If `vint`'s upstream (`vim-vimlparser`) ever adds support for this octal syntax, `vimrc` linting will start working automatically — no config change needed here.
+**Parser limitation:** `vint` cannot parse `vimrc` at all — it hits a parser error on the pre-existing `0o700` octal literal (used for `mkdir` permissions) and aborts linting the *entire file* on that one line, not just that construct. This is a `vint` limitation, not a bug in `vimrc` — the code is valid, working Vimscript. `scripts/run-vint.sh` reports this as informational only and does not fail the build because of it. `vint` *does* successfully lint `pack/plugins.vim`, `pack/lf.vim`, and every `ftplugin/*.vim` file, and failures there **do** block CI. If `vint`'s upstream (`vim-vimlparser`) ever adds support for this octal syntax, `vimrc` linting will start working automatically — no config change needed here.
+
+**Dependency fragility (a real CI incident, not hypothetical):** `vim-vint` (last released as version 0.3.21, showing no sign of active maintenance) imports the deprecated `pkg_resources` module. When `validate.yml`'s `vimscript-lint` job ran on a fresh runner with the newest available `setuptools`, that job failed outright with `ModuleNotFoundError: No module named 'pkg_resources'` — `setuptools` 81+ dropped `pkg_resources` entirely. The fix (already applied) pins the install:
+```bash
+pip install "setuptools<81"
+pip install vim-vint
+```
+**This is explicitly a time-bounded workaround, not a permanent fix.** `pkg_resources` itself is slated for full removal from Python packaging as early as 2025-11-30 (per `setuptools`' own deprecation warning), at which point pinning an old `setuptools` may stop being installable or stop working at all. If `vimscript-lint` starts failing again with a `pkg_resources`-related error, check first whether a `vim-vint` release newer than 0.3.21 exists and has addressed this upstream, before assuming the pin just needs adjusting further — it may be time to replace `vint` with an actively-maintained alternative instead.
 
 ### Running any CI check locally before pushing
 
@@ -302,7 +315,7 @@ bash scripts/startup-smoke-test.sh          # matches validate.yml's core check
 bash scripts/ftplugin-open-test.sh          # opens every filetype in one session
 bash scripts/check-gitmodules-consistency.sh
 bash scripts/check-ftplugin-hygiene.sh
-bash scripts/run-vint.sh                    # requires: pip install vim-vint
+bash scripts/run-vint.sh                    # requires: pip install "setuptools<81" vim-vint
 bash scripts/check-security-regressions.sh
 bash scripts/check-nightly-plugin-compat.sh # WARNING: mutates your local submodule checkouts to their latest upstream commits (matches what the real sync would do) -- don't run this on a checkout you care about keeping pinned
 bash scripts/measure-startup-time.sh [N]    # prints median ms over N runs (default 5)
@@ -323,6 +336,17 @@ rm -rf .git/modules/<old-path>
 ```
 Run `bash scripts/check-gitmodules-consistency.sh` to confirm it's fully resolved.
 
+### `check-gitmodules-consistency.sh` fails with `.gitmodules declares '<path>' but no directory exists on disk`, on a fresh checkout
+
+**This happened for real, across 12 plugins simultaneously, after an earlier plugin-reorganization patch was applied.** This is the *other* half of §3.2's second failure mode — distinct from the `fatal: No url found` error above, and easy to confuse with it. Here, `.gitmodules` and the git index actually agree on nothing being wrong syntactically — the real problem is that the *new* path's gitlink was simply never created in the first place. This happens if someone runs `git submodule sync && git submodule update --init --recursive` as the fix after a plugin move, instead of `git submodule add <url> <path>` — the former only refreshes submodules that are already tracked; it can't register a brand new path.
+
+**Fix, for each affected path:**
+```bash
+rmdir <path> 2>/dev/null   # remove a stray empty placeholder dir if present
+git submodule add <url> <path>   # url comes from the existing .gitmodules entry
+```
+Then confirm with `bash scripts/check-gitmodules-consistency.sh` — it should report every path as consistent. `git submodule add` is safe to run even though `.gitmodules` already declares the path; git recognizes the existing entry and won't duplicate it, it just creates the missing gitlink and clones the real content.
+
 ### A mapping does the wrong thing depending on what filetype I opened last
 
 This is the buffer-scoping bug class from §4. Find the offending mapping:
@@ -334,6 +358,16 @@ It will name the exact file and line. Add `<buffer>` (for mappings) or change `s
 ### Vim throws `E484: Can't open file /pack/plugins.vim` (or similar, with a leading `/`)
 
 `$DOTVIM` is unset or empty, so `$DOTVIM/pack/plugins.vim` evaluated to `/pack/plugins.vim`. This should be impossible now (the guard in §5 sets a fallback), but if you see it, check whether something *removed* that guard, or whether you're sourcing `vimrc` in a way that bypasses the top of the file (e.g. `:source` on a partial file, not the whole thing).
+
+### `E919: Directory not found in 'packpath'` / `E185: Cannot find color scheme 'gruvbox-material'` in CI, even though submodules checked out correctly
+
+This happened for real in CI once already, and looked exactly like the "shallow checkout, missing submodule content" caveat the smoke-test scripts print — but wasn't that. The actual cause: **`vim -Nu ./vimrc` never adds the checkout directory itself to `&packpath`/`&runtimepath`**, unlike a real `~/.vim/vimrc` install where `~/.vim` is one of Vim's own default runtimepath entries regardless of vimrc content. Without it, every `packadd <opt-plugin>` call fails, because Vim has nowhere to actually find `pack/*/opt/<plugin>` — even when that directory genuinely exists with real content, checked out correctly by `submodules: recursive`.
+
+Confirmed by reproduction, not guessed: placing real-looking plugin content directly in a local checkout and running the bare invocation still failed the same way; adding `--cmd "set packpath+=$(pwd)" --cmd "set runtimepath+=$(pwd)"` to the same invocation with the same content in place fixed it immediately.
+
+**This is already fixed** in `scripts/startup-smoke-test.sh` and `scripts/ftplugin-open-test.sh` (both add the repo root to `packpath`/`runtimepath` explicitly before invoking Vim). If you write a *new* script that invokes `vim -Nu ./vimrc` directly, copy that same pattern — don't assume a bare `-u` invocation behaves like a real installed config.
+
+If you see this error and it's *not* from a new custom script missing this pattern, then the original caveat still applies: check whether the workflow step actually used `submodules: recursive` on checkout.
 
 ### A highlight/behavior only shows up in the most-recently-opened buffer of a filetype, not all of them
 
@@ -388,7 +422,7 @@ bash scripts/check-gitmodules-consistency.sh
 bash scripts/check-ftplugin-hygiene.sh
 
 # If you touched vimrc, pack/plugins.vim, pack/lf.vim, or any ftplugin file
-# and want the full Vimscript lint (requires: pip install vim-vint):
+# and want the full Vimscript lint (requires: pip install "setuptools<81" vim-vint):
 bash scripts/run-vint.sh
 
 # If you touched anything security-sensitive (autocommands, GPG handling):
